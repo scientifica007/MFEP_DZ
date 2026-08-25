@@ -1,0 +1,131 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2022-070
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 22-70 مؤرخ في 9 رجب عام 1443 الموافق 10 فبراير سنة 2022، يحدد شروط وكيفيات الاستفادة من منحة البطالة ومبلغها وكذا التزامات المستفيدين منها"
+  title_fr: "Décret exécutif n° 22-70 du 9 Rajab 1443 correspondant au 10 février 2022 fixant les conditions, les modalités et le montant de l'allocation chômage ainsi que les engagements des bénéficiaires"
+
+identity:
+  legal_form: executive_decree
+  number: "22-70"
+  title:
+    ar: "يحدد شروط وكيفيات الاستفادة من منحة البطالة ومبلغها وكذا التزامات المستفيدين منها"
+    fr: "Fixant les conditions, les modalités et le montant de l'allocation chômage ainsi que les engagements des bénéficiaires"
+  signature_date: 2022-02-10
+
+publication:
+  official_gazette: true
+  journal_number: 11
+  journal_year: 2022
+  publication_date: 2022-02-27
+  locators:
+    ar: {start_page: 11, end_page: 12}
+    fr: {start_page: 11, end_page: 12}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2022/A2022011.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2022/F2022011.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general_targeted_population
+  constitutional_or_legal_domain: unemployment_allowance
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MTES
+    label_as_published: {ar: "وزير العمل والتشغيل والضمان الاجتماعي", fr: "ministre du travail, de l'emploi et de la sécurité sociale"}
+  affected_sectors:
+    - employment
+    - social_protection
+    - vocational_training
+    - vocational_education
+
+status:
+  value: amended
+  as_of: 2026-01-22
+  confidence: 1.0
+  evidence:
+    - kind: amending_text
+      source_ref: DZ-DE-2026-087
+      source_publication_date: 2026-01-22
+      source_url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026006.pdf"
+      note: "المرسوم التنفيذي 26-87 يعدل ويتمم المرسوم 22-70 صراحة."
+  notes: "للنص تعديلات سابقة أيضا يجب إدخالها تاريخيا؛ الحالة amended مؤكدة، أما النسخة التاريخية المدمجة فتحتاج إدخال جميع نصوص التعديل."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2022/A2022011.pdf"
+    extraction_method: text_layer_plus_visual_cross_check
+    extraction_quality: medium
+    visually_verified: true
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2022/F2022011.pdf"
+    extraction_method: text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+structure:
+  known_articles:
+    - article: 1
+      function: object_and_finance_law_implementation
+    - article: 5
+      function: vocational_training_basis_for_beneficiaries
+
+relations:
+  - id: REL-DZ-DE-2022-070-IMPLEMENTS-21-16-ART190
+    type: implements
+    source_ref: DZ-DE-2022-070
+    target_ref: DZ-LAW-2021-016
+    source_article: art-1
+    target_article: art-190
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 11
+      locator: "Article 1er states that the decree is issued in application of article 190 of finance law 21-16."
+  - id: REL-DZ-DE-2022-070-ENABLES-TRAINING-ORDER
+    type: enabling_legislation
+    source_ref: DZ-DE-2022-070
+    source_article: art-5
+    target_ref: JOINT_MINISTERIAL_ORDER_FOR_BENEFICIARY_TRAINING
+    target_status: generic_implementation_slot
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 12
+      locator: "Article 5 provides that implementation modalities are fixed by joint order of the ministers in charge of labour/employment and vocational training/education."
+
+topics: [employment, unemployment_allowance, vocational_training, employability, horizontal_legislation]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2022/A2022011.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette_translation, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2022/F2022011.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_amending_text, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026006.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: true
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+known_history:
+  amendment_candidates:
+    - DZ-DE-2022-254
+    - DZ-DE-2023-060
+    - DZ-DE-2026-087
+  note: "26-87 verified from official JORADP. Earlier amendments are queued for official-source ingestion before consolidation."
