@@ -1,0 +1,117 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-LAW-1981-007
+id_status: provisional
+
+raw:
+  title_ar: "قانون رقم 81-07 مؤرخ في 24 شعبان عام 1401 الموافق 27 يونيو سنة 1981 والمتعلق بالتمهين"
+  title_fr: "Loi n° 81-07 du 27 juin 1981 relative à l'apprentissage"
+
+identity:
+  legal_form: law
+  number: "81-07"
+  title:
+    ar: "المتعلق بالتمهين"
+    fr: "Relative à l'apprentissage"
+  signature_date: 1981-06-27
+  promulgation_date: 1981-06-27
+
+publication:
+  official_gazette: true
+  journal_number: 26
+  journal_year: 1981
+  publication_date: 1981-06-30
+  locators:
+    ar:
+      start_page: null
+      end_page: null
+      locator_source: pending_direct_arabic_source
+    fr:
+      start_page: 634
+      end_page: null
+      locator_source: official_french_translation_pdf
+  url_ar: null
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/1981/F1981026.PDF"
+
+legal_classification:
+  normative_order: legislative
+  legal_form: law
+  legal_function: sector_legislation
+  normative_character: legislative
+  scope: general
+  constitutional_or_legal_domain: apprenticeship
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRESIDENCY
+      label_as_published:
+        ar: "رئيس الجمهورية"
+        fr: "Président de la République"
+  affected_sectors: [apprenticeship, vocational_training, employment]
+
+status:
+  value: repealed
+  as_of: 2018-06-13
+  confidence: 1.0
+  evidence:
+    - kind: explicit_repeal
+      source_ref: DZ-LAW-2018-010
+      source_article: art-76
+      source_publication_date: 2018-06-13
+      note: "المادة 76 من القانون 18-10 تلغي أحكام القانون 81-07، المعدل والمتمم."
+  notes: "لا يسجل repeal_date بعد لأن تاريخ بدء الأثر يحتاج معالجة مستقلة عن status.as_of. المادة 76 تحفظ النصوص التطبيقية الصادرة بموجب 81-07 انتقاليا إلى غاية نشر النصوص التطبيقية للقانون 18-10."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: null
+    extraction_method: later_official_citations_and_pending_original_pdf
+    extraction_quality: partial
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/1981/F1981026.PDF"
+    extraction_method: visual_pdf_check
+    extraction_quality: high
+    used_for_recovery: true
+
+structure:
+  known_articles:
+    - article: 1
+      function: object_and_scope
+    - article: 2
+      function: definition_of_apprenticeship
+
+relations: []
+
+topics: [apprenticeship, vocational_training, employment, historical_legislation, transitional_law]
+
+provenance:
+  - source_type: official_gazette_translation
+    language: fr
+    url: "https://www.joradp.dz/FTP/jo-francais/1981/F1981026.PDF"
+    retrieved_at: 2026-08-25
+  - source_type: official_later_repealing_text
+    language: fr
+    source_ref: DZ-LAW-2018-010
+    retrieved_at: 2026-08-25
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: false
+  legal_status_verified: true
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+known_history:
+  amended_before_repeal: true
+  amendment_candidates:
+    - DZ-LAW-1990-034
+    - DZ-LAW-2000-001
+    - DZ-LAW-2014-009
+  note: "يجب إدخال النصوص المعدلة من المصادر الرسمية قبل بناء consolidated historical version."
