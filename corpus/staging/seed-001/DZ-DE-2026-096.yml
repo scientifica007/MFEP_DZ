@@ -31,7 +31,7 @@ legal_classification:
   legal_form: executive_decree
   legal_function: institution_creation
   normative_character: regulatory
-  scope: specific_institutions
+  scope: specific_entities
   constitutional_or_legal_domain: vocational_training_institutions
 
 institutions:
