@@ -1,0 +1,283 @@
+version: 0.1-draft
+status: experimental
+last_updated: 2026-08-25
+
+normative_order:
+  constitutional:
+    ar: دستوري
+    fr: constitutionnel
+    en: constitutional
+  international:
+    ar: دولي
+    fr: international
+    en: international
+  legislative:
+    ar: تشريعي
+    fr: législatif
+    en: legislative
+  regulatory:
+    ar: تنظيمي
+    fr: réglementaire
+    en: regulatory
+  administrative:
+    ar: إداري
+    fr: administratif
+    en: administrative
+  jurisprudential:
+    ar: قضائي/اجتهادي
+    fr: jurisprudentiel
+    en: jurisprudential
+
+legal_form:
+  constitution:
+    ar: دستور
+    fr: constitution
+    en: constitution
+  treaty:
+    ar: معاهدة
+    fr: traité
+    en: treaty
+  organic_law:
+    ar: قانون عضوي
+    fr: loi organique
+    en: organic law
+  law:
+    ar: قانون
+    fr: loi
+    en: law
+  ordinance:
+    ar: أمر
+    fr: ordonnance
+    en: ordinance
+  presidential_decree:
+    ar: مرسوم رئاسي
+    fr: décret présidentiel
+    en: presidential decree
+  executive_decree:
+    ar: مرسوم تنفيذي
+    fr: décret exécutif
+    en: executive decree
+  ministerial_order:
+    ar: قرار وزاري
+    fr: arrêté ministériel
+    en: ministerial order
+  interministerial_order:
+    ar: قرار وزاري مشترك
+    fr: arrêté interministériel
+    en: interministerial order
+  decision:
+    ar: مقرر/قرار
+    fr: décision
+    en: decision
+  instruction:
+    ar: تعليمة
+    fr: instruction
+    en: instruction
+  circular:
+    ar: منشور
+    fr: circulaire
+    en: circular
+  note:
+    ar: مذكرة
+    fr: note
+    en: note
+  constitutional_decision:
+    ar: قرار المحكمة الدستورية
+    fr: décision de la Cour constitutionnelle
+    en: constitutional court decision
+
+normative_character:
+  constitutional:
+    ar: دستوري
+    fr: constitutionnel
+    en: constitutional
+  legislative:
+    ar: تشريعي
+    fr: législatif
+    en: legislative
+  regulatory:
+    ar: تنظيمي
+    fr: réglementaire
+    en: regulatory
+  individual_administrative_act:
+    ar: عمل إداري فردي
+    fr: acte administratif individuel
+    en: individual administrative act
+  internal_administrative:
+    ar: إداري داخلي
+    fr: administratif interne
+    en: internal administrative
+  interpretative:
+    ar: تفسيري
+    fr: interprétatif
+    en: interpretative
+  guidance:
+    ar: توجيهي
+    fr: orientation
+    en: guidance
+  jurisprudential:
+    ar: قضائي/اجتهادي
+    fr: jurisprudentiel
+    en: jurisprudential
+
+scope:
+  general:
+    ar: عام
+    fr: général
+    en: general
+  individual:
+    ar: فردي
+    fr: individuel
+    en: individual
+  internal:
+    ar: داخلي
+    fr: interne
+    en: internal
+  mixed:
+    ar: مختلط
+    fr: mixte
+    en: mixed
+
+legal_status:
+  active:
+    ar: نافذ
+    fr: en vigueur
+    en: active
+  amended:
+    ar: معدل
+    fr: modifié
+    en: amended
+  partially_repealed:
+    ar: ملغى جزئيا
+    fr: partiellement abrogé
+    en: partially repealed
+  repealed:
+    ar: ملغى
+    fr: abrogé
+    en: repealed
+  expired:
+    ar: منتهي المدة
+    fr: expiré
+    en: expired
+  suspended:
+    ar: موقوف التطبيق
+    fr: suspendu
+    en: suspended
+  not_yet_effective:
+    ar: لم يدخل حيز النفاذ بعد
+    fr: pas encore en vigueur
+    en: not yet effective
+  unknown:
+    ar: غير محدد
+    fr: indéterminé
+    en: unknown
+
+relation_type:
+  constitutional_basis:
+    ar: يستند دستوريا إلى
+    fr: fondement constitutionnel
+    en: constitutional basis
+  legal_basis:
+    ar: يستند قانونيا إلى
+    fr: fondement juridique
+    en: legal basis
+  competence_basis:
+    ar: سند الاختصاص
+    fr: fondement de compétence
+    en: competence basis
+  enabling_legislation:
+    ar: تشريع ممكّن/مفوّض
+    fr: législation habilitante
+    en: enabling legislation
+  implements:
+    ar: يطبق
+    fr: met en application
+    en: implements
+  applies:
+    ar: يطبق حكما من
+    fr: applique
+    en: applies
+  specifies:
+    ar: يحدد كيفيات/شروط
+    fr: précise/fixe les modalités
+    en: specifies
+  amends:
+    ar: يعدل
+    fr: modifie
+    en: amends
+  supplements:
+    ar: يتمم
+    fr: complète
+    en: supplements
+  replaces:
+    ar: يستبدل
+    fr: remplace
+    en: replaces
+  repeals:
+    ar: يلغي
+    fr: abroge
+    en: repeals
+  partially_repeals:
+    ar: يلغي جزئيا
+    fr: abroge partiellement
+    en: partially repeals
+  supersedes:
+    ar: يحل محل
+    fr: se substitue à
+    en: supersedes
+  references:
+    ar: يحيل إلى/يذكر
+    fr: fait référence à
+    en: references
+  interprets:
+    ar: يفسر
+    fr: interprète
+    en: interprets
+  clarifies:
+    ar: يوضح
+    fr: clarifie
+    en: clarifies
+  ratifies:
+    ar: يصادق على
+    fr: ratifie
+    en: ratifies
+  approves:
+    ar: يوافق على
+    fr: approuve
+    en: approves
+  implements_treaty:
+    ar: يطبق معاهدة
+    fr: met en œuvre un traité
+    en: implements treaty
+  creates_institution:
+    ar: ينشئ مؤسسة/هيئة
+    fr: crée une institution
+    en: creates institution
+  organizes_institution:
+    ar: ينظم مؤسسة/هيئة
+    fr: organise une institution
+    en: organizes institution
+  assigns_competence:
+    ar: يسند اختصاصا
+    fr: attribue une compétence
+    en: assigns competence
+  transfers_competence:
+    ar: ينقل اختصاصا
+    fr: transfère une compétence
+    en: transfers competence
+  renames_institution:
+    ar: يغير تسمية مؤسسة
+    fr: renomme une institution
+    en: renames institution
+  dissolves_institution:
+    ar: يحل/يلغي مؤسسة
+    fr: dissout une institution
+    en: dissolves institution
+
+verification_level:
+  0: discovered
+  1: metadata_verified
+  2: source_verified
+  3: structure_verified
+  4: relations_verified
+  5: legal_status_verified
