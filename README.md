@@ -9,7 +9,7 @@
 1. **المصدر الرسمي أولا**: الجريدة الرسمية والأمانة العامة للحكومة هما المرجع الأول للنصوص المنشورة.
 2. **النص القانوني هو وحدة المعرفة**، وليس عدد الجريدة الرسمية أو ملف PDF.
 3. **لا تُخزن ملفات PDF في Git**: تحفظ الروابط والمحددات الرسمية، بينما يخزن المشروع مواد نصية خفيفة قابلة للفهرسة والمراجعة. راجع [سياسة التخزين](docs/STORAGE_POLICY.md).
-4. **لكل نص واجهتان مترابطتان**: واجهة بشرية `README.md` وواجهة آلة `record.yml` + `articles.jsonl`، مع ملفات transcription نصية مستقلة عند اكتمالها.
+4. **لكل نص واجهتان مترابطتان**: واجهة بشرية `README.md` وواجهة آلة `record.yml` + `articles.jsonl`، مع ملفات transcription نصية مستقلة وحالة تحقق صريحة.
 5. **الترتيب القانوني الجزائري شبكة علاقات لا سلم أسماء بسيط**: نفرق بين المرتبة القانونية، شكل النص، الجهة المختصة، الوظيفة القانونية، ومجال الاختصاص.
 6. **العربية والفرنسية تعالجان معا**: نعتمد العربية المنشورة رسميا، ونرجع إلى النسخة/الترجمة الفرنسية الرسمية عند فساد الاستخراج العربي أو الحاجة إلى المقابلة المصطلحية، مع التحقق من الصفحة العربية المرئية. الإنجليزية طبقة مساعدة للمفاهيم والأنطولوجيا والمصادر الدولية.
 7. **لا نستنتج النفاذ أو الإلغاء بلا دليل**: كل حكم عن الحالة القانونية يجب أن يكون مؤرخا ومدعما بنص أو مادة أو مرجع رسمي.
@@ -21,7 +21,8 @@
 
 - [فهرس corpus البشري](corpus/INDEX.md)
 - [المسار الدائم للنصوص](corpus/texts/README.md)
-- أول نص مهاجر إلى النموذج الدائم: [القانون 08-07](corpus/texts/DZ-LAW-2008-007/README.md)
+
+جميع السجلات القانونية الـ12 الحالية لها الآن حزمة موحدة تحت `corpus/texts/`.
 
 البنية الدائمة لكل نص:
 
@@ -30,15 +31,15 @@ corpus/texts/<TEXT_ID>/
 ├── README.md              # الإنسان
 ├── record.yml             # بيانات قانونية مهيكلة
 ├── text/
-│   ├── ar.md              # transcription العربية
-│   └── fr.md              # transcription الفرنسية
+│   ├── ar.md              # transcription العربية وحالتها
+│   └── fr.md              # transcription الفرنسية وحالتها
 ├── data/
 │   └── articles.jsonl     # استدعاء المواد آليا
 └── sources/
     └── sources.yml        # روابط ومحددات JORADP
 ```
 
-لا يعني وجود مجلد النص أن transcription الكامل متحقق؛ حالة كل لغة مصرح بها في `record.yml` وملف اللغة نفسه.
+**تنبيه:** الحزمة موجودة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة معلنة داخل ملفها. حاليا غالبية النصوص في `transcription_pending`، وبعض المصادر القديمة في حالات أدنى مثل `source_resolution_pending`.
 
 ## الذاكرة والمنهجية
 
@@ -48,6 +49,7 @@ corpus/texts/<TEXT_ID>/
 - [docs/METHODOLOGY.md](docs/METHODOLOGY.md): طريقة اكتشاف النصوص، استخراجها، التحقق منها وربطها.
 - [docs/LANGUAGE_POLICY.md](docs/LANGUAGE_POLICY.md): سياسة العربية والفرنسية والإنجليزية.
 - [docs/STORAGE_POLICY.md](docs/STORAGE_POLICY.md): سياسة التخزين النصي ومنع PDF.
+- [docs/HUMAN_MACHINE_CORPUS.md](docs/HUMAN_MACHINE_CORPUS.md): عقد الحزمة المشتركة للإنسان والآلة.
 - [docs/DATA_MODEL.md](docs/DATA_MODEL.md): نموذج البيانات المقترح لكل نص قانوني.
 - [docs/LEGAL_RELATIONS.md](docs/LEGAL_RELATIONS.md): قاموس العلاقات بين النصوص والمواد.
 - [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
@@ -56,14 +58,12 @@ corpus/texts/<TEXT_ID>/
 - [ontology/core.yml](ontology/core.yml): vocabulary تجريبي قابل للآلة لأشكال النصوص، الوظائف، النطاقات، الحالات والعلاقات.
 - [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
 
-## Corpus التجريبي
+## Corpus الحالي
 
-يوجد حاليا **12 سجلا قانونيا** في دورة staging/validation. بدأ نقلها من النموذج التجريبي إلى `corpus/texts/`، وأول سجل مهاجر فعليا هو `DZ-LAW-2008-007`.
+يوجد حاليا **12 سجلا قانونيا** في دورة staging/validation، لكنها جميعا تستخدم الآن المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
 
-- [corpus/INDEX.md](corpus/INDEX.md): الحالة البشرية لكل سجل وهجرته.
-- [corpus/staging/seed-001/README.md](corpus/staging/seed-001/README.md): العينة الأساسية.
-- [corpus/staging/seed-002-dependencies/README.md](corpus/staging/seed-002-dependencies/README.md): أول توسع عبر Graph Traversal.
-- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس آلية مضغوطة.
+- [corpus/INDEX.md](corpus/INDEX.md): الفهرس البشري لجميع السجلات.
+- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس آلية تشير إلى الحزم الدائمة.
 - [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph ذات دليل.
 - [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
 
@@ -100,4 +100,4 @@ corpus/texts/<TEXT_ID>/
 
 ## حالة المستودع
 
-المشروع في مرحلة **`seed_corpus_staging_validation_and_human_machine_migration`**. بدأ تحويل corpus إلى حزم نصية تجمع القراءة البشرية والاستدعاء الآلي، مع منع PDF نهائيا داخل Git. الأولوية الحالية هي إتمام نقل النصوص الـ12، ثم اعتماد transcriptionات النصية المراجعة وبناء Schema v1 على ما تعلمناه من الحالات الحقيقية.
+المشروع في مرحلة **`human_machine_packages_complete_transcription_validation_next`**. اكتملت هجرة السجلات الـ12 إلى حزم Human + Machine دون PDF. الأولوية الآن هي materialization النصي والمراجعة AR/FR على مستوى المواد، ثم توسيع الاختبارات وتثبيت `legal-text.schema.json` v1 بعد نضج الحالات.
