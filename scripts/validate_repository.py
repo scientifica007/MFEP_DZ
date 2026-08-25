@@ -97,6 +97,20 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     warnings: list[str] = []
     counts: Counter[str] = Counter()
 
+    # Storage invariant: official journal binaries must never be committed.
+    pdf_files = sorted(
+        path
+        for path in root.rglob("*")
+        if path.is_file()
+        and path.suffix.lower() == ".pdf"
+        and ".git" not in path.parts
+    )
+    for path in pdf_files:
+        errors.append(
+            f"forbidden PDF file in repository tree: {path.relative_to(root)}"
+        )
+    counts["pdf_files"] = len(pdf_files)
+
     ontology = root / "ontology" / "core.yml"
     legal_forms = ontology_keys(ontology, "legal_form", errors)
     relation_types = ontology_keys(ontology, "relation_type", errors)
