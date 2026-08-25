@@ -1,0 +1,109 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2018-162
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 18-162 مؤرخ في 29 رمضان عام 1439 الموافق 14 يونيو سنة 2018، يحدد شروط إنشاء المؤسسة الخاصة للتكوين أو التعليم المهني وفتحها ومراقبتها"
+  title_fr: "Décret exécutif n° 18-162 du 29 Ramadhan 1439 correspondant au 14 juin 2018 fixant les conditions de création, d'ouverture et de contrôle de l'établissement privé de formation ou d'enseignement professionnel"
+
+identity:
+  legal_form: executive_decree
+  number: "18-162"
+  title:
+    ar: "يحدد شروط إنشاء المؤسسة الخاصة للتكوين أو التعليم المهني وفتحها ومراقبتها"
+    fr: "Fixant les conditions de création, d'ouverture et de contrôle de l'établissement privé de formation ou d'enseignement professionnel"
+  signature_date: 2018-06-14
+
+publication:
+  official_gazette: true
+  journal_number: 36
+  journal_year: 2018
+  publication_date: 2018-06-17
+  locators:
+    ar: {start_page: 7, end_page: null}
+    fr: {start_page: 7, end_page: null}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: private_vocational_training_and_education
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [private_training, vocational_training, vocational_education]
+
+status:
+  value: amended
+  as_of: 2026-03-29
+  confidence: 1.0
+  evidence:
+    - kind: amending_text
+      source_ref: DZ-DE-2020-340
+      date: 2020-11-22
+      note: "المرسوم التنفيذي 20-340 يعدل ويتمم بعض أحكام 18-162."
+    - kind: later_official_citation
+      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+      publication_date: 2026-03-29
+      note: "ورد 18-162 في التأشيرات بصفته المعدل والمتمم."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
+    extraction_method: joradp_text_layer
+    extraction_quality: medium
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2018-162-IMPLEMENTS-08-07-ART15
+    type: implements
+    source_ref: DZ-DE-2018-162
+    target_ref: DZ-LAW-2008-007
+    source_article: art-1
+    target_article: art-15
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 7
+      locator: "Article 1er — En application de l'article 15 de la loi n° 08-07..."
+  - id: REL-DZ-DE-2018-162-REFERENCES-16-282
+    type: references
+    source_ref: DZ-DE-2018-162
+    target_ref: DZ-DE-2016-282
+    source_article: preamble
+    confidence: 1.0
+
+topics: [private_training, vocational_training, vocational_education, accreditation, inspection, institutional_control]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: partial
+  verified_at: 2026-08-25
+  needs_legal_review: true
