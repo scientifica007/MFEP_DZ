@@ -1,0 +1,116 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-LAW-2018-010
+id_status: provisional
+
+raw:
+  title_ar: "قانون رقم 18-10 مؤرخ في 25 رمضان عام 1439 الموافق 10 يونيو سنة 2018، يحدد القواعد المطبقة في مجال التمهين"
+  title_fr: "Loi n° 18-10 du 25 Ramadhan 1439 correspondant au 10 juin 2018 fixant les règles applicables en matière d'apprentissage"
+
+identity:
+  legal_form: law
+  number: "18-10"
+  title:
+    ar: "يحدد القواعد المطبقة في مجال التمهين"
+    fr: "Fixant les règles applicables en matière d'apprentissage"
+  signature_date: 2018-06-10
+  promulgation_date: 2018-06-10
+
+publication:
+  official_gazette: true
+  journal_number: 35
+  journal_year: 2018
+  publication_date: 2018-06-13
+  locators:
+    ar:
+      start_page: 7
+      end_page: 15
+    fr:
+      start_page: 6
+      end_page: 14
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018035.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2018/F2018035.pdf"
+
+legal_classification:
+  normative_order: legislative
+  legal_form: law
+  legal_function: sector_legislation
+  normative_character: legislative
+  scope: general
+  constitutional_or_legal_domain: apprenticeship
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRESIDENCY
+      label_as_published:
+        ar: "رئيس الجمهورية"
+        fr: "Président de la République"
+  affected_sectors:
+    - apprenticeship
+    - vocational_training
+    - employment
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence:
+    - kind: later_official_citation
+      date: 2026-05-06
+      note: "ورد القانون 18-10 كسند في نص رسمي منشور سنة 2026، وهو دليل على استمرار أهميته القانونية لكنه لا يكفي وحده لتحديد هل عدل جزئيا."
+  notes: "يلزم مسح التعديلات اللاحقة قبل اعتماد active/amended."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018035.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018035.pdf"
+    extraction_method: joradp_text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-LAW-2018-010-REPEALS-1981-007
+    type: repeals
+    source_ref: DZ-LAW-2018-010
+    target_ref: DZ-LAW-1981-007
+    source_article: art-76
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 14
+      locator: "Article 76: les dispositions de la loi n° 81-07 du 27 juin 1981, modifiée et complétée, relative à l'apprentissage, sont abrogées."
+    notes: "المادة 76 تبقي النصوص التطبيقية للقانون 81-07 نافذة انتقاليا إلى غاية نشر النصوص الجديدة للقانون 18-10."
+
+topics:
+  - apprenticeship
+  - vocational_training
+  - employment
+  - transitional_law
+
+provenance:
+  - source_type: official_gazette
+    language: ar
+    url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018035.pdf"
+    retrieved_at: 2026-08-25
+  - source_type: official_gazette
+    language: fr
+    url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018035.pdf"
+    retrieved_at: 2026-08-25
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
