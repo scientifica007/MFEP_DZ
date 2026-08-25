@@ -1,0 +1,119 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-LAW-2008-007
+id_status: provisional
+
+raw:
+  title_ar: "قانون رقم 08-07 مؤرخ في 16 صفر عام 1429 الموافق 23 فبراير سنة 2008، يتضمن القانون التوجيهي للتكوين والتعليم المهنيين"
+  title_fr: "Loi n° 08-07 du 16 Safar 1429 correspondant au 23 février 2008 portant loi d'orientation sur la formation et l'enseignement professionnels"
+
+identity:
+  legal_form: law
+  number: "08-07"
+  title:
+    ar: "القانون التوجيهي للتكوين والتعليم المهنيين"
+    fr: "Loi d'orientation sur la formation et l'enseignement professionnels"
+  signature_date: 2008-02-23
+  promulgation_date: 2008-02-23
+
+publication:
+  official_gazette: true
+  journal_number: 11
+  journal_year: 2008
+  publication_date: 2008-03-02
+  locators:
+    ar:
+      start_page: 4
+      end_page: 6
+    fr:
+      start_page: 4
+      end_page: 6
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2008/A2008011.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2008/F2008011.pdf"
+
+legal_classification:
+  normative_order: legislative
+  legal_form: law
+  legal_function: framework_legislation
+  normative_character: legislative
+  scope: general
+  constitutional_or_legal_domain: vocational_training_and_education_framework
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRESIDENCY
+      label_as_published:
+        ar: "رئيس الجمهورية"
+        fr: "Président de la République"
+  affected_sectors:
+    - vocational_training
+    - vocational_education
+    - apprenticeship
+    - continuing_training
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence: []
+  notes: "لم ينجز بعد مسح كامل للنصوص اللاحقة لتحديد الحالة القانونية النهائية. وجود نصوص تطبيقية لاحقة لا يكفي وحده لإثبات الحالة الحالية الكاملة."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2008/A2008011.pdf"
+    extraction_method: joradp_text_layer_and_visual_check
+    extraction_quality: high
+    visually_verified: true
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2008/F2008011.pdf"
+    extraction_method: joradp_text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+structure:
+  known_articles:
+    - article: 1
+      function: object_of_law
+    - article: 14
+      function: institutional_implementation_basis
+    - article: 15
+      function: private_training_implementation_basis
+    - article: 19
+      function: initial_training_regime_implementation_basis
+
+relations: []
+
+topics:
+  - sector_governance
+  - vocational_training
+  - vocational_education
+  - apprenticeship
+  - continuing_training
+  - institutions
+
+provenance:
+  - source_type: official_gazette
+    language: ar
+    url: "https://www.joradp.dz/FTP/jo-arabe/2008/A2008011.pdf"
+    retrieved_at: 2026-08-25
+  - source_type: official_gazette
+    language: fr
+    url: "https://www.joradp.dz/FTP/jo-francais/2008/F2008011.pdf"
+    retrieved_at: 2026-08-25
+
+verification:
+  level: 2
+  metadata_verified: true
+  source_verified: true
+  structure_verified: false
+  relations_verified: false
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+notes:
+  - "هذا النص هو نقطة ارتكاز أساسية للـseed corpus، وتثبت النصوص 12-125 و14-140 و16-282 و18-162 صلات تطبيقية مباشرة بمواد منه."
