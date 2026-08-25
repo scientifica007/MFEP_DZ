@@ -6,82 +6,115 @@
 
 ## المرحلة الحالية
 
-`seed_corpus_staging_validation_and_dependency_expansion`
+`seed_corpus_staging_validation_and_human_machine_migration`
 
-تم إنشاء أول Seed Corpus حقيقي من عشرة نصوص، ثم حل أول تبعيتين عاليتَي الأولوية. يوجد الآن **12 سجلا قانونيا في staging**. لا تعتبر السجلات `trusted` بعد؛ الهدف هو اختبار نموذج البيانات والعلاقات والمعرفات وقواعد التحقق قبل Schema v1.
+يوجد 12 سجلا قانونيا في دورة staging/validation. بدأ تحويل السجلات من ملفات metadata منفردة إلى حزم دائمة تجمع القراءة البشرية والاستدعاء الآلي. أول نص مهاجر فعليا هو `DZ-LAW-2008-007`.
 
-## مكتمل
+## القرار الجديد الحاسم: لا PDF في Git
 
-- تعريف المستودع كذاكرة دائمة للمشروع.
-- توثيق نموذج النظام القانوني الجزائري متعدد الأبعاد.
-- توثيق سياسة العربية/الفرنسية/الإنجليزية.
-- توثيق منهج الاكتشاف والاستخراج والتحقق.
-- إعداد نموذج بيانات مفاهيمي أولي وontology v0.2-draft.
-- تثبيت قرار عدم تجميد JSON Schema قبل اختباره على corpus حقيقي.
-- إنشاء طبقة AI مستقلة عن المزود وعقد Agent موحد.
-- إنشاء `Seed Corpus 001` من 10 نصوص: قانونان، ستة مراسيم تنفيذية، وقراران وزاريان مشتركان غير مرقمين.
-- إنشاء `Seed 002 — dependencies` وإدخال القانون 81-07 والمرسوم التنفيذي 22-70.
-- إنشاء فهارس آلية تحت `metadata/staging/`.
-- إنشاء Graph أولي عالي الثقة تحت `graph/staging/`.
-- إنشاء قائمة متابعة للتبعيات `metadata/discovery-queue.jsonl` مع حالات `pending` و`ingested_staging`.
-- إثبات حالتي إلغاء صريح: القانون 18-10 يلغي القانون 81-07؛ وقرار 2026 يلغي قرار 24 مارس 2022.
-- إثبات حالتي تعديل مهمتين: 20-340 يعدل ويتمم 18-162؛ و26-87 يعدل ويتمم 22-70.
-- إثبات علاقات تطبيق مباشرة من مواد محددة في 12-125 و16-282 و18-162 و22-70، وعلاقة تطبيق 26-96 للمادة 3 من 12-125.
-- إنشاء أول أربع Gold Evals للعلاقات المؤكدة.
-- إضافة `scripts/validate_repository.py` كحاجز تحقق deterministic لا يعتمد على AI، لفحص JSONL، تكرار المعرفات، المسارات، vocabulary، Graph refs، discovery queue، وتطابق eval cases/expected outputs.
+- لا تحفظ ملفات PDF أو صور صفحات الجريدة الرسمية داخل المستودع.
+- `.gitignore` يمنع `*.pdf` و`*.PDF`.
+- `scripts/validate_repository.py` يعتبر وجود PDF داخل شجرة المستودع خطأ.
+- تحفظ روابط JORADP ورقم الجريدة والصفحات ومحددات اللغة في `sources/sources.yml`.
+- إذا احتاج workflow إلى PDF فإنه ينزل مؤقتا، يستخرج النص، ثم يحذف الملف.
+- راجع `docs/STORAGE_POLICY.md`.
 
-## أهم نتائج التصميم حتى الآن
+## نموذج Human + Machine الدائم
 
-1. Pagination العربية والفرنسية ليست موحدة؛ أصبح `publication.locators` خاصا بكل لغة.
-2. لا يفضل تضمين `MFEP` في Canonical ID للنصوص المرقمة قبل إثبات استقرار هذا الخيار؛ القطاع تصنيف لا هوية.
-3. الأعمال غير المرقمة تحتاج معرفا مبنيا على التاريخ + discriminator، ولا يجوز اختراع رقم.
-4. Graph يمكن أن يشير إلى dependency غير مدخلة بشرط وسمها unresolved ووضعها في discovery queue.
-5. التحقق من relation مستقل عن التحقق من الحالة القانونية الحالية للنص.
-6. `status.as_of` ليس هو `repeal_date`.
-7. Schema v1 تحتاج تمثيلا صارما لـpartial verification.
-8. المفتاح القانوني المعتمد لقرار وزاري مشترك هو `interministerial_order`؛ `joint ministerial order` alias إنجليزي فقط.
-9. `enabling_legislation` يقتصر على التشريع الممكّن. عندما ينص تنظيم على صدور أداة تطبيق أدنى نستخدم `provides_for_implementing_act`.
-10. النص الأفقي يدخل corpus بحسب أثره: المرسوم 22-70 صادر عن قطاع العمل لكنه جزء مباشر من شبكة التكوين لأن المادة 5 منه تنظم إحالة المستفيد إلى التكوين وتفوض تحديد كيفيات ذلك بقرار مشترك مع قطاع التكوين.
-11. التحقق البنيوي يجب أن يبقى منفصلا عن التحقق الدلالي القانوني: نجاح validator لا يعني أن الحكم القانوني صحيح، بل يعني أن البيانات قابلة للفحص ولا تكسر عقود البنية الحالية.
+لكل نص بعد الهجرة:
+
+```text
+corpus/texts/<TEXT_ID>/
+├── README.md
+├── record.yml
+├── text/
+│   ├── ar.md
+│   └── fr.md
+├── data/
+│   └── articles.jsonl
+└── sources/
+    └── sources.yml
+```
+
+### معنى الملفات
+
+- `README.md`: واجهة الباحث/الإنسان.
+- `record.yml`: metadata والتصنيف والحالة والتحقق.
+- `articles.jsonl`: عنونة واستدعاء المواد للآلة.
+- `text/ar.md`, `text/fr.md`: transcription نصية؛ يجب قراءة `status` قبل اعتبارها مكتملة.
+- `sources.yml`: source of evidence ولا يحتوي binary.
+
+## أول هجرة: القانون 08-07
+
+المسار: `corpus/texts/DZ-LAW-2008-007/`.
+
+المكتمل:
+
+- واجهة بشرية كاملة من حيث البطاقة وخريطة المواد والعلاقات المعروفة؛
+- سجل `record.yml`؛
+- فهرس 32 مادة في `data/articles.jsonl` مع page locators AR/FR؛
+- source manifest؛
+- ملفات اللغة وحالة transcription؛
+- تحديث metadata ليشير إلى المسار الجديد؛
+- حذف ملف السجل القديم المكرر من `corpus/staging/seed-001/`.
+
+**تنبيه:** المتن الكامل العربي والفرنسي داخل ملفات `text/` لم يعتمد بعد كـ`verified transcription`. وجود source links وفهرس المواد لا يساوي وجود متن داخلي متحقق.
+
+## أدوات جديدة
+
+- `scripts/materialize_joradp_text.py`: ينزل PDF مؤقتا ويستخرج النص بواسطة `pdftotext` ثم يحذف PDF.
+- `scripts/validate_repository.py`: validation بنيوي + حظر PDF.
+
+## حالة corpus السابقة المستمرة
+
+- 12 سجلا قانونيا في دورة staging/validation.
+- Graph أولي تحت `graph/staging/`.
+- metadata indexes تحت `metadata/staging/`.
+- discovery queue تحت `metadata/discovery-queue.jsonl`.
+- Gold Evals أولية للعلاقات القانونية.
+- ontology `0.2-draft`.
+
+## أهم نتائج التصميم
+
+1. Locator النشر مستقل لكل لغة.
+2. لا يفضل تضمين القطاع في Canonical ID قبل تثبيت السياسة.
+3. الأعمال غير المرقمة تحتاج تاريخ + discriminator؛ لا نخترع أرقاما.
+4. relation verification مستقل عن legal-status verification.
+5. `status.as_of` ليس `repeal_date`.
+6. `interministerial_order` هو المفتاح القانوني للقرار الوزاري المشترك.
+7. `provides_for_implementing_act` يختلف عن `enabling_legislation`.
+8. النصوص الأفقية تدخل بحسب أثرها على القطاع.
+9. النجاح البنيوي في Validator لا يثبت صحة الحكم القانوني.
+10. النص القانوني يجب أن يكون قابلا للقراءة للإنسان والاستدعاء للآلة من نفس الحزمة، دون PDF داخل Git.
 
 ## العمل التالي ذو الأولوية
 
-1. إدخال سلسلة تعديلات القانون 81-07 قبل إلغائه: 90-34، 2000-01، 14-09.
-2. إدخال المرسوم 81-392 والنص الانتقالي/التطبيقي لسنة 2020 الذي ألغاه، بعد تثبيت الهوية الدقيقة من المصدر الرسمي.
-3. إدخال سلسلة تعديلات 22-70: 22-254، 23-60، 26-87، مع أثرها على المادة 5 والتكوين.
-4. حسم علاقة 14-140 بالقانون 08-07 على مستوى المادة بعد فحص النص الكامل AR/FR.
-5. حل رابط PDF العربي المباشر لقرار 24 مارس 2022 والتحقق البصري منه.
-6. فحص النصوص اللاحقة لكل سجل قبل ترقية الحالات القانونية إلى trusted.
-7. توسيع Gold Evals لتشمل الحالة القانونية، AR/FR alignment، وعدم اليقين.
-8. اختبار حالات لم تغط بعد: أمر، مرسوم رئاسي/معاهدة، قرار فردي، تعليمة/منشور، إلغاء جزئي معقد.
-9. توسيع validator لاحقا إلى YAML/JSON Schema validation بعد تثبيت Schema v1؛ الإصدار الحالي يبقى pre-schema structural gate.
-10. بعد هذه الاختبارات فقط تثبيت `legal-text.schema.json` v1.
+1. إتمام transcription المراجع للقانون 08-07، بدءا بالفرنسية ثم مقابلة العربية وتصحيحها.
+2. بعد نجاح 08-07، هجرة النصوص الـ11 الباقية إلى `corpus/texts/` دون ازدواج records.
+3. توسيع `articles.jsonl` ليحمل text payload فقط عندما يعتمد transcription الخاص بالمادة.
+4. إدخال سلسلة تعديلات القانون 81-07 قبل إلغائه: 90-34، 2000-01، 14-09.
+5. إدخال المرسوم 81-392 والنص التطبيقي لسنة 2020 الذي ألغاه.
+6. إدخال سلسلة تعديلات 22-70: 22-254، 23-60، 26-87.
+7. حسم علاقة 14-140 بالقانون 08-07 على مستوى المادة.
+8. توسيع Gold Evals لتشمل transcription/AR-FR alignment والحالة القانونية.
+9. اختبار أنواع لم تغط بعد: أمر، مرسوم رئاسي/معاهدة، قرار فردي، تعليمة/منشور، إلغاء جزئي.
+10. بعد نضج الحالات تثبيت `legal-text.schema.json` v1.
 
 ## ملفات الاستئناف الأساسية
 
-- `corpus/staging/seed-001/README.md`
-- `corpus/staging/seed-002-dependencies/README.md`
+- `corpus/INDEX.md`
+- `corpus/texts/README.md`
+- `corpus/texts/DZ-LAW-2008-007/README.md`
+- `docs/STORAGE_POLICY.md`
 - `metadata/staging/seed-001.jsonl`
 - `metadata/staging/seed-002-dependencies.jsonl`
 - `graph/staging/seed-001-relations.jsonl`
 - `graph/staging/seed-002-relations.jsonl`
 - `metadata/discovery-queue.jsonl`
-- `docs/DATA_MODEL.md`
-- `docs/LEGAL_RELATIONS.md`
-- `docs/DECISIONS.md`
 - `ontology/core.yml`
+- `scripts/materialize_joradp_text.py`
 - `scripts/validate_repository.py`
-
-## مسائل مفتوحة
-
-- الصيغة النهائية لـCanonical ID.
-- vocabulary النهائي لـ`legal_function` بعد حالات أكثر.
-- تمثيل الحالة القانونية المركبة.
-- سياسة النصوص المهمة غير المنشورة في الجريدة الرسمية.
-- طريقة بناء consolidated text في مرحلة لاحقة.
-- thresholds النهائية لقبول نموذج جديد في evals بعد توفر gold corpus أوسع.
-- نموذج `verification` النهائي: Boolean أم enum متعدد المستويات.
 
 ## قاعدة الاستئناف
 
-لا تبدأ مسحا تاريخيا شاملا. استمر عبر Graph Traversal من التبعيات عالية الأولوية، وسجل كل dependency جديدة في queue. كل علاقة مؤكدة تحفظ مع evidence، وكل سجل يبقى staging إلى أن يجتاز التحقق والـvalidation.
+لا توسع corpus لمجرد زيادة العدد. الأولوية الآن لإثبات أن حزمة Human + Machine قابلة للصيانة والاستدعاء على نص حقيقي، ثم تعميمها. لا يوصف النص الكامل بأنه مخزن داخليا إلا إذا كانت transcription ذات حالة معلنة ومتحققة.
