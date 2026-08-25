@@ -24,6 +24,9 @@
 - [docs/LEGAL_RELATIONS.md](docs/LEGAL_RELATIONS.md): قاموس العلاقات بين النصوص والمواد.
 - [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
 - [docs/SOURCES.md](docs/SOURCES.md): سجل المصادر الرسمية والمراجع الأساسية.
+- [docs/DECISIONS.md](docs/DECISIONS.md): سجل القرارات المنهجية والمسائل المفتوحة.
+- [ontology/core.yml](ontology/core.yml): vocabulary أولي قابل للآلة لأشكال النصوص، المراتب، الحالات والعلاقات.
+- [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
 
 ## المصدر الرسمي الرئيسي
 
