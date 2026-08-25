@@ -249,3 +249,23 @@ Pipeline مبدئي:
 4. إنشاء سجل المصطلحات AR/FR/EN.
 5. بناء أول Graph علاقات حقيقية بين النصوص.
 6. إضافة آلية validation آلية للبيانات قبل قبول أي إدخال جديد.
+7. تحويل أول corpus متحقق منه إلى Gold Evals لاختبار أي نموذج أو prompt أو pipeline جديد.
+
+## 19. استقلال طبقة الذكاء الاصطناعي
+
+**المشروع Model-Agnostic وProvider-Agnostic.** لا يجوز أن تعتمد الحقيقة القانونية أو ontology أو schema أو طريقة العمل على OpenAI أو Anthropic أو Google أو نموذج محلي بعينه.
+
+المبادئ:
+
+1. الذكاء الاصطناعي عامل استخراج وتحليل واقتراح، وليس مصدر الحقيقة القانونية.
+2. أي Agent جديد يبدأ من `AGENTS.md` ثم `ai/AGENT_CONTRACT.md` و`ai/PROJECT_CONTEXT.md` و`ai/HANDOFF.md`.
+3. التعليمات العامة والمهام والـprompts المهمة تحفظ داخل Git؛ لا تعتمد استمرارية المشروع على إعدادات محادثة خارجية.
+4. الحقيقة القانونية المتغيرة لا توضع في prompts؛ تبقى في corpus/metadata مع provenance.
+5. مخرجات AI تنتقل من `staging` إلى `trusted` فقط بعد استيفاء التحقق المعتمد.
+6. تغيير النموذج أو prompt أو pipeline لا يمنحه الثقة تلقائيا؛ يجب اختباره على `ai/evals/`.
+7. الأخطاء عالية الضرر مثل اختلاق المراجع، false repeal، false amendment، فقد provenance أو تقديم الفرنسية كنص عربي رسمي تمنع اعتماد workflow حتى إصلاحها.
+8. تفاصيل API والمزود تعزل في adapters ولا تنتشر داخل المنطق القانوني.
+9. `provider`, `model`, `prompt_version` هي metadata تشغيلية وليست خصائص للنص القانوني.
+10. `KNOWLEDGE_CHANGELOG.md` يسجل التغييرات المؤثرة في المعرفة والمنهج، و`ai/HANDOFF.md` يسجل حالة الاستئناف الحالية.
+
+وثائق الطبقة: `ai/README.md`, `ai/AGENT_CONTRACT.md`, `ai/SAFETY_AND_LIMITS.md`, `ai/evals/README.md`.
