@@ -1,0 +1,10 @@
+# MFEP_DZ storage policy: never commit official journal binary documents.
+*.pdf
+*.PDF
+
+# Temporary extraction/cache directories
+.tmp/
+tmp/
+.cache/
+__pycache__/
+*.pyc
