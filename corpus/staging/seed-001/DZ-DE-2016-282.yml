@@ -1,0 +1,112 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2016-282
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 16-282 مؤرخ في 2 صفر عام 1438 الموافق 2 نوفمبر سنة 2016، يحدد نظام التكوين المهني الأولي والشهادات المتوجة له"
+  title_fr: "Décret exécutif n° 16-282 du 2 Safar 1438 correspondant au 2 novembre 2016 fixant le régime de la formation professionnelle initiale et les diplômes la sanctionnant"
+
+identity:
+  legal_form: executive_decree
+  number: "16-282"
+  title:
+    ar: "يحدد نظام التكوين المهني الأولي والشهادات المتوجة له"
+    fr: "Fixant le régime de la formation professionnelle initiale et les diplômes la sanctionnant"
+  signature_date: 2016-11-02
+
+publication:
+  official_gazette: true
+  journal_number: 67
+  journal_year: 2016
+  publication_date: 2016-11-13
+  locators:
+    ar: {start_page: 9, end_page: null}
+    fr: {start_page: 9, end_page: null}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: initial_vocational_training_and_diplomas
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnel"}
+  affected_sectors: [vocational_training, apprenticeship, certification]
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence:
+    - kind: later_official_citation
+      date: 2026-02-15
+      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+  notes: "استُعمل كسند في قرار رسمي منشور سنة 2026. لا يزال يلزم مسح التعديلات والإلغاءات الجزئية."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf"
+    extraction_method: text_layer_plus_french_alignment
+    extraction_quality: medium
+    visually_verified: true
+    notes: "طبقة النص العربية أظهرت خطأ استخراج في بعض التأشيرات، لذلك استعملت الفرنسية للتحقق من الهوية والعلاقات."
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf"
+    extraction_method: text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2016-282-IMPLEMENTS-08-07-ART19
+    type: implements
+    source_ref: DZ-DE-2016-282
+    target_ref: DZ-LAW-2008-007
+    source_article: art-1
+    target_article: art-19
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 9
+      locator: "Article 1er — En application des dispositions de l'article 19 de la loi n° 08-07..."
+  - id: REL-DZ-DE-2016-282-REFERENCES-12-125
+    type: references
+    source_ref: DZ-DE-2016-282
+    target_ref: DZ-DE-2012-125
+    source_article: preamble
+    confidence: 1.0
+  - id: REL-DZ-DE-2016-282-REFERENCES-14-140
+    type: references
+    source_ref: DZ-DE-2016-282
+    target_ref: DZ-DE-2014-140
+    source_article: preamble
+    confidence: 1.0
+
+topics: [vocational_training, initial_training, training_modes, qualification_levels, diplomas, certification]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
