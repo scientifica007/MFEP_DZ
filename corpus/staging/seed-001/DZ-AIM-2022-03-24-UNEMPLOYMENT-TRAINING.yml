@@ -1,0 +1,123 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+id_status: provisional
+
+raw:
+  title_ar: "قرار وزاري مشترك مؤرخ في 21 شعبان عام 1443 الموافق 24 مارس سنة 2022، يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
+  title_fr: "Arrêté interministériel du 21 Chaâbane 1443 correspondant au 24 mars 2022 fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
+
+identity:
+  legal_form: joint_ministerial_order
+  number: null
+  title:
+    ar: "يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
+    fr: "Fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
+  signature_date: 2022-03-24
+
+publication:
+  official_gazette: true
+  journal_number: 25
+  journal_year: 2022
+  publication_date: 2022-04-12
+  locators:
+    ar:
+      start_page: 28
+      end_page: null
+      locator_source: "official Arabic annual index"
+    fr:
+      start_page: 26
+      end_page: null
+      locator_source: "French official translation PDF"
+  url_ar: null
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2022/F2022025.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: joint_ministerial_order
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general_targeted_population
+  constitutional_or_legal_domain: unemployment_allowance_training
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-MTES
+      label_as_published: {ar: "وزير العمل والتشغيل والضمان الاجتماعي", fr: "ministre du travail, de l'emploi et de la sécurité sociale"}
+    - institution_id: DZ-MFEP
+      label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [employment, vocational_training, unemployment_allowance]
+
+status:
+  value: repealed
+  as_of: 2026-03-29
+  confidence: 1.0
+  evidence:
+    - kind: explicit_repeal
+      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+      source_article: art-13
+      publication_date: 2026-03-29
+      note: "المادة 13 من قرار 2026 تلغي أحكام قرار 24 مارس 2022 صراحة."
+  notes: "تاريخ الأثر الدقيق للإلغاء يفصل لاحقا عن status_as_of إلى أن تثبت قاعدة النفاذ المناسبة."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: null
+    extraction_method: official_annual_index_plus_later_repeal_citation
+    extraction_quality: partial
+    visually_verified: false
+    notes: "رابط PDF العربي المباشر لم يثبت في هذه الجولة؛ المرجع العربي مثبت في الفهرس الرسمي السنوي وفي نص الإلغاء اللاحق."
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2022/F2022025.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-AIM-2022-IMPLEMENTS-22-70-ART5
+    type: implements
+    source_ref: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+    target_ref: DZ-DE-2022-070
+    source_article: art-1
+    target_article: art-5
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 26
+      locator: "Article 1er — ... en application des dispositions de l'article 5 du décret exécutif n° 22-70..."
+  - id: REL-DZ-AIM-2022-REFERENCES-12-125
+    type: references
+    source_ref: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+    target_ref: DZ-DE-2012-125
+    source_article: preamble
+    confidence: 1.0
+  - id: REL-DZ-AIM-2022-REFERENCES-14-140
+    type: references
+    source_ref: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+    target_ref: DZ-DE-2014-140
+    source_article: preamble
+    confidence: 1.0
+
+topics: [employment, unemployment_allowance, vocational_training, short_training]
+
+provenance:
+  - {source_type: official_gazette_translation, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2022/F2022025.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_sgg_annual_index, language: ar, url: "https://www.joradp.dz/TRV/A2022B14.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: true
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+schema_observations:
+  - "Unnumbered joint ministerial orders require a collision-resistant canonical ID strategy."
+  - "Arabic and French pagination differs materially (Arabic index p.28 vs French p.26)."
