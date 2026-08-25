@@ -1,0 +1,47 @@
+{
+  "project": "MFEP_DZ",
+  "jurisdiction": "DZ",
+  "country": {
+    "ar": "الجزائر",
+    "fr": "Algérie",
+    "en": "Algeria"
+  },
+  "domain": "vocational_training_and_education",
+  "repository_is_persistent_memory": true,
+  "ai_architecture": {
+    "model_agnostic": true,
+    "provider_agnostic": true,
+    "ai_is_source_of_legal_truth": false
+  },
+  "core_entity": "legal_or_administrative_text",
+  "knowledge_layers": ["raw", "normalized", "interpreted"],
+  "verification_stages": [
+    "machine_extracted",
+    "structurally_validated",
+    "source_checked",
+    "cross_language_checked",
+    "human_reviewed"
+  ],
+  "working_languages": {
+    "ar": "official_publication_path_and_visual_verification",
+    "fr": "official_translation_or_reference_for_alignment_and_recovery",
+    "en": "auxiliary_ontology_and_international_sources"
+  },
+  "legal_status_requires_evidence": true,
+  "legal_status_requires_as_of_date": true,
+  "uncertainty_policy": "explicit",
+  "default_unknown_value": "unknown",
+  "current_phase": "seed_corpus_design",
+  "authoritative_docs": [
+    "PROJECT_MEMORY.md",
+    "docs/DECISIONS.md",
+    "docs/LEGAL_SYSTEM_DZ.md",
+    "docs/LANGUAGE_POLICY.md",
+    "docs/METHODOLOGY.md",
+    "docs/DATA_MODEL.md",
+    "docs/LEGAL_RELATIONS.md",
+    "docs/SOURCES.md",
+    "ai/AGENT_CONTRACT.md",
+    "ai/HANDOFF.md"
+  ]
+}
