@@ -8,7 +8,7 @@ raw:
   title_fr: "Arrêté interministériel du 27 Chaâbane 1447 correspondant au 15 février 2026 fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
 
 identity:
-  legal_form: joint_ministerial_order
+  legal_form: interministerial_order
   number: null
   title:
     ar: "يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
@@ -28,10 +28,10 @@ publication:
 
 legal_classification:
   normative_order: regulatory
-  legal_form: joint_ministerial_order
+  legal_form: interministerial_order
   legal_function: implementing_regulation
   normative_character: regulatory
-  scope: general_targeted_population
+  scope: targeted_population
   constitutional_or_legal_domain: unemployment_allowance_training
 
 institutions:
