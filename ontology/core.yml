@@ -1,4 +1,4 @@
-version: 0.1-draft
+version: 0.2-draft
 status: experimental
 last_updated: 2026-08-25
 
@@ -65,6 +65,8 @@ legal_form:
     ar: قرار وزاري مشترك
     fr: arrêté interministériel
     en: interministerial order
+    aliases_en:
+      - joint ministerial order
   decision:
     ar: مقرر/قرار
     fr: décision
@@ -85,6 +87,56 @@ legal_form:
     ar: قرار المحكمة الدستورية
     fr: décision de la Cour constitutionnelle
     en: constitutional court decision
+
+legal_function:
+  framework_legislation:
+    ar: تشريع توجيهي/إطاري
+    fr: législation-cadre / loi d'orientation
+    en: framework legislation
+  sector_legislation:
+    ar: تشريع قطاعي
+    fr: législation sectorielle
+    en: sector legislation
+  implementing_regulation:
+    ar: تنظيم تطبيقي
+    fr: règlement d'application
+    en: implementing regulation
+  autonomous_regulation:
+    ar: تنظيم مستقل
+    fr: règlement autonome
+    en: autonomous regulation
+  amending_text:
+    ar: نص تعديلي
+    fr: texte modificatif
+    en: amending text
+  repealing_text:
+    ar: نص إلغائي
+    fr: texte abrogatif
+    en: repealing text
+  institutional_organization:
+    ar: تنظيم مؤسساتي
+    fr: organisation institutionnelle
+    en: institutional organization
+  institution_creation:
+    ar: إنشاء مؤسسة/مؤسسات
+    fr: création d'institution(s)
+    en: institution creation
+  treaty_ratification:
+    ar: تصديق على معاهدة
+    fr: ratification d'un traité
+    en: treaty ratification
+  appointment:
+    ar: تعيين
+    fr: nomination
+    en: appointment
+  procedure_regulation:
+    ar: تنظيم إجراءات
+    fr: réglementation procédurale
+    en: procedure regulation
+  certification_regulation:
+    ar: تنظيم الشهادات
+    fr: réglementation de la certification
+    en: certification regulation
 
 normative_character:
   constitutional:
@@ -125,6 +177,14 @@ scope:
     ar: عام
     fr: général
     en: general
+  targeted_population:
+    ar: عام لفئة مستهدفة
+    fr: général à population ciblée
+    en: targeted population
+  specific_entities:
+    ar: خاص بكيانات/مؤسسات محددة
+    fr: entités/institutions déterminées
+    en: specific entities
   individual:
     ar: فردي
     fr: individuel
@@ -201,6 +261,14 @@ relation_type:
     ar: يحدد كيفيات/شروط
     fr: précise/fixe les modalités
     en: specifies
+  operationalizes:
+    ar: يحول الحكم إلى آلية تنفيذية
+    fr: opérationnalise
+    en: operationalizes
+  provides_for_implementing_act:
+    ar: ينص على صدور نص تطبيقي
+    fr: prévoit un acte d'application
+    en: provides for implementing act
   amends:
     ar: يعدل
     fr: modifie
@@ -213,6 +281,10 @@ relation_type:
     ar: يستبدل
     fr: remplace
     en: replaces
+  renumbers:
+    ar: يعيد الترقيم
+    fr: renumérote
+    en: renumbers
   repeals:
     ar: يلغي
     fr: abroge
@@ -221,10 +293,18 @@ relation_type:
     ar: يلغي جزئيا
     fr: abroge partiellement
     en: partially repeals
+  repeals_article:
+    ar: يلغي مادة
+    fr: abroge un article
+    en: repeals article
   supersedes:
     ar: يحل محل
     fr: se substitue à
     en: supersedes
+  expires:
+    ar: ينهي مدة السريان
+    fr: fait expirer
+    en: expires
   references:
     ar: يحيل إلى/يذكر
     fr: fait référence à
