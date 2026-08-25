@@ -1,0 +1,9 @@
+text_id: DZ-DE-2014-140
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
+  pages: {start: 12, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
+  pages: {start: 12, end: null}
+retrieved_at: 2026-08-25

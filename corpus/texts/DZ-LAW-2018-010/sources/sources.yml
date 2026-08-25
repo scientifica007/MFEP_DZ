@@ -1,0 +1,11 @@
+text_id: DZ-LAW-2018-010
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018035.pdf"
+  role: official_publication
+  pages: {start: 7, end: 15}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018035.pdf"
+  role: official_translation
+  pages: {start: 6, end: 14}
+retrieved_at: 2026-08-25

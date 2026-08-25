@@ -1,0 +1,9 @@
+text_id: DZ-DE-2018-162
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
+  pages: {start: 7, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
+  pages: {start: 7, end: null}
+retrieved_at: 2026-08-25

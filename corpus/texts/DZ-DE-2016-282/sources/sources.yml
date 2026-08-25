@@ -1,0 +1,9 @@
+text_id: DZ-DE-2016-282
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf"
+  pages: {start: 9, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf"
+  pages: {start: 9, end: null}
+retrieved_at: 2026-08-25

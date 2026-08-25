@@ -1,0 +1,11 @@
+text_id: DZ-DE-2012-125
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
+  role: official_publication
+  pages: {start: 9, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
+  role: official_translation
+  pages: {start: 8, end: null}
+retrieved_at: 2026-08-25
