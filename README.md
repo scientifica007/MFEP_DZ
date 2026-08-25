@@ -30,6 +30,17 @@
 - [ontology/core.yml](ontology/core.yml): vocabulary أولي قابل للآلة لأشكال النصوص، المراتب، الحالات والعلاقات.
 - [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
 
+## Corpus التجريبي الأول
+
+بدأ الإدخال الفعلي في `corpus/staging/seed-001/`. العينة الأولى تضم **10 نصوص رسمية مترابطة** ولا تزال في `staging` إلى أن يكتمل التحقق قبل أي ترقية إلى `trusted`.
+
+- [corpus/staging/seed-001/README.md](corpus/staging/seed-001/README.md): نطاق العينة وأسباب اختيار النصوص.
+- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl): فهرس آلي مضغوط للسجلات العشرة.
+- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl): أول حواف Graph ذات دليل عالي الثقة.
+- [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة التي تنتظر الإدخال أو التحقق.
+
+العينة تختبر قوانين مؤسسة وقطاعية، مراسيم تنفيذية تطبيقية ومؤسساتية، نصا تعديليا، إنشاء مؤسسات، قرارين وزاريين مشتركين غير مرقمين، وعلاقات `implements`, `amends`, `repeals`, `applies`, `creates_institution`.
+
 ## طبقة الذكاء الاصطناعي
 
 المشروع مصمم ليكون **Model-Agnostic** و**Provider-Agnostic**. الذكاء الاصطناعي أداة استخراج وتحليل فوق المصادر والبيانات، وليس مصدر الحقيقة القانونية.
@@ -41,7 +52,7 @@
 - [ai/HANDOFF.md](ai/HANDOFF.md): حالة المشروع الحالية وما يجب تنفيذه لاحقا.
 - [ai/context/](ai/context/): سياق وسياسات بصيغة مقروءة آليا.
 - [ai/tasks/](ai/tasks/): عقود مهام قياسية مستقلة عن prompts والمزود.
-- [ai/evals/](ai/evals/): إطار اختبارات قبول النماذج والـprompts والـpipelines.
+- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines؛ بدأ فيها Gold Corpus فعليا من العلاقات المؤكدة في Seed 001.
 - [ai/adapters/](ai/adapters/): سياسة عزل APIs ومزودي النماذج عن المنطق القانوني.
 
 قاعدة التشغيل: **AI output لا يصبح trusted knowledge تلقائيا**. يجب حفظ provenance والدليل والمرور بمراحل التحقق. تغيير النموذج أو prompt لا يمنحه الثقة تلقائيا؛ يُختبر على evals المرجعية قبل استعماله ضمن workflow موثوق.
@@ -56,4 +67,4 @@
 
 ## حالة المستودع
 
-المشروع في مرحلة **تصميم الأنطولوجيا ونموذج البيانات وبناء المجموعة المرجعية الأولى (seed corpus)**. الأساس المنهجي وطبقة AI المستقلة موجودان، والخطوة التالية هي اختبار النموذج على عينة 5–10 نصوص حقيقية، ثم بناء أول Gold Evals وتثبيت JSON Schema إصدار أول بعد نجاح الاختبار.
+المشروع في مرحلة **`seed_corpus_staging_validation`**. تم إدخال أول 10 نصوص، وبناء أول فهرس وGraph وGold Evals. الأولوية التالية هي إدخال التبعيات عالية الأهمية (خصوصا القانون 81-07 والمرسوم 22-70)، استكمال التحقق AR/FR والحالة القانونية، واختبار الحالات الناقصة قبل تثبيت `legal-text.schema.json` إصدار v1.
