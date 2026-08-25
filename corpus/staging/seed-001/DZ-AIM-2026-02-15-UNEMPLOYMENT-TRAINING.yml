@@ -1,0 +1,113 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+id_status: provisional
+
+raw:
+  title_ar: "قرار وزاري مشترك مؤرخ في 27 شعبان عام 1447 الموافق 15 فبراير سنة 2026، يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
+  title_fr: "Arrêté interministériel du 27 Chaâbane 1447 correspondant au 15 février 2026 fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
+
+identity:
+  legal_form: joint_ministerial_order
+  number: null
+  title:
+    ar: "يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
+    fr: "Fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
+  signature_date: 2026-02-15
+
+publication:
+  official_gazette: true
+  journal_number: 23
+  journal_year: 2026
+  publication_date: 2026-03-29
+  locators:
+    ar: {start_page: 24, end_page: 25}
+    fr: {start_page: 23, end_page: 24}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026023.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2026/F2026023.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: joint_ministerial_order
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general_targeted_population
+  constitutional_or_legal_domain: unemployment_allowance_training
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-MTES
+      label_as_published: {ar: "وزير العمل والتشغيل والضمان الاجتماعي", fr: "ministre du travail, de l'emploi et de la sécurité sociale"}
+    - institution_id: DZ-MFEP
+      label_as_published: {ar: "وزيرة التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [employment, vocational_training, unemployment_allowance]
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence: []
+  notes: "لم ينجز بعد مسح ما بعد 29 مارس 2026 لإثبات الحالة النهائية حتى تاريخ المشروع."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026023.pdf"
+    extraction_method: text_layer_plus_french_alignment
+    extraction_quality: low
+    visually_verified: false
+    notes: "طبقة النص العربية مشوهة في مواضع عديدة؛ استعملت الفرنسية لتثبيت العنوان والبنية ثم قورنت الإحالات العربية المتاحة."
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026023.pdf"
+    extraction_method: text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-AIM-2026-IMPLEMENTS-22-70
+    type: implements
+    source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+    target_ref: DZ-DE-2022-070
+    source_article: art-1
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 23
+      locator: "Article 1er states that the order applies decree 22-70, modified and supplemented."
+  - id: REL-DZ-AIM-2026-REPEALS-AIM-2022
+    type: repeals
+    source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+    target_ref: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+    source_article: art-13
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 24
+      locator: "Art. 13 — Sont abrogées, les dispositions de l'arrêté interministériel ... du 24 mars 2022..."
+  - {id: REL-DZ-AIM-2026-REF-12-125, type: references, source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING, target_ref: DZ-DE-2012-125, source_article: preamble, confidence: 1.0}
+  - {id: REL-DZ-AIM-2026-REF-14-140, type: references, source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING, target_ref: DZ-DE-2014-140, source_article: preamble, confidence: 1.0}
+  - {id: REL-DZ-AIM-2026-REF-16-282, type: references, source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING, target_ref: DZ-DE-2016-282, source_article: preamble, confidence: 1.0}
+  - {id: REL-DZ-AIM-2026-REF-18-162, type: references, source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING, target_ref: DZ-DE-2018-162, source_article: preamble, confidence: 1.0}
+
+topics: [employment, unemployment_allowance, vocational_training, qualifying_training, diploma_training, pedagogical_management]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026023.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026023.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+schema_observations:
+  - "Arabic and French pagination differs (Arabic p.24-25 vs French p.23-24)."
+  - "A repealing relation can be proven independently from the current status of the repealing act."
