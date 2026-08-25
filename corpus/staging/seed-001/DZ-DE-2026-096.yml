@@ -1,0 +1,115 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2026-096
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 26-96 مؤرخ في 12 شعبان عام 1447 الموافق 31 جانفي سنة 2026، يتضمن إنشاء معاهد وطنية متخصصة في التكوين المهني"
+  title_fr: "Décret exécutif n° 26-96 du 12 Chaâbane 1447 correspondant au 31 janvier 2026 portant création d'instituts nationaux spécialisés de formation professionnelle"
+
+identity:
+  legal_form: executive_decree
+  number: "26-96"
+  title:
+    ar: "يتضمن إنشاء معاهد وطنية متخصصة في التكوين المهني"
+    fr: "Portant création d'instituts nationaux spécialisés de formation professionnelle"
+  signature_date: 2026-01-31
+
+publication:
+  official_gazette: true
+  journal_number: 12
+  journal_year: 2026
+  publication_date: 2026-02-10
+  locators:
+    ar: {start_page: 29, end_page: null}
+    fr: {start_page: 29, end_page: null}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026012.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2026/F2026012.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: institution_creation
+  normative_character: regulatory
+  scope: specific_institutions
+  constitutional_or_legal_domain: vocational_training_institutions
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published: {ar: "وزيرة التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [vocational_training, training_institutions]
+  created_entities:
+    - {type: insfp, wilaya: Chlef, label_fr: "Institut national spécialisé de formation professionnelle de Ténès"}
+    - {type: insfp, wilaya: Batna, label_fr: "Institut national spécialisé de formation professionnelle d'El Madher"}
+    - {type: insfp, wilaya: Skikda, label_fr: "Institut national spécialisé de formation professionnelle de Bouzaâroura"}
+    - {type: insfp, wilaya: Guelma, label_fr: "Institut national spécialisé de formation professionnelle de Guelma 2"}
+    - {type: insfp, wilaya: Boumerdès, label_fr: "Institut national spécialisé de formation professionnelle de Béni Amrane"}
+    - {type: insfp, wilaya: El Tarf, label_fr: "Institut national spécialisé de formation professionnelle d'El Kala"}
+    - {type: insfp, wilaya: Tissemsilt, label_fr: "Institut national spécialisé de formation professionnelle de Tissemsilt 2"}
+    - {type: insfp, wilaya: Souk Ahras, label_fr: "Institut national spécialisé de formation professionnelle de Souk Ahras 2"}
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence: []
+  notes: "نص حديث، لكن لا تعتمد active آليا دون فحص لاحق للنصوص الصادرة بعده."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026012.pdf"
+    extraction_method: text_layer_plus_visual_check
+    extraction_quality: low
+    visually_verified: false
+    notes: "طبقة النص العربية في هذا العدد مشوهة جزئيا، لذلك اعتمدت الفرنسية لتثبيت البنية والأسماء ثم أبقي المصدر العربي مرجعا."
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026012.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2026-096-APPLIES-12-125-ART3
+    type: applies
+    source_ref: DZ-DE-2026-096
+    target_ref: DZ-DE-2012-125
+    source_article: art-1
+    target_article: art-3
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 29
+      locator: "Article 1er — Conformément aux dispositions de l'article 3 du décret exécutif n° 12-125... il est créé huit (8) instituts..."
+  - id: REL-DZ-DE-2026-096-CREATES-INSFP
+    type: creates_institution
+    source_ref: DZ-DE-2026-096
+    source_article: art-1
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 29
+      locator: "Article 1 and annex list eight newly created INSFPs."
+
+topics: [institutions, insfp, vocational_training, institution_creation]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026012.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026012.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
