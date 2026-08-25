@@ -8,7 +8,7 @@ raw:
   title_fr: "Arrêté interministériel du 21 Chaâbane 1443 correspondant au 24 mars 2022 fixant les conditions et les modalités d'organisation de la formation au profit des bénéficiaires de l'allocation chômage"
 
 identity:
-  legal_form: joint_ministerial_order
+  legal_form: interministerial_order
   number: null
   title:
     ar: "يحدد شروط وكيفيات تنظيم التكوين لفائدة المستفيدين من منحة البطالة"
@@ -34,10 +34,10 @@ publication:
 
 legal_classification:
   normative_order: regulatory
-  legal_form: joint_ministerial_order
+  legal_form: interministerial_order
   legal_function: implementing_regulation
   normative_character: regulatory
-  scope: general_targeted_population
+  scope: targeted_population
   constitutional_or_legal_domain: unemployment_allowance_training
 
 institutions:
@@ -119,5 +119,5 @@ verification:
   needs_legal_review: true
 
 schema_observations:
-  - "Unnumbered joint ministerial orders require a collision-resistant canonical ID strategy."
+  - "Unnumbered interministerial orders require a collision-resistant canonical ID strategy."
   - "Arabic and French pagination differs materially (Arabic index p.28 vs French p.26)."
