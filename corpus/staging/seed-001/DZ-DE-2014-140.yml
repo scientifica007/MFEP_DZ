@@ -1,0 +1,103 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2014-140
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 14-140 مؤرخ في 20 جمادى الثانية عام 1435 الموافق 20 أبريل سنة 2014، يحدد القانون الأساسي النموذجي لمراكز التكوين المهني والتمهين"
+  title_fr: "Décret exécutif n° 14-140 du 20 Joumada Ethania 1435 correspondant au 20 avril 2014 fixant le statut-type des centres de formation professionnelle et de l'apprentissage"
+
+identity:
+  legal_form: executive_decree
+  number: "14-140"
+  title:
+    ar: "يحدد القانون الأساسي النموذجي لمراكز التكوين المهني والتمهين"
+    fr: "Fixant le statut-type des centres de formation professionnelle et de l'apprentissage"
+  signature_date: 2014-04-20
+
+publication:
+  official_gazette: true
+  journal_number: 26
+  journal_year: 2014
+  publication_date: 2014-05-07
+  locators:
+    ar: {start_page: 12, end_page: null}
+    fr: {start_page: 12, end_page: null}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: institutional_organization
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: implementation_of_framework_legislation
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published:
+        ar: "الوزير الأول بالنيابة"
+        fr: "Premier ministre par intérim"
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published:
+      ar: "وزير التكوين والتعليم المهنيين"
+      fr: "ministre de la formation et de l'enseignement professionnels"
+  affected_sectors: [vocational_training, apprenticeship, training_institutions]
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence:
+    - kind: later_official_citation
+      date: 2026-02-15
+      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+  notes: "مذكور كسند في قرار رسمي سنة 2026؛ لم ينجز بعد مسح كامل للتعديلات."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2014-140-IMPLEMENTS-08-07-ART14
+    type: implements
+    source_ref: DZ-DE-2014-140
+    target_ref: DZ-LAW-2008-007
+    source_article: art-1
+    target_article: art-14
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 12
+      locator: "Preamble cites law 08-07, notably article 14; the decree fixes the CFPA model statute."
+
+topics: [institutions, cfpa, vocational_training, apprenticeship, institutional_organization]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 2
+  metadata_verified: true
+  source_verified: true
+  structure_verified: false
+  relations_verified: partial
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
