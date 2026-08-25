@@ -94,8 +94,8 @@ relations:
       language: fr
       page: 11
       locator: "Article 1er states that the decree is issued in application of article 190 of finance law 21-16."
-  - id: REL-DZ-DE-2022-070-ENABLES-TRAINING-ORDER
-    type: enabling_legislation
+  - id: REL-DZ-DE-2022-070-PROVIDES-FOR-TRAINING-ORDER
+    type: provides_for_implementing_act
     source_ref: DZ-DE-2022-070
     source_article: art-5
     target_ref: JOINT_MINISTERIAL_ORDER_FOR_BENEFICIARY_TRAINING
