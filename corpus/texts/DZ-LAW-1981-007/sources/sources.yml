@@ -1,0 +1,11 @@
+text_id: DZ-LAW-1981-007
+binary_sources_committed: false
+ar:
+  url: null
+  role: official_publication
+  pages: {start: null, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/1981/F1981026.PDF"
+  role: official_translation
+  pages: {start: 634, end: null}
+retrieved_at: 2026-08-25

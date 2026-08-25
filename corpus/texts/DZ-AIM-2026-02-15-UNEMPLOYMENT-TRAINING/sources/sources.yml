@@ -1,0 +1,9 @@
+text_id: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026023.pdf"
+  pages: {start: 24, end: 25}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026023.pdf"
+  pages: {start: 23, end: 24}
+retrieved_at: 2026-08-25

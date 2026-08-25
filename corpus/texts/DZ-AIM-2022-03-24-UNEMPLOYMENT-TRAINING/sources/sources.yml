@@ -1,0 +1,12 @@
+text_id: DZ-AIM-2022-03-24-UNEMPLOYMENT-TRAINING
+binary_sources_committed: false
+ar:
+  url: null
+  role: official_publication
+  locator_source: "https://www.joradp.dz/TRV/A2022B14.pdf"
+  pages: {start: 28, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2022/F2022025.pdf"
+  role: official_translation
+  pages: {start: 26, end: null}
+retrieved_at: 2026-08-25

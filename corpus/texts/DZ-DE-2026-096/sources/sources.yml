@@ -1,0 +1,9 @@
+text_id: DZ-DE-2026-096
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026012.pdf"
+  pages: {start: 29, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2026/F2026012.pdf"
+  pages: {start: 29, end: null}
+retrieved_at: 2026-08-25

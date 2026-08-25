@@ -1,0 +1,9 @@
+text_id: DZ-DE-2020-340
+binary_sources_committed: false
+ar:
+  url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
+  pages: {start: 10, end: null}
+fr:
+  url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
+  pages: {start: 10, end: null}
+retrieved_at: 2026-08-25
