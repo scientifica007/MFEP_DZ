@@ -27,19 +27,20 @@
 - [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
 - [docs/SOURCES.md](docs/SOURCES.md): سجل المصادر الرسمية والمراجع الأساسية.
 - [docs/DECISIONS.md](docs/DECISIONS.md): سجل القرارات المنهجية والمسائل المفتوحة.
-- [ontology/core.yml](ontology/core.yml): vocabulary أولي قابل للآلة لأشكال النصوص، المراتب، الحالات والعلاقات.
+- [ontology/core.yml](ontology/core.yml): vocabulary تجريبي قابل للآلة لأشكال النصوص، الوظائف، النطاقات، الحالات والعلاقات.
 - [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
 
-## Corpus التجريبي الأول
+## Corpus التجريبي
 
-بدأ الإدخال الفعلي في `corpus/staging/seed-001/`. العينة الأولى تضم **10 نصوص رسمية مترابطة** ولا تزال في `staging` إلى أن يكتمل التحقق قبل أي ترقية إلى `trusted`.
+بدأ الإدخال الفعلي تحت `corpus/staging/`. يوجد حاليا **12 سجلا قانونيا في staging**؛ لا تعد trusted knowledge بعد.
 
-- [corpus/staging/seed-001/README.md](corpus/staging/seed-001/README.md): نطاق العينة وأسباب اختيار النصوص.
-- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl): فهرس آلي مضغوط للسجلات العشرة.
-- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl): أول حواف Graph ذات دليل عالي الثقة.
-- [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة التي تنتظر الإدخال أو التحقق.
+- [corpus/staging/seed-001/README.md](corpus/staging/seed-001/README.md): العينة الأساسية من 10 نصوص.
+- [corpus/staging/seed-002-dependencies/README.md](corpus/staging/seed-002-dependencies/README.md): أول توسع عبر Graph Traversal لحل القانون 81-07 والمرسوم 22-70.
+- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس آلية مضغوطة.
+- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph ذات دليل.
+- [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
 
-العينة تختبر قوانين مؤسسة وقطاعية، مراسيم تنفيذية تطبيقية ومؤسساتية، نصا تعديليا، إنشاء مؤسسات، قرارين وزاريين مشتركين غير مرقمين، وعلاقات `implements`, `amends`, `repeals`, `applies`, `creates_institution`.
+العينة تختبر قوانين مؤسسة وقطاعية، مراسيم تنفيذية تطبيقية ومؤسساتية، نصوصا تعديلية، إنشاء مؤسسات، قرارين وزاريين مشتركين غير مرقمين، ونصا أفقيا صادرا عن قطاع العمل يؤثر مباشرة في التكوين. العلاقات العملية تشمل `implements`, `amends`, `repeals`, `applies`, `provides_for_implementing_act`, و`creates_institution`.
 
 ## طبقة الذكاء الاصطناعي
 
@@ -52,7 +53,7 @@
 - [ai/HANDOFF.md](ai/HANDOFF.md): حالة المشروع الحالية وما يجب تنفيذه لاحقا.
 - [ai/context/](ai/context/): سياق وسياسات بصيغة مقروءة آليا.
 - [ai/tasks/](ai/tasks/): عقود مهام قياسية مستقلة عن prompts والمزود.
-- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines؛ بدأ فيها Gold Corpus فعليا من العلاقات المؤكدة في Seed 001.
+- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines؛ بدأ فيها Gold Corpus فعليا من العلاقات المؤكدة.
 - [ai/adapters/](ai/adapters/): سياسة عزل APIs ومزودي النماذج عن المنطق القانوني.
 
 قاعدة التشغيل: **AI output لا يصبح trusted knowledge تلقائيا**. يجب حفظ provenance والدليل والمرور بمراحل التحقق. تغيير النموذج أو prompt لا يمنحه الثقة تلقائيا؛ يُختبر على evals المرجعية قبل استعماله ضمن workflow موثوق.
@@ -67,4 +68,4 @@
 
 ## حالة المستودع
 
-المشروع في مرحلة **`seed_corpus_staging_validation`**. تم إدخال أول 10 نصوص، وبناء أول فهرس وGraph وGold Evals. الأولوية التالية هي إدخال التبعيات عالية الأهمية (خصوصا القانون 81-07 والمرسوم 22-70)، استكمال التحقق AR/FR والحالة القانونية، واختبار الحالات الناقصة قبل تثبيت `legal-text.schema.json` إصدار v1.
+المشروع في مرحلة **`seed_corpus_staging_validation_and_dependency_expansion`**. تم إدخال 12 نصا، وبناء فهارس وGraph وGold Evals، وتحديث ontology استنادا إلى مشكلات ظهرت في بيانات حقيقية. الأولوية التالية هي استكمال سلسلتي التمهين ومنحة البطالة عبر النصوص المعدلة والتطبيقية، ثم اختبار أنواع قانونية لم تغط بعد قبل تثبيت `legal-text.schema.json` v1.
