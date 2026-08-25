@@ -1,0 +1,27 @@
+{
+  "ai_layer_version": "0.1.0",
+  "status": "initial_architecture",
+  "entrypoints": {
+    "agent": "AGENTS.md",
+    "contract": "ai/AGENT_CONTRACT.md",
+    "context": "ai/PROJECT_CONTEXT.md",
+    "handoff": "ai/HANDOFF.md"
+  },
+  "machine_context": [
+    "ai/context/project.json",
+    "ai/context/source-policy.json",
+    "ai/context/legal-methodology.json"
+  ],
+  "task_index": "ai/tasks/README.md",
+  "eval_index": "ai/evals/README.md",
+  "adapter_policy": "ai/adapters/README.md",
+  "prompt_policy": "ai/prompts/README.md",
+  "principles": {
+    "model_agnostic": true,
+    "provider_agnostic": true,
+    "repository_is_persistent_memory": true,
+    "official_sources_override_model_memory": true,
+    "ai_outputs_require_validation": true,
+    "model_change_requires_evaluation": true
+  }
+}
