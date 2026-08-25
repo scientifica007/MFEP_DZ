@@ -1,0 +1,126 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2012-125
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 12-125 مؤرخ في 26 ربيع الثاني عام 1433 الموافق 19 مارس سنة 2012، يحدد القانون الأساسي النموذجي للمعاهد الوطنية المتخصصة في التكوين المهني"
+  title_fr: "Décret exécutif n° 12-125 du 26 Rabie Ethani 1433 correspondant au 19 mars 2012 fixant le statut-type des instituts nationaux spécialisés de formation professionnelle (I.N.S.F.P)"
+
+identity:
+  legal_form: executive_decree
+  number: "12-125"
+  title:
+    ar: "يحدد القانون الأساسي النموذجي للمعاهد الوطنية المتخصصة في التكوين المهني"
+    fr: "Fixant le statut-type des instituts nationaux spécialisés de formation professionnelle"
+  signature_date: 2012-03-19
+
+publication:
+  official_gazette: true
+  journal_number: 17
+  journal_year: 2012
+  publication_date: 2012-03-25
+  locators:
+    ar:
+      start_page: 9
+      end_page: null
+    fr:
+      start_page: 8
+      end_page: null
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: institutional_organization
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: implementation_of_framework_legislation
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published:
+        ar: "الوزير الأول"
+        fr: "Premier ministre"
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published:
+      ar: "وزير التكوين والتعليم المهنيين"
+      fr: "ministre de la formation et de l'enseignement professionnels"
+  affected_sectors:
+    - vocational_training
+    - training_institutions
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence:
+    - kind: later_operational_reference
+      date: 2026-01-31
+      source_ref: DZ-DE-2026-096
+      note: "المرسوم 26-96 أنشأ معاهد جديدة طبقا للمادة 3 من 12-125."
+    - kind: later_official_citation
+      date: 2026-02-15
+      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+  notes: "الدليل اللاحق يؤكد استمرار استعماله في 2026، لكن لم ينجز بعد مسح تعديلات كامل."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
+    extraction_method: visual_check_due_to_weak_text_layer
+    extraction_quality: low
+    visually_verified: true
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
+    extraction_method: text_layer_and_visual_check
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2012-125-IMPLEMENTS-08-07-ART14
+    type: implements
+    source_ref: DZ-DE-2012-125
+    target_ref: DZ-LAW-2008-007
+    source_article: art-1
+    target_article: art-14
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 8
+      locator: "Article 1er — En application des dispositions de l'article 14 (alinéa 1er) de la loi n° 08-07..."
+
+topics:
+  - institutions
+  - insfp
+  - vocational_training
+  - institutional_organization
+
+provenance:
+  - source_type: official_gazette
+    language: ar
+    url: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
+    retrieved_at: 2026-08-25
+  - source_type: official_gazette
+    language: fr
+    url: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
+    retrieved_at: 2026-08-25
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
+
+schema_observations:
+  - "Pagination differs by language: French starts at p.8 while Arabic starts at p.9. A single publication.pages field is insufficient."
