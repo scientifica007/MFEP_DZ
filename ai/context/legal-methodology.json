@@ -1,0 +1,50 @@
+{
+  "pipeline": [
+    "discover_candidate",
+    "resolve_official_reference",
+    "resolve_arabic_source",
+    "resolve_french_source_when_available",
+    "extract_raw",
+    "quality_check",
+    "align_ar_fr_when_needed",
+    "normalize_metadata",
+    "classify_legal_dimensions",
+    "extract_relations_with_evidence",
+    "determine_status_only_with_evidence",
+    "validate_structure",
+    "promote_from_staging_when_requirements_are_met",
+    "update_indexes_and_graph"
+  ],
+  "legal_dimensions": [
+    "normative_order",
+    "legal_form",
+    "legal_function",
+    "normative_character",
+    "issuing_authority",
+    "competence_basis",
+    "scope",
+    "legal_status"
+  ],
+  "relation_policy": {
+    "generic_reference_is_not_automatically_implementation": true,
+    "generic_reference_is_not_automatically_amendment": true,
+    "generic_reference_is_not_automatically_repeal": true,
+    "evidence_required_for_high_impact_relations": true,
+    "inverse_relations_should_be_derived": true
+  },
+  "language_recovery": {
+    "if_arabic_text_layer_is_corrupt": [
+      "consult_french_official_version_or_translation",
+      "recover_structure_or_metadata",
+      "verify_legally_significant_points_against_visible_arabic_page",
+      "record_recovery_provenance"
+    ],
+    "never_translate_french_and_label_as_official_arabic": true
+  },
+  "status_policy": {
+    "requires_as_of": true,
+    "requires_evidence": true,
+    "fallback": "unknown"
+  },
+  "corpus_strategy": "seed_corpus_then_legal_graph_traversal"
+}
