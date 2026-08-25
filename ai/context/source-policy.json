@@ -1,0 +1,45 @@
+{
+  "source_priority": [
+    {
+      "rank": 1,
+      "type": "official_journal",
+      "names": ["JORADP"],
+      "role": "primary_legal_publication_and_evidence"
+    },
+    {
+      "rank": 2,
+      "type": "government_secretariat",
+      "names": ["SGG"],
+      "role": "official_reference_and_methodological_publications"
+    },
+    {
+      "rank": 3,
+      "type": "competent_ministry_or_public_body",
+      "role": "official_sectoral_documents_and_context"
+    },
+    {
+      "rank": 4,
+      "type": "other_official_source",
+      "role": "specialized_official_evidence"
+    },
+    {
+      "rank": 5,
+      "type": "secondary_source",
+      "role": "discovery_and_interpretation_only_unless_independently_verified"
+    }
+  ],
+  "rules": {
+    "secondary_source_can_prove_official_text_alone": false,
+    "model_memory_can_prove_legal_fact": false,
+    "source_url_required_when_available": true,
+    "source_language_required": true,
+    "page_or_article_evidence_preferred": true,
+    "conflicting_sources_must_be_preserved": true,
+    "unavailable_source_must_not_be_filled_from_model_memory": true
+  },
+  "main_sources": {
+    "joradp_ar": "https://www.joradp.dz/HAR/Accueil.htm",
+    "joradp_fr": "https://www.joradp.dz/HFR/Accueil.htm",
+    "scaler": "https://www.joradp.dz/SCRIPTS/Joa_Div.dll/RecGet"
+  }
+}
