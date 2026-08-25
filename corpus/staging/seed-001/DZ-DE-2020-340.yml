@@ -1,0 +1,96 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2020-340
+id_status: provisional
+
+raw:
+  title_ar: "مرسوم تنفيذي رقم 20-340 مؤرخ في 6 ربيع الثاني عام 1442 الموافق 22 نوفمبر سنة 2020، يعدل ويتمم المرسوم التنفيذي رقم 18-162 المؤرخ في 29 رمضان عام 1439 الموافق 14 يونيو سنة 2018 الذي يحدد شروط إنشاء المؤسسة الخاصة للتكوين أو التعليم المهني وفتحها ومراقبتها"
+  title_fr: "Décret exécutif n° 20-340 du 6 Rabie Ethani 1442 correspondant au 22 novembre 2020 modifiant et complétant le décret exécutif n° 18-162 du 29 Ramadhan 1439 correspondant au 14 juin 2018 fixant les conditions de création, d'ouverture et de contrôle de l'établissement privé de formation ou d'enseignement professionnel"
+
+identity:
+  legal_form: executive_decree
+  number: "20-340"
+  title:
+    ar: "يعدل ويتمم المرسوم التنفيذي رقم 18-162 المتعلق بالمؤسسة الخاصة للتكوين أو التعليم المهني"
+    fr: "Modifiant et complétant le décret exécutif n° 18-162 relatif à l'établissement privé de formation ou d'enseignement professionnel"
+  signature_date: 2020-11-22
+
+publication:
+  official_gazette: true
+  journal_number: 71
+  journal_year: 2020
+  publication_date: 2020-12-02
+  locators:
+    ar: {start_page: 10, end_page: null}
+    fr: {start_page: 10, end_page: null}
+  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
+  url_fr: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: amending_text
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: private_vocational_training_and_education
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published: {ar: "وزيرة التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [private_training, vocational_training, vocational_education]
+
+status:
+  value: unknown
+  as_of: 2026-08-25
+  confidence: 0.0
+  evidence: []
+  notes: "وظيفته التعديلية مؤكدة؛ حالته الحالية الذاتية تحتاج مسحا لاحقا."
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    source_url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    source_url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
+    extraction_method: joradp_text_layer
+    extraction_quality: high
+    used_for_recovery: true
+
+relations:
+  - id: REL-DZ-DE-2020-340-AMENDS-18-162
+    type: amends
+    source_ref: DZ-DE-2020-340
+    target_ref: DZ-DE-2018-162
+    source_article: art-1
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 10
+      locator: "Article 1er states that the decree modifies and supplements certain provisions of decree 18-162."
+      affected_target_articles: [7, 10, 11, 15, 16, 32, "35-bis", 41]
+
+topics: [private_training, accreditation, institutional_control, amendment]
+
+provenance:
+  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf", retrieved_at: 2026-08-25}
+  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf", retrieved_at: 2026-08-25}
+
+verification:
+  level: 3
+  metadata_verified: true
+  source_verified: true
+  structure_verified: partial
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-25
+  needs_legal_review: true
