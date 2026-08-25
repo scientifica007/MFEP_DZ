@@ -1,0 +1,26 @@
+text_id: DZ-LAW-2008-007
+retrieved_at: 2026-08-25
+storage_policy: external_binary_sources_only
+
+sources:
+  ar:
+    authority: "الأمانة العامة للحكومة / الجريدة الرسمية"
+    role: official_publication
+    url: "https://www.joradp.dz/FTP/jo-arabe/2008/A2008011.pdf"
+    journal_number: 11
+    publication_date: 2008-03-02
+    pages: {start: 4, end: 7}
+    committed_to_repository: false
+  fr:
+    authority: "Secrétariat général du Gouvernement / Journal officiel"
+    role: official_translation
+    url: "https://www.joradp.dz/FTP/jo-francais/2008/F2008011.pdf"
+    journal_number: 11
+    publication_date: 2008-03-02
+    pages: {start: 4, end: 6}
+    committed_to_repository: false
+
+verification_notes:
+  - "النسختان العربية والفرنسية فحصتا من المصدر الرسمي."
+  - "ترقيم صفحات النص يختلف بحسب اللغة في بعض أجزاء corpus، لذلك تحفظ المحددات لكل لغة مستقلة."
+  - "لا يحفظ أي PDF أو صورة صفحة داخل Git."
