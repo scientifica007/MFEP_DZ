@@ -19,15 +19,20 @@
 | النص العربي | كامل ومتحقق (`verified`) |
 | النص الفرنسي | كامل ومتحقق (`verified`) |
 
+## المصدر الرسمي الأصلي — PDF
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 67/2016، الصفحات 9–11)](https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf)
+- [Journal officiel — version française (PDF officiel, n° 67/2016, pages 9–11)](https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
+> ملفات PDF تبقى خارج المستودع؛ الروابط الرسمية فقط تظهر هنا لتسهيل الرجوع إلى الأصل.
+
 ## الوصول إلى النص
 
 - [النص العربي الكامل](text/ar.md) — `verified`.
 - [النص الفرنسي الكامل](text/fr.md) — `verified`.
 - [فهرس المواد للآلة](data/articles.jsonl) — 15 مادة مرتبطة بالنسختين.
 - [السجل المهيكل](record.yml).
-- [مصادر JORADP](sources/sources.yml).
-
-لا توجد ملفات PDF داخل المستودع.
 
 ## موقعه في الشبكة القانونية
 
