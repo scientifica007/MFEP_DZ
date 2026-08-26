@@ -3,10 +3,6 @@ record_status: staging
 id: DZ-DE-2018-162
 id_status: provisional
 
-raw:
-  title_ar: "مرسوم تنفيذي رقم 18-162 مؤرخ في 29 رمضان عام 1439 الموافق 14 يونيو سنة 2018، يحدد شروط إنشاء المؤسسة الخاصة للتكوين أو التعليم المهني وفتحها ومراقبتها"
-  title_fr: "Décret exécutif n° 18-162 du 29 Ramadhan 1439 correspondant au 14 juin 2018 fixant les conditions de création, d'ouverture et de contrôle de l'établissement privé de formation ou d'enseignement professionnel"
-
 identity:
   legal_form: executive_decree
   number: "18-162"
@@ -21,10 +17,9 @@ publication:
   journal_year: 2018
   publication_date: 2018-06-17
   locators:
-    ar: {start_page: 7, end_page: null}
-    fr: {start_page: 7, end_page: null}
-  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
-  url_fr: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
+    ar: {start_page: 7, end_page: 13}
+    fr: {start_page: 7, end_page: 12}
+  source_ref: sources/sources.yml
 
 legal_classification:
   normative_order: regulatory
@@ -41,7 +36,7 @@ institutions:
   initiating_ministry:
     institution_id: DZ-MFEP
     label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
-  affected_sectors: [private_training, vocational_training, vocational_education]
+  affected_sectors: [private_training, vocational_training, vocational_education, inspection, certification]
 
 status:
   value: amended
@@ -50,28 +45,83 @@ status:
   evidence:
     - kind: amending_text
       source_ref: DZ-DE-2020-340
-      date: 2020-11-22
-      note: "المرسوم التنفيذي 20-340 يعدل ويتمم بعض أحكام 18-162."
+      signature_date: 2020-11-22
+      note: "The decree 20-340 explicitly modifies and supplements DZ-DE-2018-162."
     - kind: later_official_citation
       source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
       publication_date: 2026-03-29
-      note: "ورد 18-162 في التأشيرات بصفته المعدل والمتمم."
+      note: "The 2026 official text cites 18-162 as modified and supplemented."
+  notes: "Status 'amended' is verified. A complete dated consolidated text has not yet been generated."
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  amendment_index: data/amendment-index.jsonl
+  transitional_effects: data/transitional-effects.jsonl
+  text_variants:
+    ar:
+      index: text/ar.md
+      status: verified
+      version: original_promulgated
+      segments:
+        - text/ar/01-preamble-art1-11.md
+        - text/ar/02-art12-27.md
+        - text/ar/03-art28-39.md
+        - text/ar/04-art40-44.md
+    fr:
+      index: text/fr.md
+      status: verified
+      version: original_promulgated
+      segments:
+        - text/fr/01-preamble-art1-11.md
+        - text/fr/02-art12-27.md
+        - text/fr/03-art28-39.md
+        - text/fr/04-art40-44.md
+  binary_sources_committed: false
 
 languages:
   ar:
     available: true
     role: official_publication
-    source_url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
-    extraction_method: joradp_text_layer
-    extraction_quality: medium
-    visually_verified: false
+    extraction_method: visual_page_transcription_with_french_alignment
+    extraction_quality: verified
+    transcription_status: verified
+    visually_verified: true
   fr:
     available: true
     role: official_translation
-    source_url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
-    extraction_method: joradp_text_layer
-    extraction_quality: high
+    extraction_method: text_layer_plus_visual_page_check
+    extraction_quality: verified
+    transcription_status: verified
     used_for_recovery: true
+
+structure:
+  original_article_count: 44
+  chapters:
+    - {number: 1, topic: general_provisions}
+    - {number: 2, topic: creation_and_opening_conditions}
+    - {number: 3, topic: operation_control_and_pedagogical_evaluation}
+    - {number: 4, topic: appeals}
+    - {number: 5, topic: miscellaneous_provisions}
+    - {number: 6, topic: transitional_and_final_provisions}
+
+versions:
+  original:
+    date: 2018-06-14
+    publication_date: 2018-06-17
+    transcription_complete: true
+    ar_verified: true
+    fr_verified: true
+    article_count: 44
+  amendments:
+    - text_ref: DZ-DE-2020-340
+      relation_verified: true
+      amended_articles: ["7", "10", "11", "15", "16", "32", "41"]
+      added_articles: ["35-bis"]
+  consolidated:
+    available: false
+    reason: "The amendment text has not yet been merged article-by-article into a dated consolidated version."
 
 relations:
   - id: REL-DZ-DE-2018-162-IMPLEMENTS-08-07-ART15
@@ -81,29 +131,55 @@ relations:
     source_article: art-1
     target_article: art-15
     confidence: 1.0
-    evidence:
-      language: fr
-      page: 7
-      locator: "Article 1er — En application de l'article 15 de la loi n° 08-07..."
+    evidence: {language: fr, page: 7}
   - id: REL-DZ-DE-2018-162-REFERENCES-16-282
     type: references
     source_ref: DZ-DE-2018-162
     target_ref: DZ-DE-2016-282
     source_article: preamble
     confidence: 1.0
+  - id: REL-DZ-DE-2018-162-REPEALS-01-419
+    type: repeals
+    source_ref: DZ-DE-2018-162
+    target_ref: DZ-DE-2001-419
+    source_article: art-43
+    target_status: unresolved_seed_dependency
+    confidence: 1.0
+    evidence: {language: fr, page: 12}
+    notes: "Article 43 also preserves the predecessor's implementing texts until new implementing texts of 18-162 are issued."
 
-topics: [private_training, vocational_training, vocational_education, accreditation, inspection, institutional_control]
+topics:
+  - private_training
+  - vocational_training
+  - vocational_education
+  - accreditation
+  - opening_authorization
+  - inspection
+  - pedagogical_evaluation
+  - examinations_certification
+  - learner_rights
+  - institutional_control
+  - transitional_law
 
 provenance:
-  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF", retrieved_at: 2026-08-25}
-  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf", retrieved_at: 2026-08-25}
+  source_manifest: sources/sources.yml
+  first_retrieved_at: 2026-08-25
+  transcription_verified_at: 2026-08-26
 
 verification:
-  level: 3
   metadata_verified: true
   source_verified: true
-  structure_verified: partial
+  structure_verified: true
+  full_text_ar_verified: true
+  full_text_fr_verified: true
+  articles_index_verified: true
   relations_verified: true
-  legal_status_verified: partial
-  verified_at: 2026-08-25
-  needs_legal_review: true
+  legal_status_verified: true
+  consolidated_text_verified: false
+  verified_at: 2026-08-26
+  needs_legal_review: false
+
+schema_observations:
+  - "The immutable original transcription must remain separate from later amendments and future consolidated versions."
+  - "Arabic pages 7-13 and French pages 7-12 require language-specific locators."
+  - "Article 43 demonstrates repeal plus transitional survival; a repeal edge alone is insufficient."

@@ -1,9 +1,21 @@
 text_id: DZ-DE-2018-162
 binary_sources_committed: false
+official_gazette:
+  number: 36
+  year: 2018
+  publication_date: 2018-06-17
 ar:
   url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
-  pages: {start: 7, end: null}
+  role: official_publication
+  pages: {start: 7, end: 13}
+  transcription_status: verified
 fr:
   url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
-  pages: {start: 7, end: null}
-retrieved_at: 2026-08-25
+  role: official_translation
+  pages: {start: 7, end: 12}
+  transcription_status: verified
+first_retrieved_at: 2026-08-25
+verified_at: 2026-08-26
+notes:
+  - "PDF files are external evidence only and are never committed to Git."
+  - "Arabic and French pagination differ; locators are stored independently."
