@@ -1,0 +1,35 @@
+text_id: DZ-DE-2024-074
+binary_sources_committed: false
+source_identity:
+  publisher: JORADP
+  year: 2024
+  issue: 10
+
+ar:
+  role: official_publication
+  url: "https://www.joradp.dz/FTP/jo-arabe/2024/A2024010.pdf"
+  issue_index_url: "https://www.joradp.dz/JRN/ZA2024.htm"
+  pages: {start: 12, end: 14}
+  access:
+    last_checked: 2026-08-26
+    recorded_url_status: accessible
+    text_layer_status: accessible
+    visual_check: partial
+    notes: "Pages 12-13 were visually inspected. Screenshot retrieval for the final Arabic page was unstable; page 14 remains pending independent visual verification."
+
+fr:
+  role: official_translation
+  url: "https://www.joradp.dz/FTP/jo-francais/2024/F2024010.pdf"
+  issue_index_url: "https://www.joradp.dz/JRN/ZF2024.htm"
+  pages: {start: 11, end: 13}
+  access:
+    last_checked: 2026-08-26
+    recorded_url_status: accessible
+    text_layer_status: accessible
+    visual_check: complete
+
+annual_legal_tables:
+  ar: "https://www.joradp.dz/TRV/A2024B14.pdf"
+  fr: "https://www.joradp.dz/TRV/F2024B14.pdf"
+
+retrieved_at: 2026-08-26
