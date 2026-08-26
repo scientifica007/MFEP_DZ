@@ -8,7 +8,15 @@
 **الجريدة الرسمية:** العدد 35 — 13 يونيو 2018  
 **الحالة:** قيد استكمال التحقق الحالي (`unknown`)
 
-هذه هي الواجهة البشرية للنص. السجل المهيكل في [record.yml](record.yml)، ومصادر JORADP في [sources/sources.yml](sources/sources.yml).
+هذه هي الواجهة البشرية للنص. السجل المهيكل في [record.yml](record.yml).
+
+## المصدر الرسمي الأصلي — PDF
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 35/2018، الصفحات 7–15)](https://www.joradp.dz/FTP/jo-arabe/2018/A2018035.pdf)
+- [Journal officiel — version française (PDF officiel, n° 35/2018, pages 6–14)](https://www.joradp.dz/FTP/jo-francais/2018/F2018035.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
+> ملفات PDF لا تُخزن في المستودع؛ الروابط أعلاه تؤدي مباشرة إلى JORADP.
 
 ### علاقة قانونية مؤكدة
 
