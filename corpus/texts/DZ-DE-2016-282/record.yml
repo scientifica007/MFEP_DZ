@@ -3,10 +3,6 @@ record_status: staging
 id: DZ-DE-2016-282
 id_status: provisional
 
-raw:
-  title_ar: "مرسوم تنفيذي رقم 16-282 مؤرخ في 2 صفر عام 1438 الموافق 2 نوفمبر سنة 2016، يحدد نظام التكوين المهني الأولي والشهادات المتوجة له"
-  title_fr: "Décret exécutif n° 16-282 du 2 Safar 1438 correspondant au 2 novembre 2016 fixant le régime de la formation professionnelle initiale et les diplômes la sanctionnant"
-
 identity:
   legal_form: executive_decree
   number: "16-282"
@@ -21,10 +17,9 @@ publication:
   journal_year: 2016
   publication_date: 2016-11-13
   locators:
-    ar: {start_page: 9, end_page: null}
-    fr: {start_page: 9, end_page: null}
-  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf"
-  url_fr: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf"
+    ar: {start_page: 9, end_page: 11}
+    fr: {start_page: 9, end_page: 11}
+  source_ref: sources/sources.yml
 
 legal_classification:
   normative_order: regulatory
@@ -51,24 +46,46 @@ status:
     - kind: later_official_citation
       date: 2026-02-15
       source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
-  notes: "استُعمل كسند في قرار رسمي منشور سنة 2026. لا يزال يلزم مسح التعديلات والإلغاءات الجزئية."
+  notes: "استُعمل كسند في قرار رسمي منشور سنة 2026. لا يزال يلزم مسح التعديلات والإلغاءات الجزئية لتحديد الحالة الحالية النهائية."
+
+content:
+  human_view: README.md
+  articles_index: data/articles.jsonl
+  text_variants:
+    ar:
+      path: text/ar.md
+      status: transcribed
+      source_pages: [9, 10, 11]
+      needs_second_pass: true
+    fr:
+      path: text/fr.md
+      status: verified
+      source_pages: [9, 10, 11]
+      verification_method: visual_page_check_plus_text_layer_normalization
+  binary_sources_committed: false
 
 languages:
   ar:
     available: true
     role: official_publication
-    source_url: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf"
-    extraction_method: text_layer_plus_french_alignment
-    extraction_quality: medium
-    visually_verified: true
-    notes: "طبقة النص العربية أظهرت خطأ استخراج في بعض التأشيرات، لذلك استعملت الفرنسية للتحقق من الهوية والعلاقات."
+    extraction_quality: medium_for_text_layer_high_for_visual_source
+    transcription_status: transcribed
+    used_french_for_alignment: true
   fr:
     available: true
     role: official_translation
-    source_url: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf"
-    extraction_method: text_layer_and_visual_check
     extraction_quality: high
+    transcription_status: verified
     used_for_recovery: true
+
+structure:
+  article_count: 15
+  articles_index: data/articles.jsonl
+  chapters:
+    - {number: 1, topic: initial_vocational_training_regime}
+    - {number: 2, topic: diplomas_and_certification}
+    - {number: 3, topic: special_provisions_and_exams}
+    - {number: 4, topic: final_and_transitional_provisions}
 
 relations:
   - id: REL-DZ-DE-2016-282-IMPLEMENTS-08-07-ART19
@@ -82,6 +99,17 @@ relations:
       language: fr
       page: 9
       locator: "Article 1er — En application des dispositions de l'article 19 de la loi n° 08-07..."
+  - id: REL-DZ-DE-2016-282-REPEALS-09-345
+    type: repeals
+    source_ref: DZ-DE-2016-282
+    target_ref: DZ-DE-2009-345
+    source_article: art-14
+    target_status: unresolved_seed_dependency
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 11
+      locator: "Article 14 abroge le décret exécutif n° 09-345 du 22 octobre 2009."
   - id: REL-DZ-DE-2016-282-REFERENCES-12-125
     type: references
     source_ref: DZ-DE-2016-282
@@ -95,18 +123,58 @@ relations:
     source_article: preamble
     confidence: 1.0
 
-topics: [vocational_training, initial_training, training_modes, qualification_levels, diplomas, certification]
+transitional_effects:
+  - id: TRANS-DZ-DE-2016-282-ART14-OLD-IMPLEMENTING-TEXTS
+    source_article: art-14
+    affected_basis: DZ-DE-2009-345
+    subject: implementing_texts_adopted_under_repealed_decree
+    effect: remain_in_force_temporarily
+    start_event: repeal_of_DZ-DE-2009-345
+    end_condition: publication_of_new_implementing_texts_of_DZ-DE-2016-282_in_official_gazette
+    explicit: true
+    evidence:
+      ar: "غير أن النصوص المتخذة لتطبيقه تبقى سارية المفعول إلى غاية نشر النصوص التطبيقية الجديدة لهذا المرسوم في الجريدة الرسمية."
+      fr: "Cependant, ses textes pris en son application demeurent en vigueur jusqu'à la publication des nouveaux textes d'application du présent décret au Journal officiel."
+
+pedagogical_model:
+  initial_training_modes:
+    - presentiel
+    - apprenticeship
+    - distance
+  qualification_levels: 5
+  diplomas:
+    1: CFPS
+    2: CAP
+    3: CMP
+    4: BT
+    5: BTS
+
+known_references:
+  - DZ-DE-2012-125
+  - DZ-DE-2014-140
+  - DZ-DE-2016-184
+
+topics: [vocational_training, initial_training, training_modes, qualification_levels, diplomas, certification, exams, transitional_law]
 
 provenance:
-  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2016/A2016067.pdf", retrieved_at: 2026-08-25}
-  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2016/F2016067.pdf", retrieved_at: 2026-08-25}
+  source_manifest: sources/sources.yml
+  first_retrieved_at: 2026-08-25
+  transcription_updated_at: 2026-08-26
 
 verification:
-  level: 3
   metadata_verified: true
   source_verified: true
-  structure_verified: partial
+  structure_verified: true
+  full_text_fr_verified: true
+  full_text_ar_transcribed: true
+  full_text_ar_verified: false
+  articles_index_verified: true
   relations_verified: true
+  transitional_effect_verified: true
   legal_status_verified: false
-  verified_at: 2026-08-25
+  transcription_verified_at: 2026-08-26
   needs_legal_review: true
+
+schema_observations:
+  - "Article 14 proves that repeal and transitional survival of implementing texts must be represented as separate legal effects."
+  - "Qualification levels and diploma mappings are high-value structured data and should not be left only inside prose transcription."
