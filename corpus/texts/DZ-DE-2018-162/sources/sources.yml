@@ -4,18 +4,38 @@ official_gazette:
   number: 36
   year: 2018
   publication_date: 2018-06-17
+  stable_identity: "JORADP:2018:36"
+
 ar:
   url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
   role: official_publication
   pages: {start: 7, end: 13}
   transcription_status: verified
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZA2018.htm"
+    resolver: scripts/joradp_resolver.py
+    last_checked: 2026-08-26
+    recorded_url_observation: accessible_in_automated_check
+    resolved_url: "https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF"
+    resolution_method: recorded_url
+
 fr:
   url: "https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf"
   role: official_translation
   pages: {start: 7, end: 12}
   transcription_status: verified
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZF2018.htm"
+    resolver: scripts/joradp_resolver.py
+    last_checked: 2026-08-26
+    recorded_url_observation: failed_in_one_automated_check
+    resolved_url: "https://www.joradp.dz/FTP/JO-FRANCAIS/2018/F2018036.pdf"
+    resolution_method: path_case_variant
+    note: "The recorded URL is retained as provenance. Access behavior can vary by client/server path casing; do not delete a recorded URL merely because one access attempt fails."
+
 first_retrieved_at: 2026-08-25
 verified_at: 2026-08-26
 notes:
   - "PDF files are external evidence only and are never committed to Git."
   - "Arabic and French pagination differ; locators are stored independently."
+  - "The stable source identity is the gazette year + issue + language, not a single brittle URL."
