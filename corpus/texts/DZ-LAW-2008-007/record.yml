@@ -55,10 +55,14 @@ content:
   text_variants:
     ar:
       path: text/ar.md
-      status: source_verified_transcription_pending
+      status: transcribed
+      source_pages: [4, 5, 6, 7]
+      needs_second_pass: true
     fr:
       path: text/fr.md
-      status: source_verified_transcription_pending
+      status: verified
+      source_pages: [4, 5, 6]
+      verification_method: visual_page_check_plus_text_layer_normalization
   binary_sources_committed: false
 
 languages:
@@ -66,16 +70,20 @@ languages:
     available: true
     role: official_publication
     extraction_quality: high_for_visual_source
-    visually_verified: true
+    visually_checked: true
+    transcription_status: transcribed
   fr:
     available: true
     role: official_translation
     extraction_quality: high_for_visual_source
+    visually_checked: true
+    transcription_status: verified
     used_for_recovery: true
 
 structure:
   article_count: 32
   articles_index: data/articles.jsonl
+  article_level_refs_complete: true
 
 topics:
   - sector_governance
@@ -87,19 +95,22 @@ topics:
 
 provenance:
   source_manifest: sources/sources.yml
-  retrieved_at: 2026-08-25
+  first_retrieved_at: 2026-08-25
+  transcription_updated_at: 2026-08-26
 
 verification:
   metadata_verified: true
   source_verified: true
+  full_text_ar_transcribed: true
   full_text_ar_verified: false
-  full_text_fr_verified: false
+  full_text_fr_verified: true
   articles_index_verified: true
   relations_verified: partial
   legal_status_verified: false
-  verified_at: 2026-08-25
+  transcription_verified_at: 2026-08-26
   needs_legal_review: true
 
 notes:
   - "هذا النص هو أول سجل يطبق نموذج Human View + Machine View الدائم."
+  - "النص الفرنسي الكامل متحقق من الصفحات الرسمية 4-6؛ النص العربي الكامل منقول من الصفحات 4-7 ويحتاج مرور تحقق ثانيا قبل وسمه verified."
   - "لا تخزن ملفات PDF الرسمية داخل المستودع؛ تحفظ الروابط والمحددات فقط."
