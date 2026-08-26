@@ -1,0 +1,31 @@
+text_id: DZ-D-1982-299
+binary_sources_committed: false
+official_gazette:
+  year: 1982
+  number: 36
+  publication_date: 1982-09-07
+  stable_identity: "JORADP:1982:36"
+ar:
+  url: "https://www.joradp.dz/FTP/Jo-Arabe/1982/A1982036.pdf"
+  pages: {start: null, end: null}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZA1982.htm"
+    resolved_url: null
+    last_checked: 2026-08-26
+    recorded_url_observation: "Historical Arabic endpoint not independently materialized in this pass."
+    resolution_method: unresolved
+fr:
+  url: "https://www.joradp.dz/FTP/Jo-Francais/1982/F1982036.pdf"
+  pages: {start: 1229, end: 1231}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZF1982.htm"
+    resolved_url: null
+    last_checked: 2026-08-26
+    recorded_url_observation: "Direct endpoint unstable; structure verified through archived scan of the same official issue."
+    resolution_method: archived_issue_mirror_for_recovery
+recovery_sources:
+  - kind: archived_official_issue_scan
+    official: false
+    role: recovery_and_visual_discovery_only
+    url: "https://archive.gazettes.africa/archive/dz/1982/dz-government-gazette-dated-1982-09-07-no-36.pdf"
+retrieved_at: 2026-08-26
