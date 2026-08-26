@@ -29,6 +29,35 @@
 - الفرنسية: https://www.joradp.dz/hfr/cdrom.htm
 - معلومة مهمة: توضح الأمانة العامة للحكومة أن المجموعة تغطي السنوات منذ 1962، وأن المنشورات متاحة بالعربية وترجمتها الفرنسية، وأن SCALER أداة بحث ثنائية اللغة متعددة المعايير.
 
+### 1.5 عدم استقرار روابط PDF المباشرة
+
+أثبت العمل على corpus أن endpoint المباشر لعدد الجريدة قد لا يكون مستقرا بين العملاء أو المسارات، خصوصا مع اختلاف حالة الأحرف مثل:
+
+```text
+/FTP/jo-francais/...
+/FTP/JO-FRANCAIS/...
+```
+
+وكذلك `.pdf` و`.PDF`.
+
+لذلك يعتمد المشروع القاعدة الآتية:
+
+```text
+source identity = JORADP + year + issue + language
+URL = access endpoint, not source identity
+```
+
+صفحات السنة الرسمية المستخدمة كـfallback:
+
+- العربية: `https://www.joradp.dz/JRN/ZA<YEAR>.htm`
+- الفرنسية: `https://www.joradp.dz/JRN/ZF<YEAR>.htm`
+
+لا يحذف الرابط المسجل عند فشله؛ يبقى provenance، ويضاف `resolved_url` منفصل عند التحقق من endpoint عامل.
+
+الأداة: `scripts/joradp_resolver.py`.
+
+المنهج الكامل: `docs/JORADP_URL_RESOLUTION.md`.
+
 ## 2. الدستور
 
 ### 2.1 النص العربي المنشور سنة 2020
@@ -121,17 +150,39 @@ notes:
 
 ## 8. قاعدة التوثيق داخل البيانات
 
-كل سجل نص يجب أن يحتفظ، قدر الإمكان، بـ:
+كل سجل نص يجب أن يحتفظ، قدر الإمكان، بهوية الجريدة وبروابط الوصول منفصلة:
 
 ```yaml
-sources:
-  - kind: official_gazette
-    url_ar:
-    url_fr:
-    journal_number:
-    publication_date:
-    pages:
-    verified_at:
+official_gazette:
+  year:
+  number:
+  publication_date:
+  stable_identity: "JORADP:<YEAR>:<ISSUE>"
+
+ar:
+  url: "<recorded URL or null>"
+  pages: {start: null, end: null}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZA<YEAR>.htm"
+    resolved_url: null
+    last_checked: null
+    recorded_url_observation: null
+    resolution_method: null
+
+fr:
+  url: "<recorded URL or null>"
+  pages: {start: null, end: null}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZF<YEAR>.htm"
+    resolved_url: null
+    last_checked: null
+    recorded_url_observation: null
+    resolution_method: null
 ```
 
-وكل حكم مشتق مثل `repealed` أو `amends` يجب أن يحمل `evidence` مستقلا يشير إلى النص والمادة أو الموضع الذي يثبت الحكم.
+المبدأ:
+
+- `url` لا يكتب فوقه عند اكتشاف بديل؛
+- `resolved_url` endpoint عامل في فحص معين؛
+- لا توصف محاولة واحدة فاشلة بأنها حكم دائم على الموقع؛
+- كل حكم مشتق مثل `repealed` أو `amends` يحمل `evidence` مستقلا يشير إلى النص والمادة أو الموضع الذي يثبت الحكم.
