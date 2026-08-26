@@ -7,10 +7,17 @@
 **الجريدة الرسمية:** العدد 12 — 10 فبراير 2026  
 **الحالة:** قيد التحقق (`unknown`)
 
+## المصدر الرسمي الأصلي — PDF
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 12/2026، ابتداء من الصفحة 29)](https://www.joradp.dz/FTP/jo-arabe/2026/A2026012.pdf)
+- [Journal officiel — version française (PDF officiel, n° 12/2026، ابتداء من الصفحة 29)](https://www.joradp.dz/FTP/jo-francais/2026/F2026012.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
+> ملفات PDF لا تُخزن في المستودع؛ الروابط أعلاه تؤدي إلى JORADP.
+
 ينشئ ثمانية معاهد وطنية متخصصة، ويرتبط بالمادة 3 من المرسوم 12-125.
 
 - [السجل](record.yml)
-- [المصادر](sources/sources.yml)
 - [العربية](text/ar.md)
 - [الفرنسية](text/fr.md)
 - [المواد المفهرسة](data/articles.jsonl)
