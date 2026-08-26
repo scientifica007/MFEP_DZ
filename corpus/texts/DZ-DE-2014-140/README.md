@@ -7,8 +7,15 @@
 **الجريدة الرسمية:** العدد 26 — 7 مايو 2014  
 **الحالة:** قيد التحقق (`unknown`)
 
+## المصدر الرسمي الأصلي — PDF
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 26/2014، ابتداء من الصفحة 12)](https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf)
+- [Journal officiel — version française (PDF officiel, n° 26/2014، ابتداء من الصفحة 12)](https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
+> ملفات PDF لا تُخزن في المستودع؛ الروابط أعلاه تؤدي إلى المصدر الرسمي في JORADP.
+
 - [السجل](record.yml)
-- [المصادر الرسمية](sources/sources.yml)
 - [العربية](text/ar.md)
 - [الفرنسية](text/fr.md)
 - [المواد المفهرسة](data/articles.jsonl)
