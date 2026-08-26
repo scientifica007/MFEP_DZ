@@ -55,9 +55,9 @@ content:
   text_variants:
     ar:
       path: text/ar.md
-      status: transcribed
+      status: verified
       source_pages: [4, 5, 6, 7]
-      needs_second_pass: true
+      verification_method: second_visual_pass_plus_official_search_alignment_plus_french_alignment
     fr:
       path: text/fr.md
       status: verified
@@ -71,7 +71,7 @@ languages:
     role: official_publication
     extraction_quality: high_for_visual_source
     visually_checked: true
-    transcription_status: transcribed
+    transcription_status: verified
   fr:
     available: true
     role: official_translation
@@ -102,7 +102,7 @@ verification:
   metadata_verified: true
   source_verified: true
   full_text_ar_transcribed: true
-  full_text_ar_verified: false
+  full_text_ar_verified: true
   full_text_fr_verified: true
   articles_index_verified: true
   relations_verified: partial
@@ -111,6 +111,5 @@ verification:
   needs_legal_review: true
 
 notes:
-  - "هذا النص هو أول سجل يطبق نموذج Human View + Machine View الدائم."
-  - "النص الفرنسي الكامل متحقق من الصفحات الرسمية 4-6؛ النص العربي الكامل منقول من الصفحات 4-7 ويحتاج مرور تحقق ثانيا قبل وسمه verified."
+  - "هذا النص هو أول سجل يطبق نموذج Human View + Machine View الدائم مع transcription عربية وفرنسية متحققة بالكامل."
   - "لا تخزن ملفات PDF الرسمية داخل المستودع؛ تحفظ الروابط والمحددات فقط."
