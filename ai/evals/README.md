@@ -4,7 +4,7 @@
 
 ## لماذا evals إلزامية؟
 
-قد يكون نموذج جديد أفضل لغويا لكنه أسوأ في التمييز بين الإحالة والتعديل، أو أكثر ميلا لاختلاق الحالة القانونية. لذلك لا يكفي الانطباع العام عن جودة الإجابة.
+قد يكون نموذج جديد أفضل لغويا لكنه أسوأ في التمييز بين الإحالة والتعديل، أو أكثر ميلا لاختلاق الحالة القانونية أو بناء نص موحد بطريقة تغير النص الأصلي. لذلك لا يكفي الانطباع العام عن جودة الإجابة.
 
 ## أنواع الاختبارات
 
@@ -16,6 +16,8 @@
 - legal-status determination
 - provenance preservation
 - uncertainty handling
+- amendment mapping
+- dated legal consolidation
 
 ## أخطاء مانعة للاعتماد
 
@@ -28,6 +30,10 @@
 - silent alteration of number/date/title
 - loss of provenance
 - presenting French recovery/translation as official Arabic text
+- silently overwriting an original text with an amendment
+- treating `sans changement / بدون تغيير` as permission to invent text
+- presenting a project-generated consolidated version as an official publication
+- presenting a dated consolidation as current law without forward search
 
 ## المقاييس
 
@@ -39,6 +45,8 @@
 - status accuracy as-of date
 - provenance completeness
 - unresolved/unknown calibration
+- amendment-target accuracy
+- consolidation provenance completeness
 
 لا تعتمد نسبة مجمعة واحدة لإخفاء خطأ قانوني شديد الضرر.
 
@@ -57,20 +65,27 @@
 
 ## الحالة الحالية
 
-بدأ بناء Gold Corpus فعليا من Seed Corpus 001.
-
-الملفات الأولى:
+### علاقات قانونية
 
 - `cases/seed-001-relation-cases.jsonl`
 - `expected/seed-001-relation-expected.jsonl`
 
-وتتضمن أربع حالات مصدرية عالية الثقة:
+تشمل الإلغاء، التعديل، التطبيق، الإضافة والأثر الانتقالي.
 
-1. إلغاء القانون 81-07 بواسطة القانون 18-10، مع ضرورة حفظ الحكم الانتقالي للنصوص التطبيقية القديمة.
-2. تعديل وتتميم المرسوم 18-162 بواسطة المرسوم 20-340.
-3. تطبيق المرسوم 12-125 للمادة 14 من القانون 08-07.
-4. إلغاء القرار الوزاري المشترك المؤرخ في 24 مارس 2022 بواسطة قرار 15 فبراير 2026.
+### Consolidation
 
-هذه الحالات تختبر خصوصا منع `false repeal`, `false amendment` والخلط بين `implements` و`references`.
+أضيفت أول حالات Gold لبناء نسخة بحثية موحدة مؤرخة من سلسلة 18-162 ← 20-340:
 
-لا تعتبر بقية علاقات Seed 001 Gold تلقائيا؛ العلاقة التي لم تحسم صياغتها أو لم يستكمل فحصها تبقى خارج expected outputs حتى التحقق.
+- `cases/consolidation-cases.jsonl`
+- `expected/consolidation-expected.jsonl`
+
+وتختبر أربع نقاط عالية الحساسية:
+
+1. **المادة 16:** التفريق بين صيغة 2018 الأصلية وصيغة 2020 المعدلة، وعدم إسقاط ملاحظة التحقق العربية المفتوحة.
+2. **المادة 35 مكرر:** إدراج المادة الجديدة بعد 35 وقبل 36 دون استبدال أو إعادة ترقيم مواد أخرى.
+3. **المادة 41:** اعتماد مهلة الأربع سنوات واستثناء 35 مكرر بدل إبقاء مهلة السنة الأصلية.
+4. **هوية النسخة:** وصف الناتج بأنه `research_consolidated_version` بتاريخ قطع محدد، لا نصا رسميا ولا الحالة القانونية الحالية بلا forward search.
+
+هذه الاختبارات تجعل تغيير نموذج الذكاء الاصطناعي آمنًا بدرجة أكبر عند الانتقال من استخراج العلاقات إلى إعادة بناء نص قانوني مركب.
+
+لا تعتبر أي علاقة أو consolidation Gold تلقائيا؛ الموضع الذي لم يحسم مصدره أو تحققُه يبقى موسومًا ولا يُحوَّل إلى expected output واثق.
