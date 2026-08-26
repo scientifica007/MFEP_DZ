@@ -53,6 +53,7 @@ content:
   verification_view: VERIFICATION.md
   articles_index: data/articles.jsonl
   implementing_acts_index: data/implementing-acts.jsonl
+  implementing_acts_search: data/implementing-acts-search.yml
   forward_search: data/forward-search.yml
   text_variants:
     ar:
@@ -197,6 +198,9 @@ verification:
   full_text_fr_verified: true
   articles_index_verified: true
   relations_verified: true
+  implementing_acts_resolved: false
+  implementing_acts_last_searched: 2026-08-26
+  implementing_acts_search_result: not_located_in_performed_search
   legal_status_verified: false
   verified_at: 2026-08-26
   needs_legal_review: false
@@ -205,3 +209,5 @@ schema_observations:
   - "Article 1 explicitly implements article 20 of law 08-07; preamble citations alone are not treated as implementation."
   - "Article 23 repeals three historical decrees without an express transitional survival clause."
   - "Articles 13, 14 and 22 create three separate lower implementing-act slots that remain unresolved until the actual ministerial orders are identified."
+  - "A failed discovery search must record 'not_located_in_performed_search', not 'not_published'."
+  - "JORADP index relationship/status labels are discovery cues; operative legal effect must still be verified in the published text."
