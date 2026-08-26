@@ -1,9 +1,42 @@
 text_id: DZ-DE-2020-340
 binary_sources_committed: false
+official_gazette:
+  number: 71
+  year: 2020
+  publication_date: 2020-12-02
+  stable_identity: "JORADP:2020:71"
+
 ar:
   url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
-  pages: {start: 10, end: null}
+  role: official_publication
+  pages: {start: 10, end: 12}
+  transcription_status: transcribed
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZA2020.htm"
+    resolver: scripts/joradp_resolver.py
+    last_checked: 2026-08-26
+    recorded_url_observation: accessible_as_official_pdf_text
+    resolved_url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
+    resolution_method: recorded_url
+    visual_observation: "PDF screenshot endpoint returned cache-miss during this verification round; Arabic transcription therefore remains transcribed pending an independent visual pass."
+
 fr:
   url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
-  pages: {start: 10, end: null}
-retrieved_at: 2026-08-25
+  role: official_translation
+  pages: {start: 10, end: 12}
+  transcription_status: verified
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZF2020.htm"
+    resolver: scripts/joradp_resolver.py
+    last_checked: 2026-08-26
+    recorded_url_observation: accessible_in_automated_check
+    resolved_url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
+    resolution_method: recorded_url
+    visual_observation: "Official pages 10 and 11 were visually checked; page 12 text boundary and final provisions were verified from the official PDF text layer."
+
+first_retrieved_at: 2026-08-25
+verified_at: 2026-08-26
+notes:
+  - "PDF files are external evidence only and are never committed to Git."
+  - "The decree spans official pages 10-12 in both language editions."
+  - "The stable source identity is the gazette year + issue + language, not a single URL."
