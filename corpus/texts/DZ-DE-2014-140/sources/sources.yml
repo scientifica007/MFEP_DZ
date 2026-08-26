@@ -1,9 +1,18 @@
 text_id: DZ-DE-2014-140
 binary_sources_committed: false
+source_identity:
+  publisher: JORADP
+  year: 2014
+  issue: 26
 ar:
   url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
-  pages: {start: 12, end: null}
+  issue_index_url: "https://www.joradp.dz/JRN/ZA2014.htm"
+  pages: {start: 12, end: 15}
+  access_status: accessible_text_layer_visual_cache_miss
 fr:
   url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
-  pages: {start: 12, end: null}
-retrieved_at: 2026-08-25
+  resolved_url: "https://www.joradp.dz/FTP/JO-FRANCAIS/2014/F2014026.pdf"
+  issue_index_url: "https://www.joradp.dz/JRN/ZF2014.htm"
+  pages: {start: 12, end: 15}
+  access_status: accessible
+retrieved_at: 2026-08-26
