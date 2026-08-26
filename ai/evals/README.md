@@ -18,6 +18,8 @@
 - uncertainty handling
 - amendment mapping
 - dated legal consolidation
+- unresolved implementing-act detection
+- multi-repeal extraction
 
 ## أخطاء مانعة للاعتماد
 
@@ -34,6 +36,8 @@
 - treating `sans changement / بدون تغيير` as permission to invent text
 - presenting a project-generated consolidated version as an official publication
 - presenting a dated consolidation as current law without forward search
+- inventing a ministerial order number/date when only an implementing-act slot is known
+- inventing transitional survival where a repeal article contains none
 
 ## المقاييس
 
@@ -65,12 +69,24 @@
 
 ## الحالة الحالية
 
-### علاقات قانونية
+### علاقات قانونية — Seed
 
 - `cases/seed-001-relation-cases.jsonl`
 - `expected/seed-001-relation-expected.jsonl`
 
 تشمل الإلغاء، التعديل، التطبيق، الإضافة والأثر الانتقالي.
+
+### علاقات التوسع الموضوعي — 24-74
+
+- `cases/sector-expansion-relation-cases.jsonl`
+- `expected/sector-expansion-relation-expected.jsonl`
+
+وتختبر أربع حالات جديدة:
+
+1. المادة 1 من 24-74 باعتبارها `implements` صريحة للمادة 20 من القانون 08-07؛
+2. المادة 19 باعتبارها `applies` للمرسوم 16-282 في نظام تتويج المعابر والحركية المهنية؛
+3. المادة 23 كحالة **multi-repeal** لثلاثة مراسيم دون اختراع أثر انتقالي غير منصوص عليه؛
+4. المواد 13 و14 و22 كحالات `provides_for_implementing_act` منفصلة، مع منع اختراع رقم أو تاريخ القرار قبل اكتشافه.
 
 ### Consolidation
 
@@ -86,6 +102,6 @@
 3. **المادة 41:** اعتماد مهلة الأربع سنوات واستثناء 35 مكرر بدل إبقاء مهلة السنة الأصلية.
 4. **هوية النسخة:** وصف الناتج بأنه `research_consolidated_version` بتاريخ قطع محدد، لا نصا رسميا ولا الحالة القانونية الحالية بلا forward search.
 
-هذه الاختبارات تجعل تغيير نموذج الذكاء الاصطناعي آمنًا بدرجة أكبر عند الانتقال من استخراج العلاقات إلى إعادة بناء نص قانوني مركب.
+هذه الاختبارات تجعل تغيير نموذج الذكاء الاصطناعي آمنًا بدرجة أكبر عند الانتقال من استخراج العلاقات إلى إعادة بناء نص قانوني مركب أو اكتشاف نصوص تطبيقية غير محلولة.
 
 لا تعتبر أي علاقة أو consolidation Gold تلقائيا؛ الموضع الذي لم يحسم مصدره أو تحققُه يبقى موسومًا ولا يُحوَّل إلى expected output واثق.
