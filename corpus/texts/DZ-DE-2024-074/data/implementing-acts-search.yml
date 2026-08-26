@@ -1,0 +1,65 @@
+text_id: DZ-DE-2024-074
+search_date: 2026-08-26
+search_start: 2024-02-12
+search_end: 2026-08-26
+purpose: resolve_ministerial_orders_required_by_articles_13_14_22
+
+scope:
+  source_articles: ["13", "14", "22"]
+  expected_legal_form: ministerial_order
+  issuing_authority: minister_charged_with_vocational_training_and_education
+  official_sources_only_for_resolution: true
+
+methods:
+  - exact_decree_number_search_ar
+  - exact_decree_number_search_fr
+  - exact_purpose_phrase_search_ar
+  - exact_purpose_phrase_search_fr
+  - article_specific_phrase_search_ar
+  - article_specific_phrase_search_fr
+  - joradp_2024_annual_sector_state_check
+  - joradp_har_index_relationship_labels_as_discovery_cues
+
+results:
+  - slot_id: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART13
+    source_article: "13"
+    result: not_located_in_performed_search
+    publication_claim: unknown
+    confidence: medium
+    note: "No official text was located that can be tied with sufficient certainty to article 13. Do not infer that the order was never issued."
+  - slot_id: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART14
+    source_article: "14"
+    result: not_located_in_performed_search
+    publication_claim: unknown
+    confidence: medium
+    note: "No official text was located that can be tied with sufficient certainty to article 14. Do not infer that the order was never issued."
+  - slot_id: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART22
+    source_article: "22"
+    result: not_located_in_performed_search
+    publication_claim: unknown
+    confidence: medium
+    note: "No official text was located that can be tied with sufficient certainty to article 22. Do not infer that the order was never issued."
+
+positive_checks:
+  - source: JORADP_annual_state_2024
+    language: fr
+    observation: "The 2024 annual state of legislative and regulatory texts lists, under the Ministry of Vocational Training and Education, decree 24-74 and an unrelated interministerial order of 31 October 2023; no matching implementing order for articles 13, 14 or 22 was identified in that 2024 list."
+    limitation: "This supports non-location in 2024 only; it is not proof concerning later publication."
+
+human_interface_observation:
+  source: JORADP_HAR_Index
+  observed_at: 2026-08-26
+  binary_evidence_committed: false
+  note: "Human-supplied screenshots of the official Arabic search interface show relationship/status labels such as 'نص تطبيقي', 'معدل' and 'ملغى' next to indexed results. The screenshots are not stored in Git. These labels are useful discovery cues but must be confirmed against the official text before a relation or legal status is trusted."
+
+interpretation:
+  all_three_slots_remain_unresolved: true
+  may_claim_not_published: false
+  may_claim_not_found_in_performed_search: true
+  recommended_label_ar: "لم يُعثر على القرار ضمن نطاق البحث الرسمي المنجز حتى 26 أوت 2026؛ حالة النشر غير محسومة"
+
+next_actions:
+  - "Use interactive SCALER/HAR search with decree 24-74, the exact article-purpose wording, and relationship labels when available."
+  - "Scan 2025 and 2026 sector-index results for Ministry of Vocational Training and Education."
+  - "Re-run discovery when new JORADP issues or annual states become available."
+  - "If a candidate is found, verify its article 1/legal basis and official AR/FR publication before resolving the slot."
