@@ -1,0 +1,29 @@
+text_id: DZ-DE-2024-074
+search_date: 2026-08-26
+search_start: 2024-02-12
+search_end: 2026-08-26
+purpose: detect_later_amendment_repeal_or_replacement
+
+result:
+  later_amending_text_discovered: false
+  later_repealing_text_discovered: false
+  conclusion: "No later JORADP text was located in the targeted search as modifying, supplementing, repealing or replacing DZ-DE-2024-074. This scoped result is not proof of absolute non-existence."
+  confidence: medium_high_but_not_exhaustive
+
+search_methods:
+  - exact_number_search_ar
+  - exact_number_search_fr
+  - modifier_phrase_search_ar
+  - modifier_phrase_search_fr
+  - repeal_phrase_search_ar
+  - repeal_phrase_search_fr
+  - implementing_order_phrase_search
+
+interpretation:
+  current_status_not_promoted_to_active: true
+  reason: "The project requires stronger forward-status evidence before promoting a new record from unknown to active."
+  may_claim_absolute_no_later_change: false
+
+follow_up:
+  - "Repeat forward search when new JORADP issues are ingested or before high-stakes current-law use."
+  - "Discover the ministerial orders required by articles 13, 14 and 22."
