@@ -92,6 +92,144 @@ def duplicates(values: Iterable[str]) -> list[str]:
     return sorted(value for value, count in counts.items() if count > 1)
 
 
+def primary_source_urls(path: Path, errors: list[str]) -> dict[str, str | None]:
+    """Read primary AR/FR `url` values from the deliberately simple sources.yml.
+
+    This is intentionally not a general YAML parser. It only reads the top-level
+    `ar:` and `fr:` blocks and their two-space-indented `url:` field.
+    """
+    result: dict[str, str | None] = {"ar": None, "fr": None}
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except OSError as exc:
+        errors.append(f"{path}: cannot read source manifest: {exc}")
+        return result
+
+    current: str | None = None
+    for raw in lines:
+        if raw == "ar:":
+            current = "ar"
+            continue
+        if raw == "fr:":
+            current = "fr"
+            continue
+        if raw and not raw.startswith(" "):
+            current = None
+            continue
+        if current and raw.startswith("  url:"):
+            value = raw.split(":", 1)[1].strip()
+            if value == "null":
+                result[current] = None
+            elif len(value) >= 2 and value[0] == value[-1] == '"':
+                result[current] = value[1:-1]
+            else:
+                result[current] = value
+    return result
+
+
+def validate_human_views(root: Path, errors: list[str], counts: Counter[str]) -> None:
+    """Validate human-facing source links and navigation of segmented texts."""
+    texts_root = root / "corpus" / "texts"
+    if not texts_root.is_dir():
+        errors.append("corpus/texts: directory not found")
+        return
+
+    human_readmes = 0
+    segmented_files = 0
+
+    for text_dir in sorted(path for path in texts_root.iterdir() if path.is_dir()):
+        readme = text_dir / "README.md"
+        sources = text_dir / "sources" / "sources.yml"
+
+        if not readme.is_file():
+            errors.append(f"{readme.relative_to(root)}: missing human README")
+            continue
+
+        human_readmes += 1
+        try:
+            readme_text = readme.read_text(encoding="utf-8")
+        except OSError as exc:
+            errors.append(f"{readme.relative_to(root)}: cannot read: {exc}")
+            continue
+
+        if "المصدر الرسمي الأصلي" not in readme_text:
+            errors.append(
+                f"{readme.relative_to(root)}: missing visible official-source section"
+            )
+
+        if sources.is_file():
+            urls = primary_source_urls(sources, errors)
+            for lang, url in urls.items():
+                if url and url not in readme_text:
+                    errors.append(
+                        f"{readme.relative_to(root)}: primary {lang} source URL from "
+                        f"sources.yml is not exposed in human view"
+                    )
+        else:
+            errors.append(f"{sources.relative_to(root)}: missing source manifest")
+
+        text_root = text_dir / "text"
+        for lang in ("ar", "fr"):
+            segment_dir = text_root / lang
+            if not segment_dir.is_dir():
+                continue
+
+            segments = sorted(
+                p for p in segment_dir.glob("*.md") if p.name.lower() != "readme.md"
+            )
+            if not segments:
+                continue
+
+            index_file = text_root / f"{lang}.md"
+            if not index_file.is_file():
+                errors.append(
+                    f"{index_file.relative_to(root)}: missing language index for segments"
+                )
+            else:
+                try:
+                    index_text = index_file.read_text(encoding="utf-8")
+                except OSError as exc:
+                    errors.append(f"{index_file.relative_to(root)}: cannot read: {exc}")
+                    index_text = ""
+                for segment in segments:
+                    relative_link = f"{lang}/{segment.name}"
+                    if relative_link not in index_text:
+                        errors.append(
+                            f"{index_file.relative_to(root)}: missing segment link "
+                            f"{relative_link}"
+                        )
+
+            for idx, segment in enumerate(segments):
+                segmented_files += 1
+                try:
+                    segment_text = segment.read_text(encoding="utf-8")
+                except OSError as exc:
+                    errors.append(f"{segment.relative_to(root)}: cannot read: {exc}")
+                    continue
+
+                if f"../{lang}.md" not in segment_text:
+                    errors.append(
+                        f"{segment.relative_to(root)}: missing language-index navigation"
+                    )
+                if "../../README.md" not in segment_text:
+                    errors.append(
+                        f"{segment.relative_to(root)}: missing human-view navigation"
+                    )
+                if idx > 0 and segments[idx - 1].name not in segment_text:
+                    errors.append(
+                        f"{segment.relative_to(root)}: missing previous-segment link "
+                        f"to {segments[idx - 1].name}"
+                    )
+                if idx < len(segments) - 1 and segments[idx + 1].name not in segment_text:
+                    errors.append(
+                        f"{segment.relative_to(root)}: missing next-segment link "
+                        f"to {segments[idx + 1].name}"
+                    )
+
+    counts["human_readmes"] = human_readmes
+    counts["segmented_files"] = segmented_files
+
+
 def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -110,6 +248,8 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
             f"forbidden PDF file in repository tree: {path.relative_to(root)}"
         )
     counts["pdf_files"] = len(pdf_files)
+
+    validate_human_views(root, errors, counts)
 
     ontology = root / "ontology" / "core.yml"
     legal_forms = ontology_keys(ontology, "legal_form", errors)
