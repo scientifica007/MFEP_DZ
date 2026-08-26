@@ -20,15 +20,20 @@
 | النص العربي | كامل ومتحقق (`verified`) |
 | النص الفرنسي | كامل ومتحقق (`verified`) |
 
+## المصدر الرسمي الأصلي — PDF
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 11/2008، الصفحات 4–7)](https://www.joradp.dz/FTP/jo-arabe/2008/A2008011.pdf)
+- [Journal officiel — version française (PDF officiel, n° 11/2008, pages 4–6)](https://www.joradp.dz/FTP/jo-francais/2008/F2008011.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
+> ملفات PDF لا تُخزن في المستودع؛ الروابط الرسمية المباشرة متاحة هنا لتسهيل الرجوع إلى الأصل.
+
 ## الوصول إلى النص
 
 - [النص العربي الكامل](text/ar.md) — حالة `verified`.
 - [النص الفرنسي الكامل](text/fr.md) — حالة `verified`.
 - [فهرس المواد للآلة](data/articles.jsonl) — 32 مادة، مع page locators وحالة النسختين.
 - [السجل القانوني المهيكل](record.yml).
-- [المصادر الرسمية ومحدداتها](sources/sources.yml).
-
-لا تحفظ ملفات PDF داخل المشروع. روابط المصدر الرسمي فقط محفوظة في `sources/sources.yml`.
 
 ## الاستدعاء الآلي
 
