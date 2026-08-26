@@ -1,6 +1,58 @@
-# Scripts — deterministic validation
+# Scripts — أدوات الحماية والاستخراج
 
-هذه الأدوات **لا تستخدم الذكاء الاصطناعي**. وظيفتها فرض الحد الأدنى من السلامة البنيوية قبل أي ترقية من `staging` إلى `trusted`.
+هذه الأدوات لا تعتمد على نموذج ذكاء اصطناعي بعينه. بعضها حواجز deterministic وبعضها أدوات وصول واستخراج من JORADP.
+
+## `joradp_resolver.py`
+
+يحل مشكلة الروابط المباشرة غير المستقرة في JORADP.
+
+المبدأ:
+
+```text
+stable source identity = year + issue + language
+URL = replaceable access endpoint
+```
+
+ترتيب المحاولة:
+
+1. الرابط المسجل في الحزمة؛
+2. اختلافات حالة الأحرف وامتداد PDF؛
+3. صفحة السنة الرسمية `ZAyyyy` أو `ZFyyyy` واستخراج رابط العدد منها.
+
+مثال من سجل مصدر:
+
+```bash
+python3 scripts/joradp_resolver.py \
+  corpus/texts/DZ-DE-2018-162/sources/sources.yml \
+  --lang fr \
+  --json
+```
+
+أو من رابط مباشر قديم:
+
+```bash
+python3 scripts/joradp_resolver.py \
+  https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf \
+  --json
+```
+
+راجع `docs/JORADP_URL_RESOLUTION.md`.
+
+## `materialize_joradp_text.py`
+
+يستخدم الـresolver أولًا، ثم ينزل PDF العامل إلى مساحة مؤقتة، يشغّل `pdftotext`، ويكتب نص UTF-8 فقط. يحذف PDF تلقائيًا.
+
+```bash
+python3 scripts/materialize_joradp_text.py \
+  corpus/texts/DZ-DE-2018-162/sources/sources.yml \
+  /tmp/F2018036.txt \
+  --lang fr \
+  --first-page 7 \
+  --last-page 12 \
+  --show-resolution
+```
+
+لا يحفظ هذا السكربت أي PDF في Git.
 
 ## `validate_repository.py`
 
@@ -10,63 +62,52 @@
 python3 scripts/validate_repository.py
 ```
 
-أو تمرير مسار جذر المستودع:
+أو:
 
 ```bash
 python3 scripts/validate_repository.py /path/to/MFEP_DZ
 ```
 
-## ما الذي يفحصه الإصدار الحالي؟
+## ما الذي يفحصه الـValidator؟
 
 ### التخزين والواجهة البشرية
 
 - منع وجود أي ملف PDF داخل شجرة المستودع؛
 - وجود `README.md` بشري لكل حزمة تحت `corpus/texts/`؛
-- وجود قسم ظاهر للمصدر الرسمي الأصلي في كل واجهة بشرية؛
-- إذا كان رابط PDF العربي أو الفرنسي الأصلي معروفًا في `sources/sources.yml`، يجب أن يظهر الرابط نفسه في `README.md`؛
-- لا يفرض رابطًا عندما تكون قيمة المصدر `null`، حتى لا يدفع المشروع إلى اختراع روابط غير متحققة.
+- وجود قسم ظاهر للمصدر الرسمي الأصلي؛
+- إذا كان `ar.url` أو `fr.url` معروفًا في `sources.yml`، يجب أن يبقى الرابط المسجل نفسه ظاهرًا في `README.md`؛
+- لا يفرض رابطًا عندما تكون قيمة المصدر `null`.
+
+وجود رابط عامل بديل لا يسمح بحذف الرابط المسجل؛ provenance والوصول التشغيلي شيئان مختلفان.
 
 ### النصوص المجزأة
 
-لكل لغة تحتوي مجلد segments مثل `text/ar/` أو `text/fr/`:
+لكل لغة تحتوي `text/ar/` أو `text/fr/`:
 
-- يجب وجود فهرس لغة `text/ar.md` أو `text/fr.md`؛
-- يجب أن يربط الفهرس جميع ملفات الأجزاء؛
-- يجب أن يحتوي كل جزء رابطًا إلى فهرس اللغة؛
-- يجب أن يحتوي كل جزء رابطًا إلى `README.md` البشري؛
-- يجب أن يحتوي الجزء، حيث ينطبق، رابطًا إلى الجزء السابق والجزء التالي.
+- وجود فهرس لغة؛
+- ربط الفهرس جميع الأجزاء؛
+- رابط فهرس اللغة داخل كل جزء؛
+- رابط العودة إلى `README.md`؛
+- السابق/التالي حيث ينطبق.
 
 ### البيانات والـGraph والـEvals
 
-- سلامة صيغة كل ملفات JSONL في `metadata/staging/` و`graph/staging/` و`ai/evals/`؛
-- عدم تكرار معرف النص القانوني في فهارس staging؛
-- وجود `record_path` المشار إليه في metadata؛
-- مطابقة `legal_form` و`legal_status` مع `ontology/core.yml`؛
-- عدم تكرار معرفات حواف Graph؛
-- مطابقة أنواع العلاقات مع ontology؛
-- منع حافة إلى `DZ-*` غير معروف ما لم يوسم المصدر/الهدف صراحة بأنه pending أو unresolved؛
-- سلامة حالات وأولويات `discovery-queue.jsonl`؛
-- عدم تكرار مرشحي Queue؛
-- تطابق معرفات Gold Eval cases مع expected outputs.
+- سلامة JSONL؛
+- عدم تكرار معرف النص أو حواف Graph؛
+- وجود `record_path`؛
+- مطابقة المفردات مع ontology؛
+- وسم العقد غير المحلولة؛
+- سلامة discovery queue؛
+- تطابق Gold Eval cases مع expected outputs.
 
-## حدود الإصدار الحالي
+## الحدود
 
-لا يحاول هذا validator تفسير YAML الكامل ولا التحقق من صحة الحكم القانوني نفسه. قراءة `sources.yml` محدودة عمدًا إلى حقلي `ar.url` و`fr.url` ذوي البنية البسيطة الحالية لفرض ظهور المصدر في الواجهة البشرية.
+الـValidator لا يثبت صحة الحكم القانوني ولا أن endpoint معين سيظل يعمل في المستقبل. والـresolver لا يثبت بدوره صحة مضمون العدد. بعد الوصول يجب التحقق من هوية الجريدة والنص والصفحات وفق منهج المشروع.
 
-لذلك هو **حاجز بنيوي deterministic gate** وليس بديلا عن:
-
-- JSON Schema المستقبلي؛
-- التحقق من المصادر الرسمية؛
-- AR/FR alignment؛
-- مراجعة العلاقات والحالة القانونية؛
-- Gold Evals الخاصة بالذكاء الاصطناعي.
-
-تمت قراءة مفردات `legal_form`, `legal_status`, و`relation_type` مباشرة من `ontology/core.yml` باستخدام البنية البسيطة الحالية دون إضافة dependency خارجية. بعد تثبيت Schema v1 يمكن استبدال/توسيع هذه الآلية بValidator أشد صرامة.
-
-## قاعدة CI المستقبلية
-
-عند إضافة GitHub Actions لاحقا، ينبغي أن يكون نجاح هذا الأمر شرطا أوليا قبل قبول أي تغيير في corpus/metadata/graph:
+## CI مستقبلا
 
 ```bash
 python3 scripts/validate_repository.py
 ```
+
+ينبغي أن يكون شرطًا أوليًا قبل قبول تغييرات corpus/metadata/graph.
