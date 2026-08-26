@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic repository checks for MFEP_DZ staging data.
+"""Deterministic repository checks for MFEP_DZ staging and corpus data.
 
 No third-party dependencies are required.
 """
@@ -30,8 +30,7 @@ def read_jsonl(path: Path, errors: list[str]) -> list[dict[str, Any]]:
             value = json.loads(line)
         except json.JSONDecodeError as exc:
             errors.append(
-                f"{path}:{lineno}: invalid JSON: {exc.msg} "
-                f"(column {exc.colno})"
+                f"{path}:{lineno}: invalid JSON: {exc.msg} (column {exc.colno})"
             )
             continue
         if not isinstance(value, dict):
@@ -43,11 +42,6 @@ def read_jsonl(path: Path, errors: list[str]) -> list[dict[str, Any]]:
 
 
 def ontology_keys(path: Path, section: str, errors: list[str]) -> set[str]:
-    """Read keys from one two-space-indented top-level YAML mapping section.
-
-    ontology/core.yml intentionally uses a simple mapping layout. This avoids
-    introducing a YAML dependency before the project has frozen its schema.
-    """
     try:
         lines = path.read_text(encoding="utf-8").splitlines()
     except OSError as exc:
@@ -62,10 +56,8 @@ def ontology_keys(path: Path, section: str, errors: list[str]) -> set[str]:
             if line == marker:
                 inside = True
             continue
-
         if line and not line.startswith(" "):
             break
-
         if line.startswith("  ") and not line.startswith("    "):
             stripped = line.strip()
             if stripped.endswith(":"):
@@ -76,10 +68,7 @@ def ontology_keys(path: Path, section: str, errors: list[str]) -> set[str]:
 
 
 def require_fields(
-    row: dict[str, Any],
-    fields: Iterable[str],
-    path: Path,
-    errors: list[str],
+    row: dict[str, Any], fields: Iterable[str], path: Path, errors: list[str]
 ) -> None:
     lineno = row.get("_validator_line", "?")
     for field in fields:
@@ -93,11 +82,6 @@ def duplicates(values: Iterable[str]) -> list[str]:
 
 
 def primary_source_urls(path: Path, errors: list[str]) -> dict[str, str | None]:
-    """Read primary AR/FR `url` values from the deliberately simple sources.yml.
-
-    This is intentionally not a general YAML parser. It only reads the top-level
-    `ar:` and `fr:` blocks and their two-space-indented `url:` field.
-    """
     result: dict[str, str | None] = {"ar": None, "fr": None}
     try:
         lines = path.read_text(encoding="utf-8").splitlines()
@@ -127,8 +111,59 @@ def primary_source_urls(path: Path, errors: list[str]) -> dict[str, str | None]:
     return result
 
 
+def validate_segment_group(
+    index_file: Path,
+    segment_dir: Path,
+    human_readme_relative: str,
+    root: Path,
+    errors: list[str],
+) -> int:
+    """Validate one language index and its ordered Markdown segments."""
+    segments = sorted(p for p in segment_dir.glob("*.md") if p.name.lower() != "readme.md")
+    if not segments:
+        return 0
+
+    if not index_file.is_file():
+        errors.append(f"{index_file.relative_to(root)}: missing language index for segments")
+        index_text = ""
+    else:
+        try:
+            index_text = index_file.read_text(encoding="utf-8")
+        except OSError as exc:
+            errors.append(f"{index_file.relative_to(root)}: cannot read: {exc}")
+            index_text = ""
+
+    lang = index_file.stem
+    for segment in segments:
+        relative_link = f"{lang}/{segment.name}"
+        if relative_link not in index_text:
+            errors.append(
+                f"{index_file.relative_to(root)}: missing segment link {relative_link}"
+            )
+
+    for idx, segment in enumerate(segments):
+        try:
+            segment_text = segment.read_text(encoding="utf-8")
+        except OSError as exc:
+            errors.append(f"{segment.relative_to(root)}: cannot read: {exc}")
+            continue
+
+        if f"../{lang}.md" not in segment_text:
+            errors.append(f"{segment.relative_to(root)}: missing language-index navigation")
+        if human_readme_relative not in segment_text:
+            errors.append(f"{segment.relative_to(root)}: missing human-view navigation")
+        if idx > 0 and segments[idx - 1].name not in segment_text:
+            errors.append(
+                f"{segment.relative_to(root)}: missing previous-segment link to {segments[idx - 1].name}"
+            )
+        if idx < len(segments) - 1 and segments[idx + 1].name not in segment_text:
+            errors.append(
+                f"{segment.relative_to(root)}: missing next-segment link to {segments[idx + 1].name}"
+            )
+    return len(segments)
+
+
 def validate_human_views(root: Path, errors: list[str], counts: Counter[str]) -> None:
-    """Validate human-facing source links and navigation of segmented texts."""
     texts_root = root / "corpus" / "texts"
     if not texts_root.is_dir():
         errors.append("corpus/texts: directory not found")
@@ -140,7 +175,6 @@ def validate_human_views(root: Path, errors: list[str], counts: Counter[str]) ->
     for text_dir in sorted(path for path in texts_root.iterdir() if path.is_dir()):
         readme = text_dir / "README.md"
         sources = text_dir / "sources" / "sources.yml"
-
         if not readme.is_file():
             errors.append(f"{readme.relative_to(root)}: missing human README")
             continue
@@ -153,17 +187,14 @@ def validate_human_views(root: Path, errors: list[str], counts: Counter[str]) ->
             continue
 
         if "المصدر الرسمي الأصلي" not in readme_text:
-            errors.append(
-                f"{readme.relative_to(root)}: missing visible official-source section"
-            )
+            errors.append(f"{readme.relative_to(root)}: missing visible official-source section")
 
         if sources.is_file():
             urls = primary_source_urls(sources, errors)
             for lang, url in urls.items():
                 if url and url not in readme_text:
                     errors.append(
-                        f"{readme.relative_to(root)}: primary {lang} source URL from "
-                        f"sources.yml is not exposed in human view"
+                        f"{readme.relative_to(root)}: primary {lang} source URL from sources.yml is not exposed in human view"
                     )
         else:
             errors.append(f"{sources.relative_to(root)}: missing source manifest")
@@ -171,63 +202,114 @@ def validate_human_views(root: Path, errors: list[str], counts: Counter[str]) ->
         text_root = text_dir / "text"
         for lang in ("ar", "fr"):
             segment_dir = text_root / lang
-            if not segment_dir.is_dir():
-                continue
-
-            segments = sorted(
-                p for p in segment_dir.glob("*.md") if p.name.lower() != "readme.md"
-            )
-            if not segments:
-                continue
-
-            index_file = text_root / f"{lang}.md"
-            if not index_file.is_file():
-                errors.append(
-                    f"{index_file.relative_to(root)}: missing language index for segments"
+            if segment_dir.is_dir():
+                segmented_files += validate_segment_group(
+                    text_root / f"{lang}.md",
+                    segment_dir,
+                    "../../README.md",
+                    root,
+                    errors,
                 )
-            else:
-                try:
-                    index_text = index_file.read_text(encoding="utf-8")
-                except OSError as exc:
-                    errors.append(f"{index_file.relative_to(root)}: cannot read: {exc}")
-                    index_text = ""
-                for segment in segments:
-                    relative_link = f"{lang}/{segment.name}"
-                    if relative_link not in index_text:
-                        errors.append(
-                            f"{index_file.relative_to(root)}: missing segment link "
-                            f"{relative_link}"
-                        )
-
-            for idx, segment in enumerate(segments):
-                segmented_files += 1
-                try:
-                    segment_text = segment.read_text(encoding="utf-8")
-                except OSError as exc:
-                    errors.append(f"{segment.relative_to(root)}: cannot read: {exc}")
-                    continue
-
-                if f"../{lang}.md" not in segment_text:
-                    errors.append(
-                        f"{segment.relative_to(root)}: missing language-index navigation"
-                    )
-                if "../../README.md" not in segment_text:
-                    errors.append(
-                        f"{segment.relative_to(root)}: missing human-view navigation"
-                    )
-                if idx > 0 and segments[idx - 1].name not in segment_text:
-                    errors.append(
-                        f"{segment.relative_to(root)}: missing previous-segment link "
-                        f"to {segments[idx - 1].name}"
-                    )
-                if idx < len(segments) - 1 and segments[idx + 1].name not in segment_text:
-                    errors.append(
-                        f"{segment.relative_to(root)}: missing next-segment link "
-                        f"to {segments[idx + 1].name}"
-                    )
 
     counts["human_readmes"] = human_readmes
     counts["segmented_files"] = segmented_files
+
+
+def _path_values(row: dict[str, Any], key: str) -> list[str]:
+    value = row.get(key)
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, dict):
+        return [item for item in value.values() if isinstance(item, str)]
+    return []
+
+
+def validate_consolidated_views(root: Path, errors: list[str], counts: Counter[str]) -> None:
+    """Validate dated research-consolidation packages and their provenance links."""
+    texts_root = root / "corpus" / "texts"
+    versions = 0
+    segments_total = 0
+    map_rows_total = 0
+
+    for text_dir in sorted(path for path in texts_root.iterdir() if path.is_dir()):
+        consolidated_root = text_dir / "consolidated"
+        if not consolidated_root.is_dir():
+            continue
+
+        for version_dir in sorted(path for path in consolidated_root.iterdir() if path.is_dir()):
+            versions += 1
+            required = [
+                version_dir / "README.md",
+                version_dir / "manifest.yml",
+                version_dir / "VERIFICATION.md",
+                version_dir / "data" / "consolidation-map.jsonl",
+                version_dir / "text" / "ar.md",
+                version_dir / "text" / "fr.md",
+            ]
+            for required_path in required:
+                if not required_path.is_file():
+                    errors.append(
+                        f"{required_path.relative_to(root)}: missing consolidated-version file"
+                    )
+
+            map_path = version_dir / "data" / "consolidation-map.jsonl"
+            rows = read_jsonl(map_path, errors) if map_path.is_file() else []
+            map_rows_total += len(rows)
+            article_ids = [str(row.get("article")) for row in rows if row.get("article") is not None]
+            for article_id in duplicates(article_ids):
+                errors.append(
+                    f"{map_path.relative_to(root)}: duplicate consolidated article {article_id}"
+                )
+
+            for row in rows:
+                lineno = row.get("_validator_line", "?")
+                require_fields(row, ("article", "operation", "source_text"), map_path, errors)
+                if row.get("operation") not in {"unchanged", "amends", "add_article"}:
+                    errors.append(
+                        f"{map_path}:{lineno}: unsupported consolidation operation {row.get('operation')!r}"
+                    )
+                for key in ("source_segments", "base_segments", "amending_sources"):
+                    for relative in _path_values(row, key):
+                        resolved = (map_path.parent / relative).resolve()
+                        try:
+                            resolved.relative_to(root.resolve())
+                        except ValueError:
+                            errors.append(
+                                f"{map_path}:{lineno}: {key} path escapes repository: {relative}"
+                            )
+                            continue
+                        if not resolved.is_file():
+                            errors.append(
+                                f"{map_path}:{lineno}: {key} path does not exist: {relative}"
+                            )
+
+            text_root = version_dir / "text"
+            for lang in ("ar", "fr"):
+                segment_dir = text_root / lang
+                if segment_dir.is_dir():
+                    segments_total += validate_segment_group(
+                        text_root / f"{lang}.md",
+                        segment_dir,
+                        "../../README.md",
+                        root,
+                        errors,
+                    )
+
+            readme = version_dir / "README.md"
+            if readme.is_file():
+                text = readme.read_text(encoding="utf-8")
+                if "نسخة بحثية" not in text and "version consolidée de recherche" not in text:
+                    errors.append(
+                        f"{readme.relative_to(root)}: consolidated human view lacks research-version warning"
+                    )
+                if "ليست نصا رسميا" not in text and "ليست نصًا رسميًا" not in text:
+                    errors.append(
+                        f"{readme.relative_to(root)}: consolidated human view must state that it is not an official standalone text"
+                    )
+
+    counts["consolidated_versions"] = versions
+    counts["consolidated_segments"] = segments_total
+    counts["consolidation_map_rows"] = map_rows_total
 
 
 def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
@@ -235,21 +317,17 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     warnings: list[str] = []
     counts: Counter[str] = Counter()
 
-    # Storage invariant: official journal binaries must never be committed.
     pdf_files = sorted(
         path
         for path in root.rglob("*")
-        if path.is_file()
-        and path.suffix.lower() == ".pdf"
-        and ".git" not in path.parts
+        if path.is_file() and path.suffix.lower() == ".pdf" and ".git" not in path.parts
     )
     for path in pdf_files:
-        errors.append(
-            f"forbidden PDF file in repository tree: {path.relative_to(root)}"
-        )
+        errors.append(f"forbidden PDF file in repository tree: {path.relative_to(root)}")
     counts["pdf_files"] = len(pdf_files)
 
     validate_human_views(root, errors, counts)
+    validate_consolidated_views(root, errors, counts)
 
     ontology = root / "ontology" / "core.yml"
     legal_forms = ontology_keys(ontology, "legal_form", errors)
@@ -267,51 +345,39 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
 
     ids: list[str] = []
     for path, row in metadata_rows:
-        require_fields(
-            row,
-            ("id", "record_status", "legal_form", "record_path"),
-            path,
-            errors,
-        )
+        require_fields(row, ("id", "record_status", "legal_form", "record_path"), path, errors)
         record_id = row.get("id")
         if isinstance(record_id, str):
             ids.append(record_id)
         else:
-            errors.append(
-                f"{path}:{row.get('_validator_line', '?')}: id must be a string"
-            )
+            errors.append(f"{path}:{row.get('_validator_line', '?')}: id must be a string")
 
         if row.get("record_status") != "staging":
             warnings.append(
-                f"{path}:{row.get('_validator_line', '?')}: "
-                f"unexpected record_status={row.get('record_status')!r}"
+                f"{path}:{row.get('_validator_line', '?')}: unexpected record_status={row.get('record_status')!r}"
             )
 
         legal_form = row.get("legal_form")
         if isinstance(legal_form, str) and legal_form not in legal_forms:
             errors.append(
-                f"{path}:{row.get('_validator_line', '?')}: "
-                f"unknown legal_form {legal_form!r}"
+                f"{path}:{row.get('_validator_line', '?')}: unknown legal_form {legal_form!r}"
             )
 
         status = row.get("status")
         if isinstance(status, str) and status not in legal_statuses:
             errors.append(
-                f"{path}:{row.get('_validator_line', '?')}: "
-                f"unknown legal status {status!r}"
+                f"{path}:{row.get('_validator_line', '?')}: unknown legal status {status!r}"
             )
 
         record_path = row.get("record_path")
         if isinstance(record_path, str):
             if not (root / record_path).is_file():
                 errors.append(
-                    f"{path}:{row.get('_validator_line', '?')}: "
-                    f"record_path does not exist: {record_path}"
+                    f"{path}:{row.get('_validator_line', '?')}: record_path does not exist: {record_path}"
                 )
         else:
             errors.append(
-                f"{path}:{row.get('_validator_line', '?')}: "
-                "record_path must be a string"
+                f"{path}:{row.get('_validator_line', '?')}: record_path must be a string"
             )
 
     for record_id in duplicates(ids):
@@ -327,18 +393,14 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
         for row in read_jsonl(path, errors):
             graph_rows.append((path, row))
             require_fields(row, ("id", "type", "source", "target"), path, errors)
-
             edge_id = row.get("id")
             if isinstance(edge_id, str):
                 edge_ids.append(edge_id)
-
             rel_type = row.get("type")
             if isinstance(rel_type, str) and rel_type not in relation_types:
                 errors.append(
-                    f"{path}:{row.get('_validator_line', '?')}: "
-                    f"unknown relation type {rel_type!r}"
+                    f"{path}:{row.get('_validator_line', '?')}: unknown relation type {rel_type!r}"
                 )
-
             source = row.get("source")
             if (
                 isinstance(source, str)
@@ -347,10 +409,8 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
                 and not row.get("source_status")
             ):
                 errors.append(
-                    f"{path}:{row.get('_validator_line', '?')}: "
-                    f"unresolved source {source!r} lacks source_status"
+                    f"{path}:{row.get('_validator_line', '?')}: unresolved source {source!r} lacks source_status"
                 )
-
             target = row.get("target")
             if (
                 isinstance(target, str)
@@ -359,39 +419,30 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
                 and not row.get("target_status")
             ):
                 errors.append(
-                    f"{path}:{row.get('_validator_line', '?')}: "
-                    f"unresolved target {target!r} lacks target_status"
+                    f"{path}:{row.get('_validator_line', '?')}: unresolved target {target!r} lacks target_status"
                 )
 
     for edge_id in duplicates(edge_ids):
         errors.append(f"duplicate graph edge id: {edge_id}")
-
     counts["graph_edges"] = len(graph_rows)
 
     queue_path = root / "metadata" / "discovery-queue.jsonl"
     queue_rows = read_jsonl(queue_path, errors) if queue_path.is_file() else []
     queue_ids: list[str] = []
     for row in queue_rows:
-        require_fields(
-            row,
-            ("candidate_id", "state", "priority", "next_action"),
-            queue_path,
-            errors,
-        )
+        require_fields(row, ("candidate_id", "state", "priority", "next_action"), queue_path, errors)
         candidate_id = row.get("candidate_id")
         if isinstance(candidate_id, str):
             queue_ids.append(candidate_id)
         state = row.get("state")
         if state not in {"pending", "ingested_staging", "resolved", "deferred"}:
             errors.append(
-                f"{queue_path}:{row.get('_validator_line', '?')}: "
-                f"unknown queue state {state!r}"
+                f"{queue_path}:{row.get('_validator_line', '?')}: unknown queue state {state!r}"
             )
         priority = row.get("priority")
         if priority not in {"high", "medium", "low"}:
             errors.append(
-                f"{queue_path}:{row.get('_validator_line', '?')}: "
-                f"unknown priority {priority!r}"
+                f"{queue_path}:{row.get('_validator_line', '?')}: unknown priority {priority!r}"
             )
 
     for candidate_id in duplicates(queue_ids):
@@ -402,55 +453,36 @@ def validate(root: Path) -> tuple[list[str], list[str], dict[str, int]]:
     expected_dir = root / "ai" / "evals" / "expected"
     case_rows: list[dict[str, Any]] = []
     expected_rows: list[dict[str, Any]] = []
-
     for path in sorted(cases_dir.glob("*.jsonl")):
         case_rows.extend(read_jsonl(path, errors))
     for path in sorted(expected_dir.glob("*.jsonl")):
         expected_rows.extend(read_jsonl(path, errors))
 
-    case_ids = [
-        row["case_id"]
-        for row in case_rows
-        if isinstance(row.get("case_id"), str)
-    ]
-    expected_ids = [
-        row["case_id"]
-        for row in expected_rows
-        if isinstance(row.get("case_id"), str)
-    ]
+    case_ids = [row["case_id"] for row in case_rows if isinstance(row.get("case_id"), str)]
+    expected_ids = [row["case_id"] for row in expected_rows if isinstance(row.get("case_id"), str)]
     for case_id in duplicates(case_ids):
         errors.append(f"duplicate eval case_id: {case_id}")
     for case_id in duplicates(expected_ids):
         errors.append(f"duplicate eval expected case_id: {case_id}")
-
-    missing_expected = sorted(set(case_ids) - set(expected_ids))
-    orphan_expected = sorted(set(expected_ids) - set(case_ids))
-    for case_id in missing_expected:
+    for case_id in sorted(set(case_ids) - set(expected_ids)):
         errors.append(f"eval case has no expected output: {case_id}")
-    for case_id in orphan_expected:
+    for case_id in sorted(set(expected_ids) - set(case_ids)):
         errors.append(f"eval expected output has no case: {case_id}")
 
     counts["eval_cases"] = len(case_rows)
     counts["eval_expected"] = len(expected_rows)
-
     return errors, warnings, dict(counts)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Run deterministic structural checks on MFEP_DZ staging data."
+        description="Run deterministic structural checks on MFEP_DZ staging/corpus data."
     )
-    parser.add_argument(
-        "root",
-        nargs="?",
-        default=".",
-        help="repository root (default: current directory)",
-    )
+    parser.add_argument("root", nargs="?", default=".", help="repository root (default: current directory)")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
     errors, warnings, counts = validate(root)
-
     print("MFEP_DZ deterministic validation")
     for name in sorted(counts):
         print(f"  {name}: {counts[name]}")
