@@ -82,6 +82,7 @@ content:
     - id: "DZ-DE-2018-162@consolidated-2020-12-02"
       human_view: consolidated/2020-12-02/README.md
       manifest: consolidated/2020-12-02/manifest.yml
+      articles_index: consolidated/2020-12-02/data/articles.jsonl
       consolidation_map: consolidated/2020-12-02/data/consolidation-map.jsonl
       ar_index: consolidated/2020-12-02/text/ar.md
       ar_status: provisional_research_consolidation
@@ -136,6 +137,7 @@ versions:
         cutoff_semantics: publications_incorporated_through_date
         incorporated_amendments: [DZ-DE-2020-340]
         path: consolidated/2020-12-02/README.md
+        articles_index: consolidated/2020-12-02/data/articles.jsonl
         fr_status: verified_research_consolidation
         ar_status: provisional_research_consolidation
         official_publication: false
@@ -197,6 +199,7 @@ verification:
   consolidated_text_verified: false
   consolidated_text_fr_verified: true
   consolidated_text_ar_verified: false
+  consolidated_articles_index_present: true
   consolidated_needs_review: true
   verified_at: 2026-08-26
   needs_legal_review: false
@@ -206,3 +209,4 @@ schema_observations:
   - "Arabic pages 7-13 and French pages 7-12 require language-specific locators."
   - "Article 43 demonstrates repeal plus transitional survival; a repeal edge alone is insufficient."
   - "A consolidated research version needs its own cutoff semantics and per-language verification status."
+  - "A consolidated version needs its own article index for direct machine retrieval, separate from the base-text article index."
