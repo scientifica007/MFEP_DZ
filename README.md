@@ -24,7 +24,7 @@
 - [فهرس corpus البشري](corpus/INDEX.md)
 - [المسار الدائم للنصوص](corpus/texts/README.md)
 
-جميع السجلات القانونية الـ12 الحالية لها حزمة موحدة تحت `corpus/texts/`.
+جميع السجلات القانونية الـ13 الحالية لها حزمة موحدة تحت `corpus/texts/`.
 
 البنية الدائمة لكل نص:
 
@@ -75,20 +75,26 @@ consolidated/<CUTOFF_DATE>/
 
 ## Corpus الحالي
 
-يوجد حاليا **12 سجلا قانونيا** في دورة staging/validation، لكنها جميعا تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
+يوجد حاليا **13 سجلا قانونيا** في دورة staging/validation، وكلها تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
 
 - [corpus/INDEX.md](corpus/INDEX.md): الفهرس البشري لجميع السجلات.
-- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس آلية تشير إلى الحزم الدائمة.
-- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph ذات دليل.
+- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس Seed الأساسية.
+- [metadata/staging/sector-expansion.jsonl](metadata/staging/sector-expansion.jsonl): فهرس التوسع الموضوعي بعد Seed، ويضم حاليا `DZ-DE-2024-074`.
+- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph الأساسية.
+- [graph/staging/sector-expansion-relations.jsonl](graph/staging/sector-expansion-relations.jsonl): علاقات التوسع الموضوعي.
 - [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
 
 ### سلسلة المؤسسات الخاصة المكتملة حتى الآن
 
 - [`DZ-DE-2018-162`](corpus/texts/DZ-DE-2018-162/README.md): النص الأصلي لسنة 2018، AR/FR متحققان.
 - [`DZ-DE-2020-340`](corpus/texts/DZ-DE-2020-340/README.md): نص التعديل والتتميم لسنة 2020؛ 5 مواد مفهرسة، الفرنسية متحققة والعربية كاملة `transcribed`، مع خريطة تعديل على مستوى المادة.
-- [`DZ-DE-2018-162@consolidated-2020-12-02`](corpus/texts/DZ-DE-2018-162/consolidated/2020-12-02/README.md): **أول نسخة بحثية موحدة فعلية في المشروع**؛ الفرنسية `verified_research_consolidation`، والعربية `provisional_research_consolidation` بسبب نقطة تحقق مفتوحة في المادة 16.
+- [`DZ-DE-2018-162@consolidated-2020-12-02`](corpus/texts/DZ-DE-2018-162/consolidated/2020-12-02/README.md): أول نسخة بحثية موحدة فعلية؛ الفرنسية `verified_research_consolidation` والعربية `provisional_research_consolidation`.
 
-تاريخ القطع في النسخة الموحدة يعني النصوص المدمجة حتى ذلك التاريخ، ولا يعني تلقائيا أنها الحالة القانونية الحالية أو أن تاريخ القطع هو تاريخ النفاذ.
+### التكوين المهني المتواصل
+
+- [`DZ-DE-2024-074`](corpus/texts/DZ-DE-2024-074/README.md): 24 مادة، يطبق صراحة المادة 20 من القانون 08-07، وينظم التكوين للتكيف مع منصب العمل وتحسين المستوى والحركية المهنية ونظام تتويجها. الفرنسية `verified` والعربية `transcribed`.
+- المواد 13 و14 و22 تنص على ثلاثة قرارات وزارية تطبيقية ما تزال هوياتها الدقيقة قيد الاكتشاف.
+- المادة 23 تلغي المراسيم 82-298 و82-299 و82-300؛ أضيفت إلى قائمة التبعيات التاريخية.
 
 ## أدوات الاستخراج والتحقق
 
@@ -109,7 +115,7 @@ consolidated/<CUTOFF_DATE>/
 - [ai/HANDOFF.md](ai/HANDOFF.md): حالة المشروع الحالية وما يجب تنفيذه لاحقا.
 - [ai/context/](ai/context/): سياق وسياسات بصيغة مقروءة آليا.
 - [ai/tasks/](ai/tasks/): عقود مهام قياسية مستقلة عن prompts والمزود.
-- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines، وتشمل الآن اختبارات consolidation.
+- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines، وتشمل العلاقات والتعديل والتوحيد والتوسع الموضوعي.
 - [ai/adapters/](ai/adapters/): سياسة عزل APIs ومزودي النماذج عن المنطق القانوني.
 
 قاعدة التشغيل: **AI output لا يصبح trusted knowledge تلقائيا**. يجب حفظ provenance والدليل والمرور بمراحل التحقق.
@@ -124,4 +130,4 @@ consolidated/<CUTOFF_DATE>/
 
 ## حالة المستودع
 
-المشروع في حالة **`completed_first_consolidation_DZ-DE-2018-162_2020-12-02`**. أول نسخة بحثية موحدة مؤرخة أصبحت متاحة وقابلة للقراءة والاستدعاء الآلي. الخطوة المنطقية الأقوى تاليا هي forward search بعد 2 ديسمبر 2020 للتحقق من أي تعديلات لاحقة قبل وصف نسخة ما بأنها أحدث حالة قانونية؛ راجع `ai/HANDOFF.md`.
+المشروع في حالة **`completed_DZ-DE-2024-074_waiting_next_instruction`**. تم إدخال أول توسع موضوعي حديث بعد Seed Corpus، وربطه بالقانون 08-07 والمرسوم 16-282 وبشبكة المؤسسات العامة والخاصة. راجع `ai/HANDOFF.md` للخطوات التالية.
