@@ -17,13 +17,14 @@
 9. **المستودع هو ذاكرة المشروع**: القرارات المنهجية، المراجع، الافتراضات، المشاكل المعروفة وقواعد العمل توثق هنا ولا تبقى في المحادثات فقط.
 10. **طبقة الذكاء الاصطناعي مستقلة عن النموذج والمزود**: يمكن تبديل ChatGPT أو Claude أو Gemini أو نموذج محلي دون تغيير corpus أو ontology أو schema أو الحقيقة القانونية.
 11. **رابط JORADP ليس هوية المصدر**: الهوية التشغيلية الثابتة هي السنة + رقم الجريدة + اللغة. يحتفظ المشروع بالرابط المسجل حتى إن تعطل، ويحل endpoint عاملًا عند الحاجة عبر [بروتوكول حل روابط JORADP](docs/JORADP_URL_RESOLUTION.md).
+12. **النص الأصلي والتعديل والنص الموحد طبقات منفصلة**: لا يُدمج تعديل لاحق صامتًا داخل transcription الأصلية. راجع [سياسة التعديلات والتوحيد](docs/AMENDMENTS_AND_CONSOLIDATION.md).
 
 ## القراءة البشرية للنصوص
 
 - [فهرس corpus البشري](corpus/INDEX.md)
 - [المسار الدائم للنصوص](corpus/texts/README.md)
 
-جميع السجلات القانونية الـ12 الحالية لها الآن حزمة موحدة تحت `corpus/texts/`.
+جميع السجلات القانونية الـ12 الحالية لها حزمة موحدة تحت `corpus/texts/`.
 
 البنية الدائمة لكل نص:
 
@@ -40,7 +41,7 @@ corpus/texts/<TEXT_ID>/
     └── sources.yml        # روابط ومحددات JORADP وحالة الوصول
 ```
 
-**تنبيه:** الحزمة موجودة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة معلنة داخل ملفها.
+**تنبيه:** وجود الحزمة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة معلنة داخل ملفها.
 
 ## الذاكرة والمنهجية
 
@@ -52,6 +53,7 @@ corpus/texts/<TEXT_ID>/
 - [docs/STORAGE_POLICY.md](docs/STORAGE_POLICY.md): سياسة التخزين النصي ومنع PDF.
 - [docs/HUMAN_MACHINE_CORPUS.md](docs/HUMAN_MACHINE_CORPUS.md): عقد الحزمة المشتركة للإنسان والآلة.
 - [docs/JORADP_URL_RESOLUTION.md](docs/JORADP_URL_RESOLUTION.md): حل الروابط المباشرة غير المستقرة مع حفظ provenance.
+- [docs/AMENDMENTS_AND_CONSOLIDATION.md](docs/AMENDMENTS_AND_CONSOLIDATION.md): قواعد حفظ النصوص المعدلة وبناء النسخ الموحدة البحثية.
 - [docs/DATA_MODEL.md](docs/DATA_MODEL.md): نموذج البيانات المقترح لكل نص قانوني.
 - [docs/LEGAL_RELATIONS.md](docs/LEGAL_RELATIONS.md): قاموس العلاقات بين النصوص والمواد.
 - [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
@@ -62,12 +64,18 @@ corpus/texts/<TEXT_ID>/
 
 ## Corpus الحالي
 
-يوجد حاليا **12 سجلا قانونيا** في دورة staging/validation، لكنها جميعا تستخدم الآن المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
+يوجد حاليا **12 سجلا قانونيا** في دورة staging/validation، لكنها جميعا تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
 
 - [corpus/INDEX.md](corpus/INDEX.md): الفهرس البشري لجميع السجلات.
 - [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس آلية تشير إلى الحزم الدائمة.
 - [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph ذات دليل.
 - [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
+
+### سلسلة المؤسسات الخاصة المكتملة حتى الآن
+
+- `DZ-DE-2018-162`: النص الأصلي لسنة 2018، AR/FR متحققان.
+- `DZ-DE-2020-340`: نص التعديل والتتميم لسنة 2020؛ 5 مواد مفهرسة، الفرنسية متحققة والعربية كاملة `transcribed`، مع خريطة تعديل على مستوى المادة.
+- لم تُنشأ بعد نسخة موحدة من 18-162 بعد 20-340؛ ستبنى كطبقة بحثية مستقلة إذا تقرر ذلك.
 
 ## أدوات الاستخراج والتحقق
 
@@ -103,4 +111,4 @@ corpus/texts/<TEXT_ID>/
 
 ## حالة المستودع
 
-المشروع في حالة **`paused_after_DZ-DE-2018-162_completion`**. تم إكمال 18-162 وتثبيت قواعد واجهة الإنسان وحل روابط JORADP غير المستقرة. لا يبدأ نص قانوني جديد حتى تصدر تعليمة جديدة من المستخدم.
+المشروع في حالة **`completed_DZ-DE-2020-340_waiting_next_instruction`**. اكتملت معالجة 20-340 وربطه مادة بمادة بـ18-162. المسارات التالية الموثقة في `ai/HANDOFF.md` هي: بناء نسخة موحدة بحثية لـ18-162 بعد 20-340، أو استكمال النصوص الناقصة في Seed Corpus، أو تتبع السلسلة التاريخية للمؤسسات الخاصة عبر 01-419 ونصوصه التطبيقية.
