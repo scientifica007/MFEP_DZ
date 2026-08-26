@@ -1,0 +1,118 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-D-1982-298
+id_status: provisional
+
+identity:
+  legal_form: decree
+  number: "82-298"
+  title:
+    ar: "المتعلق بتنظيم التكوين المهني في المؤسسة وتمويله"
+    fr: "Relatif à l'organisation et au financement de la formation professionnelle en entreprise"
+  signature_date: 1982-09-04
+
+publication:
+  official_gazette: true
+  journal_number: 36
+  journal_year: 1982
+  publication_date: 1982-09-07
+  locators:
+    ar: {start_page: null, end_page: null, locator_source: unresolved_ar_scan}
+    fr: {start_page: 1223, end_page: 1229, locator_source: official_issue_scan_archive}
+  source_ref: sources/sources.yml
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: targeted_population
+  constitutional_or_legal_domain: enterprise_vocational_training
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRESIDENT-OF-REPUBLIC
+      label_as_published: {ar: "رئيس الجمهورية", fr: "Président de la République"}
+  initiating_ministry:
+    institution_id: DZ-MIN-VOCATIONAL-TRAINING-1982
+    label_as_published: {ar: "وزير التكوين المهني", fr: "ministre de la formation professionnelle"}
+  affected_sectors: [vocational_training, enterprise_training, labour, public_enterprises, private_enterprises]
+
+status:
+  value: repealed
+  as_of: 2024-02-11
+  confidence: 1.0
+  evidence:
+    - kind: explicit_repeal
+      source_ref: DZ-DE-2024-074
+      source_article: art-23
+      publication: JORADP_10_2024
+  notes: "Article 23 of decree 24-74 expressly repeals decree 82-298. status.as_of records an evidenced date and is not asserted as a separately verified repeal-effect date."
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  text_variants:
+    ar: {index: text/ar.md, status: source_locator_only, version: official_publication}
+    fr: {index: text/fr.md, status: source_locator_only, version: official_translation}
+  binary_sources_committed: false
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    transcription_status: source_locator_only
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    extraction_method: indexed_archival_scan_ocr_for_structure_and_selected_articles
+    transcription_status: source_locator_only
+    visually_verified: partial
+
+structure:
+  article_count: 62
+  structure_status: article_count_verified_from_issue_scan
+
+relations:
+  - id: REL-DZ-DE-2024-074-ART23-REPEALS-82-298
+    type: repeals
+    source_ref: DZ-DE-2024-074
+    source_article: art-23
+    target_ref: DZ-D-1982-298
+    confidence: 1.0
+  - id: REL-DZ-D-1982-298-REFERENCES-LAW-81-07
+    type: references
+    source_ref: DZ-D-1982-298
+    source_article: preamble
+    target_ref: DZ-LAW-1981-007
+    confidence: 1.0
+    evidence: {language: fr, locator: "JO 36/1982, p.1223"}
+
+topics:
+  - enterprise_vocational_training
+  - training_plans
+  - training_financing
+  - interenterprise_training
+  - pedagogical_control
+  - training_conventions
+
+provenance:
+  source_manifest: sources/sources.yml
+  historical_issue_scan_mirror: "https://archive.gazettes.africa/archive/dz/1982/dz-government-gazette-dated-1982-09-07-no-36.pdf"
+  first_ingested_at: 2026-08-26
+
+verification:
+  metadata_verified: true
+  source_identity_verified: true
+  article_count_verified: true
+  full_text_ar_verified: false
+  full_text_fr_verified: false
+  relations_verified: true
+  legal_status_verified: true
+  verified_at: 2026-08-26
+  needs_legal_review: false
+
+schema_observations:
+  - "The official historical form is simply décret/مرسوم; the project uses legal_form=decree rather than retroactively forcing executive_decree or presidential_decree."
