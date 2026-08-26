@@ -19,20 +19,12 @@ URL = replaceable access endpoint
 2. اختلافات حالة الأحرف وامتداد PDF؛
 3. صفحة السنة الرسمية `ZAyyyy` أو `ZFyyyy` واستخراج رابط العدد منها.
 
-مثال من سجل مصدر:
+مثال:
 
 ```bash
 python3 scripts/joradp_resolver.py \
   corpus/texts/DZ-DE-2018-162/sources/sources.yml \
   --lang fr \
-  --json
-```
-
-أو من رابط مباشر قديم:
-
-```bash
-python3 scripts/joradp_resolver.py \
-  https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf \
   --json
 ```
 
@@ -56,8 +48,6 @@ python3 scripts/materialize_joradp_text.py \
 
 ## `validate_repository.py`
 
-تشغيله من جذر نسخة مستنسخة من المستودع:
-
 ```bash
 python3 scripts/validate_repository.py
 ```
@@ -80,7 +70,7 @@ python3 scripts/validate_repository.py /path/to/MFEP_DZ
 
 وجود رابط عامل بديل لا يسمح بحذف الرابط المسجل؛ provenance والوصول التشغيلي شيئان مختلفان.
 
-### النصوص المجزأة
+### النصوص المجزأة الأصلية
 
 لكل لغة تحتوي `text/ar/` أو `text/fr/`:
 
@@ -89,6 +79,24 @@ python3 scripts/validate_repository.py /path/to/MFEP_DZ
 - رابط فهرس اللغة داخل كل جزء؛
 - رابط العودة إلى `README.md`؛
 - السابق/التالي حيث ينطبق.
+
+### النسخ البحثية الموحدة `consolidated/`
+
+كل نسخة موحدة مؤرخة يجب أن تحتوي على الأقل:
+
+- `README.md` مع تنبيه ظاهر بأنها نسخة بحثية وليست نصًا رسميًا مستقلاً؛
+- `manifest.yml` يحدد النص الأساس، تاريخ القطع والتعديلات المدمجة؛
+- `VERIFICATION.md`؛
+- `data/consolidation-map.jsonl`؛
+- فهرسي AR/FR وأجزاء النص إذا كان مجزأ.
+
+ويفحص الـValidator كذلك:
+
+- عدم تكرار المادة داخل `consolidation-map.jsonl`؛
+- اقتصار عمليات الدمج الحالية على `unchanged`, `amends`, `add_article`؛
+- وجود ملفات provenance المشار إليها في `source_segments`, `base_segments`, و`amending_sources`؛
+- منع مسارات provenance من الخروج خارج جذر المستودع؛
+- روابط السابق/التالي وفهرس اللغة والعودة إلى صفحة النسخة الموحدة داخل كل segment.
 
 ### البيانات والـGraph والـEvals
 
@@ -102,7 +110,7 @@ python3 scripts/validate_repository.py /path/to/MFEP_DZ
 
 ## الحدود
 
-الـValidator لا يثبت صحة الحكم القانوني ولا أن endpoint معين سيظل يعمل في المستقبل. والـresolver لا يثبت بدوره صحة مضمون العدد. بعد الوصول يجب التحقق من هوية الجريدة والنص والصفحات وفق منهج المشروع.
+الـValidator لا يثبت صحة الحكم القانوني، ولا يجعل النسخة الموحدة نصًا رسميًا، ولا يثبت أن endpoint معين سيظل يعمل مستقبلًا. كما أن نجاح خريطة consolidation بنيويًا لا يعني أن دمج كل فقرة صحيح قانونيًا؛ تبقى مراجعة النصوص الأصلية والمعدلة وAR/FR شرطًا مستقلًا.
 
 ## CI مستقبلا
 
@@ -110,4 +118,4 @@ python3 scripts/validate_repository.py /path/to/MFEP_DZ
 python3 scripts/validate_repository.py
 ```
 
-ينبغي أن يكون شرطًا أوليًا قبل قبول تغييرات corpus/metadata/graph.
+ينبغي أن يكون شرطًا أوليًا قبل قبول تغييرات corpus/metadata/graph/consolidated.
