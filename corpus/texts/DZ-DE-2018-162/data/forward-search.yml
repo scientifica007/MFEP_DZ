@@ -1,0 +1,55 @@
+text_id: DZ-DE-2018-162
+search_date: 2026-08-26
+search_start: 2020-12-03
+search_end: 2026-08-26
+purpose: detect_later_amendment_repeal_or_replacement
+
+result:
+  later_amending_text_discovered: false
+  later_repealing_text_discovered: false
+  known_amendment_chain:
+    - DZ-DE-2020-340
+  conclusion: "No official JORADP text later than 20-340 was located in the performed forward search as modifying, supplementing, repealing or replacing DZ-DE-2018-162. This is a scoped search result, not proof of absolute non-existence."
+  confidence: high_but_not_exhaustive
+
+search_methods:
+  - exact_number_search_ar
+  - exact_number_search_fr
+  - exact_title_and_number_search
+  - modifier_phrase_search_ar
+  - modifier_phrase_search_fr
+  - repeal_phrase_search_ar
+  - repeal_phrase_search_fr
+  - year_scoped_search_2021_2026
+  - later_official_citation_check
+
+positive_later_citations:
+  - date: 2024-02-11
+    text_ref: DZ-DE-2024-074
+    status_in_corpus: unresolved_discovery_candidate
+    title_fr: "fixant les conditions et les modalités d'organisation et de sanction de la formation professionnelle continue"
+    journal_number: 10
+    source_url_fr: "https://www.joradp.dz/FTP/jo-francais/2024/F2024010.pdf"
+    evidence: "The visa cites decree 18-162 as 'modifié et complété'."
+    legal_effect_on_18_162: reference_only_no_amendment_detected
+  - date: 2026-03-29
+    text_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
+    status_in_corpus: ingested_staging
+    journal_number: 23
+    source_url_ar: "https://www.joradp.dz/FTP/jo-arabe/2026/A2026023.pdf"
+    source_url_fr: "https://www.joradp.dz/FTP/jo-francais/2026/F2026023.pdf"
+    evidence: "The visa cites decree 18-162 as amended and supplemented / modifié et complété."
+    legal_effect_on_18_162: reference_only_no_amendment_detected
+
+interpretation:
+  status_supported: amended
+  latest_positive_official_citation_date: 2026-03-29
+  latest_known_consolidation_cutoff: 2020-12-02
+  latest_known_consolidation_incorporates_all_discovered_amendments: true
+  may_call_official_consolidated_text: false
+  may_claim_absolute_no_later_amendment: false
+  recommended_human_label: "أحدث نسخة بحثية موحدة معروفة في المشروع بعد بحث تقدمي حتى 26 أوت 2026"
+
+follow_up:
+  - "Ingest DZ-DE-2024-074 separately because it is sector-relevant and cites 18-162 as amended and supplemented."
+  - "Repeat forward search when new JORADP issues are added or before making a high-stakes current-law claim."
