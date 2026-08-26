@@ -18,13 +18,14 @@
 10. **طبقة الذكاء الاصطناعي مستقلة عن النموذج والمزود**: يمكن تبديل ChatGPT أو Claude أو Gemini أو نموذج محلي دون تغيير corpus أو ontology أو schema أو الحقيقة القانونية.
 11. **رابط JORADP ليس هوية المصدر**: الهوية التشغيلية الثابتة هي السنة + رقم الجريدة + اللغة. يحتفظ المشروع بالرابط المسجل حتى إن تعطل، ويحل endpoint عاملًا عند الحاجة عبر [بروتوكول حل روابط JORADP](docs/JORADP_URL_RESOLUTION.md).
 12. **النص الأصلي والتعديل والنص الموحد طبقات منفصلة**: لا يُدمج تعديل لاحق صامتًا داخل transcription الأصلية. راجع [سياسة التعديلات والتوحيد](docs/AMENDMENTS_AND_CONSOLIDATION.md).
+13. **فهرس JORADP أداة اكتشاف لا بديل عن النص المنشور**: وسوم مثل `نص تطبيقي` و`معدل` و`ملغى` تستخدم لتوليد مرشحات العلاقات، ثم تثبت العلاقة من الحكم القانوني المنشور. راجع [منهج اكتشاف العلاقات من الفهرس](docs/JORADP_INDEX_DISCOVERY.md).
 
 ## القراءة البشرية للنصوص
 
 - [فهرس corpus البشري](corpus/INDEX.md)
 - [المسار الدائم للنصوص](corpus/texts/README.md)
 
-جميع السجلات القانونية الـ13 الحالية لها حزمة موحدة تحت `corpus/texts/`.
+جميع السجلات القانونية الـ17 الحالية لها حزمة موحدة تحت `corpus/texts/`.
 
 البنية الدائمة لكل نص:
 
@@ -52,7 +53,7 @@ consolidated/<CUTOFF_DATE>/
 └── text/{ar,fr}...
 ```
 
-**تنبيه:** وجود الحزمة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة وكل نسخة موحدة معلنة صراحة.
+**تنبيه:** وجود الحزمة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة وكل نسخة موحدة معلنة صراحة. ويمكن أن تكون الحزمة التاريخية `source_locator_only`: الهوية والبنية والعلاقات مدخلة، بينما transcription الحرفية الكاملة ما تزال معلقة.
 
 ## الذاكرة والمنهجية
 
@@ -64,24 +65,27 @@ consolidated/<CUTOFF_DATE>/
 - [docs/STORAGE_POLICY.md](docs/STORAGE_POLICY.md): سياسة التخزين النصي ومنع PDF.
 - [docs/HUMAN_MACHINE_CORPUS.md](docs/HUMAN_MACHINE_CORPUS.md): عقد الحزمة المشتركة للإنسان والآلة.
 - [docs/JORADP_URL_RESOLUTION.md](docs/JORADP_URL_RESOLUTION.md): حل الروابط المباشرة غير المستقرة مع حفظ provenance.
+- [docs/JORADP_INDEX_DISCOVERY.md](docs/JORADP_INDEX_DISCOVERY.md): استعمال فهرس HAR/SCALER ووسوم العلاقات للاكتشاف ثم التحقق من النص المنشور.
 - [docs/AMENDMENTS_AND_CONSOLIDATION.md](docs/AMENDMENTS_AND_CONSOLIDATION.md): قواعد حفظ النصوص المعدلة وبناء النسخ الموحدة البحثية.
 - [docs/DATA_MODEL.md](docs/DATA_MODEL.md): نموذج البيانات المقترح لكل نص قانوني.
 - [docs/LEGAL_RELATIONS.md](docs/LEGAL_RELATIONS.md): قاموس العلاقات بين النصوص والمواد.
 - [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
 - [docs/SOURCES.md](docs/SOURCES.md): سجل المصادر الرسمية والمراجع الأساسية.
 - [docs/DECISIONS.md](docs/DECISIONS.md): سجل القرارات المنهجية والمسائل المفتوحة.
-- [ontology/core.yml](ontology/core.yml): vocabulary تجريبي قابل للآلة لأشكال النصوص، الوظائف، النطاقات، الحالات والعلاقات.
+- [ontology/core.yml](ontology/core.yml): vocabulary تجريبي قابل للآلة لأشكال النصوص، الوظائف، النطاقات، الحالات والعلاقات؛ يتضمن الآن الشكل التاريخي العام `decree` للنصوص المعنونة رسميًا `مرسوم / décret` دون إعادة تصنيف رجعي.
 - [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
 
 ## Corpus الحالي
 
-يوجد حاليا **13 سجلا قانونيا** في دورة staging/validation، وكلها تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
+يوجد حاليا **17 سجلا قانونيا** في دورة staging/validation، وكلها تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
 
 - [corpus/INDEX.md](corpus/INDEX.md): الفهرس البشري لجميع السجلات.
 - [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس Seed الأساسية.
-- [metadata/staging/sector-expansion.jsonl](metadata/staging/sector-expansion.jsonl): فهرس التوسع الموضوعي بعد Seed، ويضم حاليا `DZ-DE-2024-074`.
+- [metadata/staging/sector-expansion.jsonl](metadata/staging/sector-expansion.jsonl): فهرس التوسع الموضوعي الحديث بعد Seed.
+- [metadata/staging/historical-enterprise-training.jsonl](metadata/staging/historical-enterprise-training.jsonl): فهرس سلسلة التكوين المهني في المؤسسة 1982–1986.
 - [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph الأساسية.
-- [graph/staging/sector-expansion-relations.jsonl](graph/staging/sector-expansion-relations.jsonl): علاقات التوسع الموضوعي.
+- [graph/staging/sector-expansion-relations.jsonl](graph/staging/sector-expansion-relations.jsonl): علاقات التوسع الموضوعي الحديث.
+- [graph/staging/historical-enterprise-training-relations.jsonl](graph/staging/historical-enterprise-training-relations.jsonl): علاقات سلسلة 1982–1986 وتعديل 82-300.
 - [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
 
 ### سلسلة المؤسسات الخاصة المكتملة حتى الآن
@@ -93,8 +97,16 @@ consolidated/<CUTOFF_DATE>/
 ### التكوين المهني المتواصل
 
 - [`DZ-DE-2024-074`](corpus/texts/DZ-DE-2024-074/README.md): 24 مادة، يطبق صراحة المادة 20 من القانون 08-07، وينظم التكوين للتكيف مع منصب العمل وتحسين المستوى والحركية المهنية ونظام تتويجها. الفرنسية `verified` والعربية `transcribed`.
-- المواد 13 و14 و22 تنص على ثلاثة قرارات وزارية تطبيقية ما تزال هوياتها الدقيقة قيد الاكتشاف.
-- المادة 23 تلغي المراسيم 82-298 و82-299 و82-300؛ أضيفت إلى قائمة التبعيات التاريخية.
+- المواد 13 و14 و22 تنص على ثلاثة قرارات وزارية تطبيقية ما تزال هوياتها الدقيقة غير محلولة بعد بحث رسمي موجه حتى 26 أوت 2026؛ النتيجة `not_located_in_performed_search` وليست `not_published`.
+
+### السلسلة التاريخية للتكوين المهني في المؤسسة
+
+- [`DZ-D-1982-298`](corpus/texts/DZ-D-1982-298/README.md): تنظيم وتمويل التكوين المهني في المؤسسة؛ 62 مادة مفهرسة بنيويًا؛ ألغاه 24-74.
+- [`DZ-D-1982-299`](corpus/texts/DZ-D-1982-299/README.md): إجازة/تتويج التكوين في المؤسسة؛ 23 مادة؛ ألغاه 24-74، وتنص مادته 22 على قرار وزاري تاريخي لم تُحسم هويته.
+- [`DZ-D-1982-300`](corpus/texts/DZ-D-1982-300/README.md): شروط المكون في المؤسسة؛ 29 مادة وملحق؛ عُدل سنة 1986 ثم ألغاه 24-74.
+- [`DZ-D-1986-241`](corpus/texts/DZ-D-1986-241/README.md): يعدل المادة 12 من 82-300 ويستبدل جدولي تعويضات. عنوانه العربي الرسمي وحالته القانونية المستقلة ما يزالان تحت التحقق.
+
+الحزم التاريخية الأربعة لا تدعي حاليًا وجود transcription كاملة؛ حالتها النصية `source_locator_only`، مع حفظ روابط JORADP الرسمية ومسارات الاسترجاع الأرشيفية كأدلة مساعدة دون تخزين PDF في Git.
 
 ## أدوات الاستخراج والتحقق
 
@@ -130,4 +142,4 @@ consolidated/<CUTOFF_DATE>/
 
 ## حالة المستودع
 
-المشروع في حالة **`completed_DZ-DE-2024-074_waiting_next_instruction`**. تم إدخال أول توسع موضوعي حديث بعد Seed Corpus، وربطه بالقانون 08-07 والمرسوم 16-282 وبشبكة المؤسسات العامة والخاصة. راجع `ai/HANDOFF.md` للخطوات التالية.
+المشروع في حالة **`completed_historical_enterprise_training_1982_1986_waiting_next_instruction`**. تم ربط نظام التكوين المهني في المؤسسة لسنة 1982 بالتعديل 86-241 وبالإلغاء الذي جاء به المرسوم 24-74 لسنة 2024، مع إبقاء transcription التاريخية الكاملة كعمل لاحق مستقل. راجع `ai/HANDOFF.md` للخطوات التالية.
