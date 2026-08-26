@@ -16,16 +16,23 @@
 | المتن الأصلي AR/FR | متحقق (`verified`) |
 | النسخة الموحدة بعد التعديل | غير متاحة بعد |
 
+## المصدر الرسمي الأصلي — PDF
+
+ملفات PDF **لا تُخزن في المستودع**، لكن روابطها الرسمية المباشرة متاحة هنا للرجوع إلى الجريدة الرسمية الأصلية:
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 36/2018، الصفحات 7–13)](https://www.joradp.dz/FTP/jo-arabe/2018/A2018036.PDF)
+- [Journal officiel — version française (PDF officiel, n° 36/2018, pages 7–12)](https://www.joradp.dz/FTP/jo-francais/2018/F2018036.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
 ## قراءة النص
 
-- [النص العربي الأصلي](text/ar.md)
-- [Texte français d'origine](text/fr.md)
+- [النص العربي الأصلي — فهرس الأجزاء](text/ar.md)
+- [Texte français d'origine — index des parties](text/fr.md)
 - [فهرس المواد للآلة](data/articles.jsonl)
 - [فهرس التعديلات](data/amendment-index.jsonl)
 - [الأحكام الانتقالية](data/transitional-effects.jsonl)
 - [السجل المهيكل](record.yml)
 - [سجل التحقق](VERIFICATION.md)
-- [المصادر الرسمية](sources/sources.yml)
 
 > **تنبيه:** النص المخزن هنا هو صيغة 2018 الأصلية كما نُشرت. المرسوم التنفيذي 20-340 عدّل وتمّم بعض أحكامه. لا ينبغي تقديم نص 2018 وحده باعتباره نسخة موحدة للحالة الحالية.
 
@@ -65,4 +72,4 @@
 
 ## سياسة المصدر
 
-لا يوجد أي PDF مخزن في المستودع. تحفظ روابط JORADP والمحددات فقط، بينما يخزن Git transcription نصية خفيفة وقابلة للبحث والمراجعة.
+لا يوجد أي PDF مخزن في المستودع. تحفظ روابط JORADP الرسمية والمحددات في الصفحة البشرية وفي `sources/sources.yml`، بينما يخزن Git transcription نصية خفيفة وقابلة للبحث والمراجعة.
