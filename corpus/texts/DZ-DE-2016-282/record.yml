@@ -54,9 +54,9 @@ content:
   text_variants:
     ar:
       path: text/ar.md
-      status: transcribed
+      status: verified
       source_pages: [9, 10, 11]
-      needs_second_pass: true
+      verification_method: second_visual_pass_plus_french_alignment
     fr:
       path: text/fr.md
       status: verified
@@ -69,7 +69,7 @@ languages:
     available: true
     role: official_publication
     extraction_quality: medium_for_text_layer_high_for_visual_source
-    transcription_status: transcribed
+    transcription_status: verified
     used_french_for_alignment: true
   fr:
     available: true
@@ -167,7 +167,7 @@ verification:
   structure_verified: true
   full_text_fr_verified: true
   full_text_ar_transcribed: true
-  full_text_ar_verified: false
+  full_text_ar_verified: true
   articles_index_verified: true
   relations_verified: true
   transitional_effect_verified: true
