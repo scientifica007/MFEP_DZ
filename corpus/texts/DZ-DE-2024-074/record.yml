@@ -1,0 +1,207 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-2024-074
+id_status: provisional
+
+identity:
+  legal_form: executive_decree
+  number: "24-74"
+  title:
+    ar: "يحدد شروط وكيفيات تنظيم وتتويج التكوين المهني المتواصل"
+    fr: "Fixant les conditions et les modalités d'organisation et de sanction de la formation professionnelle continue"
+  signature_date: 2024-02-08
+
+publication:
+  official_gazette: true
+  journal_number: 10
+  journal_year: 2024
+  publication_date: 2024-02-11
+  locators:
+    ar: {start_page: 12, end_page: 14}
+    fr: {start_page: 11, end_page: 13}
+  source_ref: sources/sources.yml
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: targeted_population
+  constitutional_or_legal_domain: continuing_vocational_training
+
+institutions:
+  issuing_authorities:
+    - institution_id: DZ-PRIME-MINISTER
+      label_as_published: {ar: "الوزير الأول", fr: "Premier ministre"}
+  initiating_ministry:
+    institution_id: DZ-MFEP
+    label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [vocational_training, vocational_education, continuing_training, labour, public_sector, private_sector, crafts]
+
+status:
+  value: unknown
+  as_of: 2026-08-26
+  confidence: 0.75
+  evidence:
+    - kind: scoped_forward_search
+      date: 2026-08-26
+      note: "No later JORADP text modifying, supplementing, repealing or replacing 24-74 was located in the targeted search through 2026-08-26. This is not proof of absolute non-existence."
+  notes: "The decree is treated as the latest known regulation located for continuing vocational training, but current legal status remains conservatively unknown pending a broader exhaustive status scan."
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  implementing_acts_index: data/implementing-acts.jsonl
+  forward_search: data/forward-search.yml
+  text_variants:
+    ar:
+      index: text/ar.md
+      status: transcribed
+      version: original_promulgated
+    fr:
+      index: text/fr.md
+      status: verified
+      version: official_translation
+  binary_sources_committed: false
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    extraction_method: official_text_layer_plus_partial_visual_page_check_and_french_alignment
+    extraction_quality: high
+    transcription_status: transcribed
+    visually_verified: partial
+  fr:
+    available: true
+    role: official_translation
+    extraction_method: official_text_layer_plus_visual_page_check
+    extraction_quality: verified
+    transcription_status: verified
+    visually_verified: true
+
+structure:
+  article_count: 24
+  chapters:
+    - {number: 1, topic: general_provisions}
+    - {number: 2, topic: organization_conditions}
+    - {number: 3, topic: organization_modalities}
+    - {number: 4, topic: certification_and_repeal}
+  sections:
+    - {chapter: 3, number: 1, topic: job_adaptation_training}
+    - {chapter: 3, number: 2, topic: upskilling}
+    - {chapter: 3, number: 3, topic: professional_mobility}
+
+relations:
+  - id: REL-DZ-DE-2024-074-IMPLEMENTS-08-07-ART20
+    type: implements
+    source_ref: DZ-DE-2024-074
+    source_article: art-1
+    target_ref: DZ-LAW-2008-007
+    target_article: art-20
+    confidence: 1.0
+    evidence: {language: ar_fr, locator: "JO 10/2024, AR p.13 / FR p.12"}
+  - id: REL-DZ-DE-2024-074-ART19-APPLIES-16-282
+    type: applies
+    source_ref: DZ-DE-2024-074
+    source_article: art-19
+    target_ref: DZ-DE-2016-282
+    confidence: 1.0
+    evidence: {language: ar_fr, locator: "JO 10/2024, AR p.14 / FR p.13"}
+  - id: REL-DZ-DE-2024-074-REFERENCES-12-125
+    type: references
+    source_ref: DZ-DE-2024-074
+    source_article: preamble
+    target_ref: DZ-DE-2012-125
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-REFERENCES-14-140
+    type: references
+    source_ref: DZ-DE-2024-074
+    source_article: preamble
+    target_ref: DZ-DE-2014-140
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-REFERENCES-18-162
+    type: references
+    source_ref: DZ-DE-2024-074
+    source_article: preamble
+    target_ref: DZ-DE-2018-162
+    confidence: 1.0
+    notes: "The visa describes 18-162 as amended and supplemented."
+  - id: REL-DZ-DE-2024-074-ART13-PROVIDES-ORDER
+    type: provides_for_implementing_act
+    source_ref: DZ-DE-2024-074
+    source_article: art-13
+    target_ref: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART13
+    target_status: unresolved_implementing_act
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-ART14-PROVIDES-ORDER
+    type: provides_for_implementing_act
+    source_ref: DZ-DE-2024-074
+    source_article: art-14
+    target_ref: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART14
+    target_status: unresolved_implementing_act
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-ART22-PROVIDES-ORDER
+    type: provides_for_implementing_act
+    source_ref: DZ-DE-2024-074
+    source_article: art-22
+    target_ref: DZ-DE-2024-074#IMPLEMENTING-ORDER-ART22
+    target_status: unresolved_implementing_act
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-ART23-REPEALS-82-298
+    type: repeals
+    source_ref: DZ-DE-2024-074
+    source_article: art-23
+    target_ref: DZ-D-1982-298
+    target_status: unresolved_historical_dependency
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-ART23-REPEALS-82-299
+    type: repeals
+    source_ref: DZ-DE-2024-074
+    source_article: art-23
+    target_ref: DZ-D-1982-299
+    target_status: unresolved_historical_dependency
+    confidence: 1.0
+  - id: REL-DZ-DE-2024-074-ART23-REPEALS-82-300
+    type: repeals
+    source_ref: DZ-DE-2024-074
+    source_article: art-23
+    target_ref: DZ-D-1982-300
+    target_status: unresolved_historical_dependency
+    confidence: 1.0
+
+topics:
+  - continuing_vocational_training
+  - job_adaptation
+  - upskilling
+  - professional_mobility
+  - reskilling
+  - qualification_levels
+  - certification
+  - private_training
+  - public_training
+  - digital_monitoring
+  - employer_training_plans
+  - craftsmen
+
+provenance:
+  source_manifest: sources/sources.yml
+  first_retrieved_at: 2026-08-26
+
+verification:
+  metadata_verified: true
+  source_verified: true
+  structure_verified: true
+  full_text_ar_verified: false
+  full_text_fr_verified: true
+  articles_index_verified: true
+  relations_verified: true
+  legal_status_verified: false
+  verified_at: 2026-08-26
+  needs_legal_review: false
+
+schema_observations:
+  - "Article 1 explicitly implements article 20 of law 08-07; preamble citations alone are not treated as implementation."
+  - "Article 23 repeals three historical decrees without an express transitional survival clause."
+  - "Articles 13, 14 and 22 create three separate lower implementing-act slots that remain unresolved until the actual ministerial orders are identified."
