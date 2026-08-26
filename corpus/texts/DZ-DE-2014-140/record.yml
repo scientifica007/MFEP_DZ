@@ -3,10 +3,6 @@ record_status: staging
 id: DZ-DE-2014-140
 id_status: provisional
 
-raw:
-  title_ar: "مرسوم تنفيذي رقم 14-140 مؤرخ في 20 جمادى الثانية عام 1435 الموافق 20 أبريل سنة 2014، يحدد القانون الأساسي النموذجي لمراكز التكوين المهني والتمهين"
-  title_fr: "Décret exécutif n° 14-140 du 20 Joumada Ethania 1435 correspondant au 20 avril 2014 fixant le statut-type des centres de formation professionnelle et de l'apprentissage"
-
 identity:
   legal_form: executive_decree
   number: "14-140"
@@ -21,10 +17,9 @@ publication:
   journal_year: 2014
   publication_date: 2014-05-07
   locators:
-    ar: {start_page: 12, end_page: null}
-    fr: {start_page: 12, end_page: null}
-  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
-  url_fr: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
+    ar: {start_page: 12, end_page: 15}
+    fr: {start_page: 12, end_page: 15}
+  source_ref: sources/sources.yml
 
 legal_classification:
   normative_order: regulatory
@@ -37,41 +32,71 @@ legal_classification:
 institutions:
   issuing_authorities:
     - institution_id: DZ-PRIME-MINISTER
-      label_as_published:
-        ar: "الوزير الأول بالنيابة"
-        fr: "Premier ministre par intérim"
+      label_as_published: {ar: "الوزير الأول بالنيابة", fr: "Premier ministre par intérim"}
   initiating_ministry:
     institution_id: DZ-MFEP
-    label_as_published:
-      ar: "وزير التكوين والتعليم المهنيين"
-      fr: "ministre de la formation et de l'enseignement professionnels"
-  affected_sectors: [vocational_training, apprenticeship, training_institutions]
+    label_as_published: {ar: "وزير التكوين والتعليم المهنيين", fr: "ministre de la formation et de l'enseignement professionnels"}
+  affected_sectors: [vocational_training, apprenticeship, training_institutions, pedagogy]
 
 status:
   value: unknown
-  as_of: 2026-08-25
-  confidence: 0.0
+  as_of: 2026-08-26
+  confidence: 0.5
   evidence:
     - kind: later_official_citation
-      date: 2026-02-15
-      source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
-  notes: "مذكور كسند في قرار رسمي سنة 2026؛ لم ينجز بعد مسح كامل للتعديلات."
+      date: 2026-04-12
+      source_ref: JORADP-2026-27
+      note: "A 2026 official decree cites decree 14-140 without indicating repeal."
+  notes: "Later official use is verified, but a dedicated exhaustive forward search has not yet been recorded; current legal status remains unknown."
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  transitional_effects: data/transitional-effects.jsonl
+  text_variants:
+    ar:
+      index: text/ar.md
+      status: transcribed
+      version: original_promulgated
+      segments:
+        - text/ar/01-preamble-art1-10.md
+        - text/ar/02-art11-20.md
+        - text/ar/03-art21-27.md
+    fr:
+      index: text/fr.md
+      status: verified
+      version: original_promulgated
+      segments:
+        - text/fr/01-preamble-art1-10.md
+        - text/fr/02-art11-20.md
+        - text/fr/03-art21-27.md
+  binary_sources_committed: false
 
 languages:
   ar:
     available: true
     role: official_publication
-    source_url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf"
-    extraction_method: joradp_text_layer
-    extraction_quality: high
+    extraction_method: joradp_text_layer_cleaned_with_french_alignment
+    extraction_quality: transcribed
+    transcription_status: transcribed
     visually_verified: false
   fr:
     available: true
     role: official_translation
-    source_url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf"
-    extraction_method: joradp_text_layer
-    extraction_quality: high
+    extraction_method: joradp_text_layer_plus_visual_page_check
+    extraction_quality: verified
+    transcription_status: verified
+    visually_verified: partial_pages_12_14
     used_for_recovery: true
+
+structure:
+  article_count: 27
+  chapters:
+    - {number: 1, topic: object_and_missions, articles: "1-4"}
+    - {number: 2, topic: administrative_and_pedagogical_organization, articles: "5-20"}
+    - {number: 3, topic: financial_provisions, articles: "21-24"}
+    - {number: 4, topic: transitional_and_final_provisions, articles: "25-27"}
 
 relations:
   - id: REL-DZ-DE-2014-140-IMPLEMENTS-08-07-ART14
@@ -81,23 +106,44 @@ relations:
     source_article: art-1
     target_article: art-14
     confidence: 1.0
-    evidence:
-      language: fr
-      page: 12
-      locator: "Preamble cites law 08-07, notably article 14; the decree fixes the CFPA model statute."
+    evidence: {language: ar_fr, page: 12, wording: "En application / تطبيقا لأحكام المادة 14 (الفقرة الأولى)"}
+  - id: REL-DZ-DE-2014-140-REPEALS-92-27
+    type: repeals
+    source_ref: DZ-DE-2014-140
+    target_ref: DZ-DE-1992-027
+    source_article: art-26
+    target_status: unresolved_seed_dependency
+    confidence: 1.0
+    evidence: {language: ar_fr, page: 15}
+    notes: "Article 26 also preserves implementing texts of 92-27 until new implementing texts are issued."
 
-topics: [institutions, cfpa, vocational_training, apprenticeship, institutional_organization]
+transitional_effects:
+  index: data/transitional-effects.jsonl
+  verified: true
+
+pedagogical_significance:
+  - "Article 4 defines CFPA missions including initial/continuing training, examinations, apprenticeship placement, practical placements and programme evaluation/adaptation."
+  - "Articles 17-20 establish the technical and pedagogical council and its role in training organization, programme content, methods, learner evaluation/orientation, examinations and practical placements."
+
+topics: [institutions, cfpa, vocational_training, apprenticeship, institutional_organization, pedagogy, assessment, examinations]
 
 provenance:
-  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2014/A2014026.pdf", retrieved_at: 2026-08-25}
-  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2014/F2014026.pdf", retrieved_at: 2026-08-25}
+  source_manifest: sources/sources.yml
+  first_retrieved_at: 2026-08-25
+  full_transcription_completed_at: 2026-08-26
 
 verification:
-  level: 2
   metadata_verified: true
   source_verified: true
-  structure_verified: false
-  relations_verified: partial
+  structure_verified: true
+  full_text_ar_verified: false
+  full_text_fr_verified: true
+  articles_index_verified: true
+  relations_verified: true
   legal_status_verified: false
-  verified_at: 2026-08-25
-  needs_legal_review: true
+  verified_at: 2026-08-26
+  needs_legal_review: false
+
+schema_observations:
+  - "Article 1 proves an explicit implements relation to law 08-07 article 14(1), not merely a preamble reference."
+  - "Articles 25-26 require separate transitional-effect representation in addition to a repeal edge."
