@@ -6,6 +6,8 @@
 
 ## الحزمة الدائمة
 
+الصيغة البسيطة:
+
 ```text
 corpus/texts/<TEXT_ID>/
 ├── README.md
@@ -19,6 +21,20 @@ corpus/texts/<TEXT_ID>/
     └── sources.yml
 ```
 
+عندما يكون النص طويلًا أو تكون صيانته في ملف واحد غير عملية، يجوز تقسيم لغة واحدة إلى segments:
+
+```text
+text/
+├── ar.md                  # manifest/index للغة
+├── ar/
+│   ├── 01-....md
+│   ├── 02-....md
+│   └── 03-....md
+└── fr.md
+```
+
+`DZ-DE-2012-125` هو أول اختبار فعلي لهذا النمط؛ العربية مقسمة إلى ثلاثة أجزاء بينما الفرنسية في ملف واحد. **التقسيم قرار تخزين واستدعاء وليس انقسامًا في هوية النص القانوني.**
+
 ## `README.md` — الإنسان
 
 يجيب بسرعة عن:
@@ -31,13 +47,36 @@ corpus/texts/<TEXT_ID>/
 - ما خريطة مواده؟
 - ما أهم النصوص المرتبطة به؟
 - أين النسخة العربية والفرنسية؟
-- ما مستوى التحقق؟
+- ما مستوى التحقق لكل لغة؟
 
 الشرح والفهرسة في README من عمل المشروع، ولا يخلطان بالنص الرسمي.
 
 ## `record.yml` — سجل الكيان
 
 يحمل الهوية، النشر، التصنيف القانوني، الجهات، الحالة، اللغات، روابط المحتوى، provenance وverification.
+
+يجب أن يسمح `content.text_variants` لكل لغة بأن تكون:
+
+- ملفًا واحدًا؛ أو
+- manifest مع قائمة `segments`.
+
+مثال:
+
+```yaml
+content:
+  text_variants:
+    ar:
+      path: text/ar.md
+      status: transcribed
+      segmented: true
+      segments:
+        - text/ar/01-object-missions.md
+        - text/ar/02-governance.md
+    fr:
+      path: text/fr.md
+      status: verified
+      segmented: false
+```
 
 ## `articles.jsonl` — الاستدعاء الدقيق
 
@@ -47,17 +86,60 @@ corpus/texts/<TEXT_ID>/
 <TEXT_ID>#art-<N>
 ```
 
-في المرحلة الأولى يمكن أن يحتوي السجل على locator وموضوع وحالة transcription. بعد اعتماد transcription يمكن إضافة payload النصي للمادة أو مرجع مباشر إلى segment داخل ملف اللغة.
+سجل المادة لا يكرر المتن الحرفي إذا كان المتن محفوظًا في ملفات اللغة؛ بل يحدد:
+
+- رقم المادة؛
+- الموضوع الدلالي؛
+- page locators حسب اللغة؛
+- مسار ملف/segment كل لغة؛
+- heading المادة؛
+- حالة transcription لكل لغة؛
+- الآثار القانونية الخاصة بالمادة عند الحاجة.
+
+مثال:
+
+```json
+{
+  "id": "DZ-DE-2012-125#art-23",
+  "number": "23",
+  "transcriptions": {
+    "ar": {
+      "status": "transcribed",
+      "path": "../text/ar/02-governance.md",
+      "heading": "المادة 23"
+    },
+    "fr": {
+      "status": "verified",
+      "path": "../text/fr.md",
+      "heading": "Article 23"
+    }
+  }
+}
+```
+
+بهذا يستطيع الـAgent الانتقال مباشرة إلى segment الصحيح دون تحميل نص كامل غير ضروري.
 
 ## `text/ar.md` و`text/fr.md`
 
-هذه ملفات نصية وليست PDF. تمر حالتها على الأقل عبر:
+هذه ملفات نصية وليست PDF. الحالات الأساسية:
 
-- `transcription_pending`
-- `transcribed`
-- `verified`
+- `source_resolution_pending`: لم يحسم المصدر المباشر بعد؛
+- `source_locator_only`: locator رسمي موجود لكن transcription لم تبدأ؛
+- `transcription_pending`: المصدر محسوم والمتن لم ينقل كاملًا؛
+- `transcribed`: المتن نقل كاملًا لكنه يحتاج مرور مراجعة مستقل؛
+- `verified`: تمت المراجعة مقابل المصدر الرسمي.
 
-لا يجوز للـAI أو الواجهة البشرية تقديم transcription غير متحققة على أنها المتن الرسمي الموثوق.
+لا يجوز للـAI أو الواجهة البشرية تقديم transcription غير متحققة على أنها متن داخلي موثق نهائيًا.
+
+### التحقق مستقل لكل لغة
+
+قد تكون الفرنسية `verified` بينما العربية `transcribed` بسبب صعوبة طبقة النص العربية. لا نخفض الفرنسية ولا نرفع العربية لإجبار الكيان على حالة موحدة.
+
+أمثلة واقعية:
+
+- `DZ-LAW-2008-007`: العربية والفرنسية كلتاهما `verified`؛
+- `DZ-DE-2012-125`: الفرنسية `verified` والعربية كاملة `transcribed` ومجزأة إلى segments؛
+- `DZ-DE-2016-282`: العربية والفرنسية كلتاهما `verified`.
 
 ## `sources.yml`
 
@@ -76,22 +158,38 @@ corpus/texts/<TEXT_ID>/
 ```text
 JORADP external PDF
        ↓ temporary fetch only
-text extraction
+text extraction / visual reading
        ↓
 quality check
        ↓
 AR/FR alignment
        ↓
-transcription review
+transcription
        ↓
-article segmentation
+independent second pass
        ↓
-record + articles + graph
+verified transcription
        ↓
-README human view
+article indexing
+       ↓
+record + graph + human view
 ```
 
 لا يبقى PDF بعد مرحلة الاستخراج.
+
+## المرور الثاني
+
+`transcribed → verified` ليس تغيير label فقط. يجب أن يشمل مرورًا مستقلًا على:
+
+1. العنوان والتاريخ والرقم؛
+2. التأشيرات ذات الأثر القانوني؛
+3. حدود كل مادة؛
+4. الأرقام والمدد والمستويات؛
+5. ألفاظ التعديل والإلغاء والنفاذ؛
+6. المقابلة AR/FR في المواضع التي تظهر فيها مشكلة استخراج؛
+7. مواد الإلغاء والأحكام الانتقالية بصورة خاصة.
+
+القانون 08-07 كشف في المرور الثاني فروقًا لغوية صغيرة قبل التحقق النهائي، وهو سبب كافٍ لعدم تخطي هذه المرحلة.
 
 ## قاعدة عدم الازدواج
 
@@ -103,16 +201,24 @@ README human view
 4. تحذف نسخة record القديمة؛
 5. يبقى تاريخ Git هو سجل الهجرة.
 
+لا نكرر transcription الحرفية داخل `articles.jsonl` وملف اللغة يدويًا في الوقت نفسه؛ مرجع المادة هو المصدر الداخلي للنص.
+
 ## الاستدعاء بالذكاء الاصطناعي
 
-عندما يطلب المستخدم مادة بعينها، يكون ترتيب الاستدعاء:
+عندما يطلب المستخدم مادة بعينها:
 
 1. resolve `TEXT_ID`؛
 2. resolve `#art-N` من `articles.jsonl`؛
-3. افحص `text_status`؛
-4. إن كان `verified` استخدم النص الداخلي؛
-5. إن لم يكن، لا تدّع وجود متن داخلي موثوق، واستعمل المصدر الرسمي وفق سياسة المشروع.
+3. اقرأ `transcriptions.<lang>.status`؛
+4. اتبع `path` و`heading` إلى الملف أو segment الصحيح؛
+5. إن كان `verified` يمكن استعمال النص الداخلي بوصفه transcription متحققة؛
+6. إن كان `transcribed` يجب إظهار درجة التحقق عند النقل الحرفي أو حسم خلاف لغوي؛
+7. إن لم توجد transcription موثوقة، ارجع إلى المصدر الرسمي وفق سياسة المشروع.
 
-## أول تطبيق
+## أمثلة الاختبار الحالية
 
-`corpus/texts/DZ-LAW-2008-007/` هو أول تطبيق فعلي للنموذج. يجب استخدام المشكلات التي تظهر أثناء إكمال transcription فيه لتحسين Schema قبل تعميم النموذج على بقية corpus.
+- `DZ-LAW-2008-007`: أول حزمة ثنائية اللغة متحققة بالكامل، 32 مادة.
+- `DZ-DE-2012-125`: أول اختبار لـsegmented transcription، 32 مادة.
+- `DZ-DE-2016-282`: أول نص يختبر تمثيل `repeals` مع أثر انتقالي مستقل في المادة نفسها، 15 مادة.
+
+هذه الحالات هي التي يجب أن توجه Schema v1، لا نموذج نظري مسبق.
