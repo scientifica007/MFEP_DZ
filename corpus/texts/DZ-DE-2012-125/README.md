@@ -19,6 +19,14 @@
 | النص الفرنسي | كامل ومتحقق (`verified`) |
 | النص العربي | كامل ومنقول (`transcribed`) — يحتاج مرور تحقق ثانٍ |
 
+## المصدر الرسمي الأصلي — PDF
+
+ملفات PDF لا تُخزن في Git، لكن يمكن الرجوع مباشرة إلى النسخ الرسمية:
+
+- [الجريدة الرسمية — النسخة العربية (PDF رسمي، العدد 17/2012، الصفحات 9–13)](https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf)
+- [Journal officiel — version française (PDF officiel, n° 17/2012, pages 8–12)](https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf)
+- [بيانات المصدر والمحددات](sources/sources.yml)
+
 ## الوصول إلى النص
 
 - [النص الفرنسي الكامل](text/fr.md) — `verified`.
@@ -28,7 +36,6 @@
 - [المواد 24–32 بالعربية](text/ar/03-financial-transitional.md).
 - [فهرس المواد للآلة](data/articles.jsonl).
 - [السجل المهيكل](record.yml).
-- [مصادر JORADP](sources/sources.yml).
 
 لا توجد ملفات PDF في المستودع.
 
