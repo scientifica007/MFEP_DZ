@@ -1,6 +1,6 @@
-version: 0.2-draft
+version: 0.3-draft
 status: experimental
-last_updated: 2026-08-25
+last_updated: 2026-08-26
 
 normative_order:
   constitutional:
@@ -49,6 +49,11 @@ legal_form:
     ar: أمر
     fr: ordonnance
     en: ordinance
+  decree:
+    ar: مرسوم
+    fr: décret
+    en: decree
+    notes: "Historical/general decree form used where the official title is simply décret/مرسوم and should not be retroactively normalized to presidential_decree or executive_decree without evidence."
   presidential_decree:
     ar: مرسوم رئاسي
     fr: décret présidentiel
