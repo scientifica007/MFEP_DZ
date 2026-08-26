@@ -48,10 +48,14 @@ status:
       signature_date: 2020-11-22
       note: "The decree 20-340 explicitly modifies and supplements DZ-DE-2018-162."
     - kind: later_official_citation
+      source_ref: DZ-DE-2024-074
+      publication_date: 2024-02-11
+      note: "Official decree 24-74 cites 18-162 as amended and supplemented; this is reference evidence, not a further amendment."
+    - kind: later_official_citation
       source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
       publication_date: 2026-03-29
-      note: "The 2026 official text cites 18-162 as modified and supplemented."
-  notes: "Status 'amended' is verified. A dated research consolidation incorporating 20-340 is available with cutoff 2020-12-02; it is not a claim that no later amendments exist."
+      note: "The 2026 official text cites 18-162 as amended and supplemented."
+  notes: "Status 'amended' is verified. Forward search performed through 2026-08-26 found no later modifying, supplementing, repealing or replacing text after 20-340 within the performed official-source search scope. This is not proof of absolute non-existence."
 
 content:
   human_view: README.md
@@ -59,6 +63,7 @@ content:
   articles_index: data/articles.jsonl
   amendment_index: data/amendment-index.jsonl
   transitional_effects: data/transitional-effects.jsonl
+  forward_search: data/forward-search.yml
   text_variants:
     ar:
       index: text/ar.md
@@ -88,6 +93,8 @@ content:
       ar_status: provisional_research_consolidation
       fr_index: consolidated/2020-12-02/text/fr.md
       fr_status: verified_research_consolidation
+      latest_known_in_project_after_forward_search: true
+      forward_search_through: 2026-08-26
   binary_sources_committed: false
 
 languages:
@@ -142,6 +149,20 @@ versions:
         ar_status: provisional_research_consolidation
         official_publication: false
         current_law_claim: false
+        latest_known_in_project_after_forward_search: true
+        forward_search_through: 2026-08-26
+
+forward_search:
+  performed: true
+  searched_from: 2020-12-03
+  searched_through: 2026-08-26
+  source_scope: official_JORADP_web_search_AR_FR
+  later_amending_text_discovered: false
+  later_repealing_text_discovered: false
+  known_amendment_chain: [DZ-DE-2020-340]
+  latest_positive_official_citation_date: 2026-03-29
+  confidence: high_but_not_exhaustive
+  evidence_file: data/forward-search.yml
 
 relations:
   - id: REL-DZ-DE-2018-162-IMPLEMENTS-08-07-ART15
@@ -186,6 +207,7 @@ provenance:
   first_retrieved_at: 2026-08-25
   transcription_verified_at: 2026-08-26
   first_consolidation_created_at: 2026-08-26
+  forward_search_completed_at: 2026-08-26
 
 verification:
   metadata_verified: true
@@ -196,6 +218,8 @@ verification:
   articles_index_verified: true
   relations_verified: true
   legal_status_verified: true
+  forward_search_completed: true
+  forward_search_absolute_exhaustiveness_claim: false
   consolidated_text_verified: false
   consolidated_text_fr_verified: true
   consolidated_text_ar_verified: false
@@ -210,3 +234,4 @@ schema_observations:
   - "Article 43 demonstrates repeal plus transitional survival; a repeal edge alone is insufficient."
   - "A consolidated research version needs its own cutoff semantics and per-language verification status."
   - "A consolidated version needs its own article index for direct machine retrieval, separate from the base-text article index."
+  - "Forward search results need explicit scope, searched-through date and non-exhaustiveness semantics; absence of a discovered amendment is not absolute proof of non-existence."
