@@ -5,7 +5,7 @@ JORADP direct PDF URLs are historically inconsistent in path casing and may
 behave differently depending on the client. This resolver treats
 (year, issue, language) as the stable source identity and tries:
 
-1. recorded URLs supplied by the repository;
+1. recorded PDF URLs supplied by the repository;
 2. deterministic case/extension variants;
 3. the official JORADP yearly issue index (ZAyyyy/ZFyyyy) and links found there.
 
@@ -99,7 +99,12 @@ def infer_identity_from_urls(urls: Iterable[str]) -> tuple[int | None, int | Non
 
 
 def parse_manifest_urls(path: Path) -> dict[str, list[str]]:
-    """Read URLs under top-level ar:/fr: sections without a YAML dependency."""
+    """Read PDF endpoints under top-level ar:/fr: sections without PyYAML.
+
+    Nested issue-index URLs are intentionally ignored here: they are fallback
+    discovery pages, not PDF candidates. Both recorded and resolved PDF URLs are
+    retained when present.
+    """
     result = {"ar": [], "fr": []}
     current: str | None = None
     for raw in path.read_text(encoding="utf-8").splitlines():
@@ -116,6 +121,8 @@ def parse_manifest_urls(path: Path) -> dict[str, list[str]]:
             continue
         for candidate in re.findall(r'https?://[^"\s]+', raw):
             candidate = candidate.rstrip("',]")
+            if ".pdf" not in candidate.lower():
+                continue
             if candidate not in result[current]:
                 result[current].append(candidate)
     return result
@@ -160,7 +167,7 @@ def probe(url: str, method: str, timeout: int = 20) -> Probe:
                 content_type=content_type,
                 error=None if ok else "response is not a PDF",
             )
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError) as exc:
+    except (urllib.error.URLError, TimeoutError, OSError) as exc:
         return Probe(url=url, method=method, ok=False, error=str(exc))
 
 
@@ -170,7 +177,7 @@ def links_from_issue_index(year: int, issue: int, language: str, timeout: int = 
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             html = response.read().decode("utf-8", errors="replace")
-    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError):
+    except (urllib.error.URLError, TimeoutError, OSError):
         return []
 
     collector = LinkCollector()
