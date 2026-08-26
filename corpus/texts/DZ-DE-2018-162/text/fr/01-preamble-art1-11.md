@@ -165,3 +165,9 @@ La commission de wilaya peut faire appel à toute personne qui, en raison de ses
 Le secrétariat de la commission de wilaya est assuré par les services de la direction de wilaya de la formation et de l’enseignement professionnels.
 
 La commission de wilaya élabore et adopte son règlement intérieur.
+
+---
+
+### Navigation entre les parties
+
+[Index du texte français](../fr.md) · [Partie suivante : articles 12–27 →](02-art12-27.md) · [Vue humaine](../../README.md)
