@@ -21,10 +21,9 @@ publication:
   journal_year: 2020
   publication_date: 2020-12-02
   locators:
-    ar: {start_page: 10, end_page: null}
-    fr: {start_page: 10, end_page: null}
-  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
-  url_fr: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
+    ar: {start_page: 10, end_page: 12}
+    fr: {start_page: 10, end_page: 12}
+  source_manifest: sources/sources.yml
 
 legal_classification:
   normative_order: regulatory
@@ -45,26 +44,39 @@ institutions:
 
 status:
   value: unknown
-  as_of: 2026-08-25
+  as_of: 2026-08-26
   confidence: 0.0
   evidence: []
-  notes: "وظيفته التعديلية مؤكدة؛ حالته الحالية الذاتية تحتاج مسحا لاحقا."
+  notes: "وظيفته التعديلية وأثره على 18-162 متحققان. حالته الذاتية الحالية تحتاج مسح النصوص اللاحقة؛ لا نستنتج active من عدم العثور السريع على إلغاء."
 
 languages:
   ar:
     available: true
     role: official_publication
-    source_url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf"
-    extraction_method: joradp_text_layer
-    extraction_quality: high
+    source_manifest: sources/sources.yml
+    transcription_path: text/ar.md
+    transcription_status: transcribed
+    extraction_method: official_pdf_text_layer_with_fr_alignment
+    extraction_quality: usable_with_known_uncertainty
     visually_verified: false
+    needs_second_pass: true
   fr:
     available: true
     role: official_translation
-    source_url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf"
-    extraction_method: joradp_text_layer
+    source_manifest: sources/sources.yml
+    transcription_path: text/fr.md
+    transcription_status: verified
+    extraction_method: official_pdf_text_layer
     extraction_quality: high
-    used_for_recovery: true
+    visually_verified: true
+
+structure:
+  article_count: 5
+  articles_index: data/articles.jsonl
+  amendment_index: data/amendment-index.jsonl
+  source_pages:
+    ar: [10, 11, 12]
+    fr: [10, 11, 12]
 
 relations:
   - id: REL-DZ-DE-2020-340-AMENDS-18-162
@@ -76,21 +88,97 @@ relations:
     evidence:
       language: fr
       page: 10
-      locator: "Article 1er states that the decree modifies and supplements certain provisions of decree 18-162."
-      affected_target_articles: [7, 10, 11, 15, 16, 32, "35-bis", 41]
+      statement_type: explicit
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART7
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-7
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART10
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-10
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART11
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-11
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART15
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-15
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART16
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-16
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART2-AMENDS-18-162-ART32
+    type: amends
+    source_ref: DZ-DE-2020-340#art-2
+    target_ref: DZ-DE-2018-162#art-32
+    confidence: 1.0
+  - id: REL-DZ-DE-2020-340-ART3-SUPPLEMENTS-18-162-35BIS
+    type: supplements
+    source_ref: DZ-DE-2020-340#art-3
+    target_ref: DZ-DE-2018-162#art-35-bis
+    confidence: 1.0
+    operation: add_article
+  - id: REL-DZ-DE-2020-340-ART4-AMENDS-18-162-ART41
+    type: amends
+    source_ref: DZ-DE-2020-340#art-4
+    target_ref: DZ-DE-2018-162#art-41
+    confidence: 1.0
+    change: "compliance period changed from one year to four years; article 35 bis excluded from that transitional period"
 
-topics: [private_training, accreditation, institutional_control, amendment]
+topics: [private_training, accreditation, institutional_control, amendment, transitional_compliance]
+
+content:
+  human_view: README.md
+  text_variants:
+    ar:
+      path: text/ar.md
+      status: transcribed
+      segmented: false
+    fr:
+      path: text/fr.md
+      status: verified
+      segmented: false
+  articles: data/articles.jsonl
+  amendment_index: data/amendment-index.jsonl
+
+versions:
+  promulgated:
+    available: true
+    date: 2020-11-22
+  consolidated_with_target:
+    target: DZ-DE-2018-162
+    available: false
+    note: "Do not merge the 2020 amendment silently into the immutable 2018 transcription. A dated consolidated research version must be generated as a separate layer."
 
 provenance:
-  - {source_type: official_gazette, language: ar, url: "https://www.joradp.dz/FTP/jo-arabe/2020/A2020071.pdf", retrieved_at: 2026-08-25}
-  - {source_type: official_gazette, language: fr, url: "https://www.joradp.dz/FTP/jo-francais/2020/F2020071.pdf", retrieved_at: 2026-08-25}
+  - source_type: official_gazette
+    language: ar
+    source_manifest: sources/sources.yml
+    verified_at: 2026-08-26
+  - source_type: official_gazette
+    language: fr
+    source_manifest: sources/sources.yml
+    verified_at: 2026-08-26
 
 verification:
-  level: 3
+  level: 4
   metadata_verified: true
   source_verified: true
-  structure_verified: partial
+  structure_verified: true
   relations_verified: true
   legal_status_verified: false
-  verified_at: 2026-08-25
-  needs_legal_review: true
+  fr_transcription_verified: true
+  ar_transcription_verified: false
+  ar_transcription_status: transcribed
+  verified_at: 2026-08-26
+  needs_legal_review: false
+  open_items:
+    - "Arabic visual second pass, especially the closing sentence of amended article 16."
+    - "Current legal status of decree 20-340 itself requires forward search."
