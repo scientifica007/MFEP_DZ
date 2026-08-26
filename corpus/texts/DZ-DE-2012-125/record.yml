@@ -64,12 +64,18 @@ content:
   text_variants:
     ar:
       path: text/ar.md
-      status: transcription_pending
+      status: transcribed
+      segmented: true
+      segments:
+        - text/ar/01-object-missions.md
+        - text/ar/02-governance.md
+        - text/ar/03-financial-transitional.md
       source_pages: [9, 10, 11, 12, 13]
-      notes: "طبقة النص العربية ضعيفة؛ تعتمد المراجعة البصرية والمقابلة الفرنسية."
+      notes: "النص العربي كامل داخليا لكنه يحتاج مرور تحقق ثانيا قبل verified."
     fr:
       path: text/fr.md
       status: verified
+      segmented: false
       source_pages: [8, 9, 10, 11, 12]
       verification_method: visual_page_check_plus_text_layer_normalization
   binary_sources_committed: false
@@ -79,7 +85,7 @@ languages:
     available: true
     role: official_publication
     extraction_quality: low_for_text_layer_high_for_visual_source
-    transcription_status: transcription_pending
+    transcription_status: transcribed
   fr:
     available: true
     role: official_translation
@@ -139,6 +145,7 @@ verification:
   source_verified: true
   structure_verified: true
   full_text_fr_verified: true
+  full_text_ar_transcribed: true
   full_text_ar_verified: false
   articles_index_verified: true
   relations_verified: true
@@ -149,3 +156,4 @@ verification:
 schema_observations:
   - "Pagination differs by language: French pages 8-12; Arabic pages 9-13."
   - "A single instrument can both implement a framework law and explicitly repeal its predecessor regulation."
+  - "Language transcription may be segmented into multiple files; article index must point to the correct segment rather than assume one file per language."
