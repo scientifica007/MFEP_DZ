@@ -15,7 +15,7 @@ operations:
 languages:
   ar:
     status: provisional_research_consolidation
-    reason: "All amendment operations are resolved, but article 16 retains a documented visual-reading discrepancy requiring independent page-level resolution."
+    reason: "All amendment operations are resolved, but the Arabic publication of DZ-DE-2020-340 still requires an independent visual page-level pass. The reviewer note about the minister confirms the original 2018 text and is not a contradiction in the 2020 amendment."
   fr:
     status: verified_research_consolidation
 source_policy:
