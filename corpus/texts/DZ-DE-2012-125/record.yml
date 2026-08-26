@@ -3,10 +3,6 @@ record_status: staging
 id: DZ-DE-2012-125
 id_status: provisional
 
-raw:
-  title_ar: "مرسوم تنفيذي رقم 12-125 مؤرخ في 26 ربيع الثاني عام 1433 الموافق 19 مارس سنة 2012، يحدد القانون الأساسي النموذجي للمعاهد الوطنية المتخصصة في التكوين المهني"
-  title_fr: "Décret exécutif n° 12-125 du 26 Rabie Ethani 1433 correspondant au 19 mars 2012 fixant le statut-type des instituts nationaux spécialisés de formation professionnelle (I.N.S.F.P)"
-
 identity:
   legal_form: executive_decree
   number: "12-125"
@@ -21,14 +17,9 @@ publication:
   journal_year: 2012
   publication_date: 2012-03-25
   locators:
-    ar:
-      start_page: 9
-      end_page: null
-    fr:
-      start_page: 8
-      end_page: null
-  url_ar: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
-  url_fr: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
+    ar: {start_page: 9, end_page: 13}
+    fr: {start_page: 8, end_page: 12}
+  source_ref: sources/sources.yml
 
 legal_classification:
   normative_order: regulatory
@@ -67,21 +58,43 @@ status:
       source_ref: DZ-AIM-2026-02-15-UNEMPLOYMENT-TRAINING
   notes: "الدليل اللاحق يؤكد استمرار استعماله في 2026، لكن لم ينجز بعد مسح تعديلات كامل."
 
+content:
+  human_view: README.md
+  articles_index: data/articles.jsonl
+  text_variants:
+    ar:
+      path: text/ar.md
+      status: transcription_pending
+      source_pages: [9, 10, 11, 12, 13]
+      notes: "طبقة النص العربية ضعيفة؛ تعتمد المراجعة البصرية والمقابلة الفرنسية."
+    fr:
+      path: text/fr.md
+      status: verified
+      source_pages: [8, 9, 10, 11, 12]
+      verification_method: visual_page_check_plus_text_layer_normalization
+  binary_sources_committed: false
+
 languages:
   ar:
     available: true
     role: official_publication
-    source_url: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
-    extraction_method: visual_check_due_to_weak_text_layer
-    extraction_quality: low
-    visually_verified: true
+    extraction_quality: low_for_text_layer_high_for_visual_source
+    transcription_status: transcription_pending
   fr:
     available: true
     role: official_translation
-    source_url: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
-    extraction_method: text_layer_and_visual_check
     extraction_quality: high
+    transcription_status: verified
     used_for_recovery: true
+
+structure:
+  article_count: 32
+  articles_index: data/articles.jsonl
+  chapters:
+    - {number: 1, topic: object_and_missions}
+    - {number: 2, topic: administrative_and_pedagogical_organization}
+    - {number: 3, topic: financial_provisions}
+    - {number: 4, topic: transitional_and_final_provisions}
 
 relations:
   - id: REL-DZ-DE-2012-125-IMPLEMENTS-08-07-ART14
@@ -95,32 +108,44 @@ relations:
       language: fr
       page: 8
       locator: "Article 1er — En application des dispositions de l'article 14 (alinéa 1er) de la loi n° 08-07..."
+  - id: REL-DZ-DE-2012-125-REPEALS-90-235
+    type: repeals
+    source_ref: DZ-DE-2012-125
+    target_ref: DZ-DE-1990-235
+    source_article: art-31
+    target_status: unresolved_seed_dependency
+    confidence: 1.0
+    evidence:
+      language: fr
+      page: 12
+      locator: "Art. 31 — Le décret exécutif n° 90-235 du 28 juillet 1990, susvisé, est abrogé."
 
 topics:
   - institutions
   - insfp
   - vocational_training
   - institutional_organization
+  - governance
+  - pedagogical_council
+  - financial_management
 
 provenance:
-  - source_type: official_gazette
-    language: ar
-    url: "https://www.joradp.dz/FTP/jo-arabe/2012/A2012017.pdf"
-    retrieved_at: 2026-08-25
-  - source_type: official_gazette
-    language: fr
-    url: "https://www.joradp.dz/FTP/jo-francais/2012/F2012017.pdf"
-    retrieved_at: 2026-08-25
+  source_manifest: sources/sources.yml
+  first_retrieved_at: 2026-08-25
+  transcription_updated_at: 2026-08-26
 
 verification:
-  level: 3
   metadata_verified: true
   source_verified: true
-  structure_verified: partial
+  structure_verified: true
+  full_text_fr_verified: true
+  full_text_ar_verified: false
+  articles_index_verified: true
   relations_verified: true
   legal_status_verified: false
-  verified_at: 2026-08-25
+  transcription_verified_at: 2026-08-26
   needs_legal_review: true
 
 schema_observations:
-  - "Pagination differs by language: French starts at p.8 while Arabic starts at p.9. A single publication.pages field is insufficient."
+  - "Pagination differs by language: French pages 8-12; Arabic pages 9-13."
+  - "A single instrument can both implement a framework law and explicitly repeal its predecessor regulation."
