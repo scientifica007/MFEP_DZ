@@ -1,0 +1,31 @@
+text_id: DZ-D-1986-241
+binary_sources_committed: false
+official_gazette:
+  year: 1986
+  number: 38
+  publication_date: 1986-09-17
+  stable_identity: "JORADP:1986:38"
+ar:
+  url: "https://www.joradp.dz/FTP/Jo-Arabe/1986/A1986038.pdf"
+  pages: {start: null, end: null}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZA1986.htm"
+    resolved_url: null
+    last_checked: 2026-08-26
+    recorded_url_observation: "Arabic issue endpoint not independently materialized in this pass."
+    resolution_method: unresolved
+fr:
+  url: "https://www.joradp.dz/FTP/Jo-Francais/1986/F1986038.pdf"
+  pages: {start: 1087, end: 1088}
+  access:
+    issue_index_url: "https://www.joradp.dz/JRN/ZF1986.htm"
+    resolved_url: null
+    last_checked: 2026-08-26
+    recorded_url_observation: "Official issue identity confirmed; direct endpoint not relied upon because archived scan was available for recovery."
+    resolution_method: archived_issue_mirror_for_recovery
+recovery_sources:
+  - kind: archived_official_issue_scan
+    official: false
+    role: recovery_and_visual_discovery_only
+    url: "https://archive.gazettes.africa/archive/dz/1986/dz-government-gazette-dated-1986-09-17-no-38.pdf"
+retrieved_at: 2026-08-26
