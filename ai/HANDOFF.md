@@ -4,9 +4,49 @@
 
 ## الحالة التشغيلية
 
-`completed_historical_enterprise_training_1982_1986_waiting_next_instruction`
+`ci_enabled_and_passing_after_historical_enterprise_training_waiting_next_instruction`
 
-## ما اكتمل في الخطوة الأخيرة
+## CI — التحقق الحتمي للمستودع
+
+تم تفعيل GitHub Actions عبر:
+
+`.github/workflows/validate-repository.yml`
+
+ويعمل عند كل `push` إلى `main` وكل Pull Request، مع `workflow_dispatch` للتشغيل اليدوي.
+
+الـjob الحتمي يشغل:
+
+```bash
+python scripts/test_joradp_resolver.py
+python scripts/validate_repository.py .
+```
+
+اختبارات JORADP في هذا الـWorkflow غير شبكية، ولا يعتمد نجاح corpus على توفر موقع JORADP في اللحظة نفسها.
+
+أول تشغيل كامل على GitHub Actions نجح، وسجل الـValidator:
+
+- `metadata_records: 17`
+- `human_readmes: 17`
+- `graph_edges: 45`
+- `discovery_queue: 28`
+- `eval_cases: 16`
+- `eval_expected: 16`
+- `pdf_files: 0`
+- `consolidated_versions: 1`
+- `consolidation_map_rows: 45`
+- `OK: no deterministic validation errors found.`
+
+كما مرت اختبارات JORADP Resolver الأربعة.
+
+تم تحديث Actions إلى `actions/checkout@v7` و`actions/setup-python@v7`، ونجح التشغيل الثاني أيضا.
+
+التوثيق الكامل في:
+
+`docs/CI.md`
+
+لا توجد Branch Protection ملزمة بعد؛ نجاح CI مراقبة مستمرة حاليا، ويمكن تحويله لاحقا إلى required status check بعد استقرار الـValidator.
+
+## ما اكتمل في الخطوة القانونية السابقة
 
 تم إدخال السلسلة التاريخية التي ألغتها المادة 23 من المرسوم التنفيذي `DZ-DE-2024-074`:
 
@@ -120,7 +160,7 @@ Ontology الآن `0.3-draft`.
 
 أي أنه **ليس مهمة مجدولة ولا أمرًا تشغيليًا** حتى يصدر قرار صريح باعتماده. المقترح يفرز الجديد إلى: قطاعي مباشر، أفقي مؤثر، علاقات مع corpus، وغير مرتبط.
 
-## الملفات الرئيسية الجديدة
+## الملفات الرئيسية الجديدة في المرحلة السابقة
 
 - `corpus/texts/DZ-D-1982-298/`
 - `corpus/texts/DZ-D-1982-299/`
@@ -147,4 +187,4 @@ Ontology الآن `0.3-draft`.
 4. `DZ-DE-2001-419` — سلف 18-162، لإكمال تاريخ المؤسسات الخاصة؛
 5. أو الانتقال إلى سلسلة تعديلات `DZ-DE-2022-070` إذا كانت الأولوية للحالة القانونية الحديثة.
 
-المشروع متوقف بعد إغلاق سلسلة التكوين المهني في المؤسسة 1982–1986 على مستوى الهوية والبنية والعلاقات، بانتظار التعليمة التالية.
+المشروع متوقف بعد تفعيل CI واجتيازه على المستودع الفعلي، مع بقاء السلسلة التاريخية 1982–1986 مغلقة على مستوى الهوية والبنية والعلاقات، بانتظار التعليمة التالية.
