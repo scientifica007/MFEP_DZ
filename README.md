@@ -2,144 +2,166 @@
 
 قاعدة معرفة قانونية مفتوحة ومهيكلة للنصوص التشريعية والتنظيمية والإدارية المرتبطة بقطاع التكوين والتعليم المهنيين في الجزائر.
 
-الغرض من المستودع هو بناء **ذاكرة قانونية قابلة للقراءة البشرية والاستدعاء الآلي** تسمح بمعرفة: ما هو النص؟ من أصدره؟ ما مرتبته ووظيفته القانونية؟ متى نشر ودخل حيز التنفيذ؟ ما النصوص التي يستند إليها؟ ماذا عدّل أو ألغى أو طبّق؟ وما حالته القانونية في تاريخ معين؟
+الهدف هو بناء **ذاكرة قانونية قابلة للقراءة البشرية والاستدعاء الآلي** تسمح بتحديد هوية النص، مصدره، مرتبته ووظيفته القانونية، مواده، علاقاته بالنصوص الأخرى، وحالته القانونية في تاريخ معين مع provenance واضح.
 
 ## مبادئ المشروع
 
-1. **المصدر الرسمي أولا**: الجريدة الرسمية والأمانة العامة للحكومة هما المرجع الأول للنصوص المنشورة.
-2. **النص القانوني هو وحدة المعرفة**، وليس عدد الجريدة الرسمية أو ملف PDF.
-3. **لا تُخزن ملفات PDF في Git**: تحفظ الروابط والمحددات الرسمية، بينما يخزن المشروع مواد نصية خفيفة قابلة للفهرسة والمراجعة. راجع [سياسة التخزين](docs/STORAGE_POLICY.md).
-4. **لكل نص واجهتان مترابطتان**: واجهة بشرية `README.md` وواجهة آلة `record.yml` + `articles.jsonl`، مع ملفات transcription نصية مستقلة وحالة تحقق صريحة.
-5. **الترتيب القانوني الجزائري شبكة علاقات لا سلم أسماء بسيط**: نفرق بين المرتبة القانونية، شكل النص، الجهة المختصة، الوظيفة القانونية، ومجال الاختصاص.
-6. **العربية والفرنسية تعالجان معا**: نعتمد العربية المنشورة رسميا، ونرجع إلى النسخة/الترجمة الفرنسية الرسمية عند فساد الاستخراج العربي أو الحاجة إلى المقابلة المصطلحية، مع التحقق من الصفحة العربية المرئية. الإنجليزية طبقة مساعدة للمفاهيم والأنطولوجيا والمصادر الدولية.
-7. **لا نستنتج النفاذ أو الإلغاء بلا دليل**: كل حكم عن الحالة القانونية يجب أن يكون مؤرخا ومدعما بنص أو مادة أو مرجع رسمي.
-8. **كل علاقة قانونية يجب أن تكون قابلة للتدقيق**: نميز بين مجرد الإحالة وبين السند الدستوري، سند الاختصاص، التطبيق، التعديل، التتميم، الإلغاء وغيرها.
-9. **المستودع هو ذاكرة المشروع**: القرارات المنهجية، المراجع، الافتراضات، المشاكل المعروفة وقواعد العمل توثق هنا ولا تبقى في المحادثات فقط.
-10. **طبقة الذكاء الاصطناعي مستقلة عن النموذج والمزود**: يمكن تبديل ChatGPT أو Claude أو Gemini أو نموذج محلي دون تغيير corpus أو ontology أو schema أو الحقيقة القانونية.
-11. **رابط JORADP ليس هوية المصدر**: الهوية التشغيلية الثابتة هي السنة + رقم الجريدة + اللغة. يحتفظ المشروع بالرابط المسجل حتى إن تعطل، ويحل endpoint عاملًا عند الحاجة عبر [بروتوكول حل روابط JORADP](docs/JORADP_URL_RESOLUTION.md).
-12. **النص الأصلي والتعديل والنص الموحد طبقات منفصلة**: لا يُدمج تعديل لاحق صامتًا داخل transcription الأصلية. راجع [سياسة التعديلات والتوحيد](docs/AMENDMENTS_AND_CONSOLIDATION.md).
-13. **فهرس JORADP أداة اكتشاف لا بديل عن النص المنشور**: وسوم مثل `نص تطبيقي` و`معدل` و`ملغى` تستخدم لتوليد مرشحات العلاقات، ثم تثبت العلاقة من الحكم القانوني المنشور. راجع [منهج اكتشاف العلاقات من الفهرس](docs/JORADP_INDEX_DISCOVERY.md).
+1. **المصدر الرسمي أولا:** JORADP والأمانة العامة للحكومة هما المرجع الأول للنصوص المنشورة.
+2. **النص القانوني هو وحدة المعرفة**؛ ملف PDF وعدد الجريدة مصدران لا الكيان المركزي.
+3. **لا PDF داخل Git:** تحفظ الروابط والمحددات الرسمية فقط، بينما يخزن المشروع Markdown/JSONL/YAML ونصوصا خفيفة قابلة للفهرسة والمراجعة. راجع [`docs/STORAGE_POLICY.md`](docs/STORAGE_POLICY.md).
+4. **Human + Machine:** لكل نص `README.md` للإنسان، و`record.yml` و`articles.jsonl` للآلة، مع transcription وحالة تحقق صريحة.
+5. **النظام القانوني شبكة متعددة الأبعاد:** نفصل بين المرتبة القانونية، شكل النص، الجهة المختصة، الوظيفة، النطاق والعلاقات.
+6. **العربية والفرنسية مساران متقابلان للتحقق:** نرجع إلى الفرنسية الرسمية عند فساد استخراج العربية ثم نتحقق من العربية بصريا في المواضع الحرجة.
+7. **لا حالة قانونية بلا تاريخ ودليل:** لا نستنتج `active` أو `repealed` من العمر أو الاسم.
+8. **العلاقات القانونية قابلة للتدقيق:** `implements`, `amends`, `repeals`, `provides_for_implementing_act` وغيرها تحفظ مع موضع الدليل حيث أمكن.
+9. **الأصل والتعديل والنسخة الموحدة طبقات منفصلة:** لا يدمج تعديل لاحق صامتا في transcription الأصلية.
+10. **المشروع Model-Agnostic وProvider-Agnostic:** الحقيقة القانونية لا تعتمد على نموذج ذكاء اصطناعي بعينه.
+11. **فشل رابط JORADP لا يعني فقدان المصدر:** هوية العدد هي السنة + الرقم + اللغة؛ يحفظ الرابط المسجل وتستخدم طبقة resolver للعثور على endpoint عامل.
+12. **فهرس JORADP أداة اكتشاف لا إثبات نهائي:** وسوم `نص تطبيقي` و`معدل` و`ملغى` تولد مرشحات، ثم تثبت العلاقة من النص المنشور.
+13. **سلامة المستودع تتحقق آليا:** GitHub Actions يشغل Validator حتميا بعد كل push إلى `main`.
 
-## القراءة البشرية للنصوص
+## القراءة البشرية
 
 - [فهرس corpus البشري](corpus/INDEX.md)
-- [المسار الدائم للنصوص](corpus/texts/README.md)
+- [عقد حزم النصوص](corpus/texts/README.md)
 
-جميع السجلات القانونية الـ17 الحالية لها حزمة موحدة تحت `corpus/texts/`.
+يوجد حاليا **19 سجلا قانونيا** في دورة staging/validation، وكلها تحت `corpus/texts/`.
 
-البنية الدائمة لكل نص:
+البنية المعتادة:
 
 ```text
 corpus/texts/<TEXT_ID>/
-├── README.md              # الإنسان
-├── record.yml             # بيانات قانونية مهيكلة
-├── text/
-│   ├── ar.md              # transcription العربية وحالتها
-│   └── fr.md              # transcription الفرنسية وحالتها
-├── data/
-│   └── articles.jsonl     # استدعاء المواد آليا
-└── sources/
-    └── sources.yml        # روابط ومحددات JORADP وحالة الوصول
-```
-
-وقد يحتوي النص المعدل على طبقة ثالثة مستقلة:
-
-```text
-consolidated/<CUTOFF_DATE>/
 ├── README.md
-├── manifest.yml
+├── record.yml
 ├── VERIFICATION.md
-├── data/consolidation-map.jsonl
-└── text/{ar,fr}...
+├── text/
+│   ├── ar.md
+│   └── fr.md
+├── data/
+│   └── articles.jsonl
+└── sources/
+    └── sources.yml
 ```
 
-**تنبيه:** وجود الحزمة لا يعني أن المتن الكامل أصبح متحققًا داخليًا. حالة كل لغة وكل نسخة موحدة معلنة صراحة. ويمكن أن تكون الحزمة التاريخية `source_locator_only`: الهوية والبنية والعلاقات مدخلة، بينما transcription الحرفية الكاملة ما تزال معلقة.
+وقد تضاف ملفات مثل `amendment-index.jsonl`, `transitional-effects.jsonl`, `forward-search.yml` أو طبقة `consolidated/<DATE>/` بحسب طبيعة النص.
 
-## الذاكرة والمنهجية
+> وجود الحزمة لا يعني أن المتن الكامل متحقق. يجب دائما قراءة حالة اللغة في `text/ar.md`, `text/fr.md` وحقول `verification`.
 
-- [PROJECT_MEMORY.md](PROJECT_MEMORY.md): الذاكرة المركزية للمشروع والقرارات المعتمدة.
-- [KNOWLEDGE_CHANGELOG.md](KNOWLEDGE_CHANGELOG.md): سجل تغييرات المعرفة والمنهج.
-- [docs/LEGAL_SYSTEM_DZ.md](docs/LEGAL_SYSTEM_DZ.md): النموذج العملي لهيكلة النصوص القانونية والتنظيمية الجزائرية.
-- [docs/METHODOLOGY.md](docs/METHODOLOGY.md): طريقة اكتشاف النصوص، استخراجها، التحقق منها وربطها.
-- [docs/LANGUAGE_POLICY.md](docs/LANGUAGE_POLICY.md): سياسة العربية والفرنسية والإنجليزية.
-- [docs/STORAGE_POLICY.md](docs/STORAGE_POLICY.md): سياسة التخزين النصي ومنع PDF.
-- [docs/HUMAN_MACHINE_CORPUS.md](docs/HUMAN_MACHINE_CORPUS.md): عقد الحزمة المشتركة للإنسان والآلة.
-- [docs/JORADP_URL_RESOLUTION.md](docs/JORADP_URL_RESOLUTION.md): حل الروابط المباشرة غير المستقرة مع حفظ provenance.
-- [docs/JORADP_INDEX_DISCOVERY.md](docs/JORADP_INDEX_DISCOVERY.md): استعمال فهرس HAR/SCALER ووسوم العلاقات للاكتشاف ثم التحقق من النص المنشور.
-- [docs/AMENDMENTS_AND_CONSOLIDATION.md](docs/AMENDMENTS_AND_CONSOLIDATION.md): قواعد حفظ النصوص المعدلة وبناء النسخ الموحدة البحثية.
-- [docs/DATA_MODEL.md](docs/DATA_MODEL.md): نموذج البيانات المقترح لكل نص قانوني.
-- [docs/LEGAL_RELATIONS.md](docs/LEGAL_RELATIONS.md): قاموس العلاقات بين النصوص والمواد.
-- [docs/TAXONOMY.md](docs/TAXONOMY.md): التصنيف الموضوعي الأولي للقطاع.
-- [docs/SOURCES.md](docs/SOURCES.md): سجل المصادر الرسمية والمراجع الأساسية.
-- [docs/DECISIONS.md](docs/DECISIONS.md): سجل القرارات المنهجية والمسائل المفتوحة.
-- [ontology/core.yml](ontology/core.yml): vocabulary تجريبي قابل للآلة لأشكال النصوص، الوظائف، النطاقات، الحالات والعلاقات؛ يتضمن الآن الشكل التاريخي العام `decree` للنصوص المعنونة رسميًا `مرسوم / décret` دون إعادة تصنيف رجعي.
-- [schemas/README.md](schemas/README.md): سياسة تثبيت JSON Schema بعد اختبار corpus حقيقي.
+## Corpus الحالي وفهارسه
 
-## Corpus الحالي
+- Seed الأساسي:
+  - [`metadata/staging/seed-001.jsonl`](metadata/staging/seed-001.jsonl)
+  - [`metadata/staging/seed-002-dependencies.jsonl`](metadata/staging/seed-002-dependencies.jsonl)
+- التوسع الموضوعي الحديث:
+  - [`metadata/staging/sector-expansion.jsonl`](metadata/staging/sector-expansion.jsonl)
+- سلسلة التكوين المهني في المؤسسة 1982–1986:
+  - [`metadata/staging/historical-enterprise-training.jsonl`](metadata/staging/historical-enterprise-training.jsonl)
+- سلسلة CFPA التاريخية:
+  - [`metadata/staging/historical-cfpa.jsonl`](metadata/staging/historical-cfpa.jsonl)
+- قائمة الاكتشاف:
+  - [`metadata/discovery-queue.jsonl`](metadata/discovery-queue.jsonl)
 
-يوجد حاليا **17 سجلا قانونيا** في دورة staging/validation، وكلها تستخدم المسار الدائم `corpus/texts/` للعرض البشري والسجل المهيكل. تبقى صفة `staging` مرتبطة بدرجة التحقق لا بمكان تخزين السجل.
+حواف Graph موزعة بالتوازي تحت `graph/staging/`، ومنها:
 
-- [corpus/INDEX.md](corpus/INDEX.md): الفهرس البشري لجميع السجلات.
-- [metadata/staging/seed-001.jsonl](metadata/staging/seed-001.jsonl) و[metadata/staging/seed-002-dependencies.jsonl](metadata/staging/seed-002-dependencies.jsonl): فهارس Seed الأساسية.
-- [metadata/staging/sector-expansion.jsonl](metadata/staging/sector-expansion.jsonl): فهرس التوسع الموضوعي الحديث بعد Seed.
-- [metadata/staging/historical-enterprise-training.jsonl](metadata/staging/historical-enterprise-training.jsonl): فهرس سلسلة التكوين المهني في المؤسسة 1982–1986.
-- [graph/staging/seed-001-relations.jsonl](graph/staging/seed-001-relations.jsonl) و[graph/staging/seed-002-relations.jsonl](graph/staging/seed-002-relations.jsonl): حواف Graph الأساسية.
-- [graph/staging/sector-expansion-relations.jsonl](graph/staging/sector-expansion-relations.jsonl): علاقات التوسع الموضوعي الحديث.
-- [graph/staging/historical-enterprise-training-relations.jsonl](graph/staging/historical-enterprise-training-relations.jsonl): علاقات سلسلة 1982–1986 وتعديل 82-300.
-- [metadata/discovery-queue.jsonl](metadata/discovery-queue.jsonl): النصوص والتبعيات المكتشفة وحالة معالجتها.
+- [`seed-001-relations.jsonl`](graph/staging/seed-001-relations.jsonl)
+- [`seed-002-relations.jsonl`](graph/staging/seed-002-relations.jsonl)
+- [`sector-expansion-relations.jsonl`](graph/staging/sector-expansion-relations.jsonl)
+- [`historical-enterprise-training-relations.jsonl`](graph/staging/historical-enterprise-training-relations.jsonl)
+- [`historical-cfpa-relations.jsonl`](graph/staging/historical-cfpa-relations.jsonl)
 
-### سلسلة المؤسسات الخاصة المكتملة حتى الآن
+## سلاسل قانونية ممثلة حاليا
 
-- [`DZ-DE-2018-162`](corpus/texts/DZ-DE-2018-162/README.md): النص الأصلي لسنة 2018، AR/FR متحققان.
-- [`DZ-DE-2020-340`](corpus/texts/DZ-DE-2020-340/README.md): نص التعديل والتتميم لسنة 2020؛ 5 مواد مفهرسة، الفرنسية متحققة والعربية كاملة `transcribed`، مع خريطة تعديل على مستوى المادة.
-- [`DZ-DE-2018-162@consolidated-2020-12-02`](corpus/texts/DZ-DE-2018-162/consolidated/2020-12-02/README.md): أول نسخة بحثية موحدة فعلية؛ الفرنسية `verified_research_consolidation` والعربية `provisional_research_consolidation`.
+### المؤسسات الخاصة للتكوين أو التعليم المهني
+
+`18-162 → 20-340 → نسخة بحثية موحدة بتاريخ قطع 2020-12-02`
+
+- الأصل AR/FR متحقق.
+- التعديل 20-340 مفهرس على مستوى المواد.
+- النسخة الموحدة بحثية وليست نصا رسميا مستقلا.
 
 ### التكوين المهني المتواصل
 
-- [`DZ-DE-2024-074`](corpus/texts/DZ-DE-2024-074/README.md): 24 مادة، يطبق صراحة المادة 20 من القانون 08-07، وينظم التكوين للتكيف مع منصب العمل وتحسين المستوى والحركية المهنية ونظام تتويجها. الفرنسية `verified` والعربية `transcribed`.
-- المواد 13 و14 و22 تنص على ثلاثة قرارات وزارية تطبيقية ما تزال هوياتها الدقيقة غير محلولة بعد بحث رسمي موجه حتى 26 أوت 2026؛ النتيجة `not_located_in_performed_search` وليست `not_published`.
+`قانون 08-07 المادة 20 → 24-74`
 
-### السلسلة التاريخية للتكوين المهني في المؤسسة
+- 24-74 يطبق المادة 20.
+- ألغى نظام التكوين المهني في المؤسسة لسنة 1982.
+- قراراته التطبيقية للمواد 13 و14 و22 ما تزال `unresolved` بعد البحث المنجز.
 
-- [`DZ-D-1982-298`](corpus/texts/DZ-D-1982-298/README.md): تنظيم وتمويل التكوين المهني في المؤسسة؛ 62 مادة مفهرسة بنيويًا؛ ألغاه 24-74.
-- [`DZ-D-1982-299`](corpus/texts/DZ-D-1982-299/README.md): إجازة/تتويج التكوين في المؤسسة؛ 23 مادة؛ ألغاه 24-74، وتنص مادته 22 على قرار وزاري تاريخي لم تُحسم هويته.
-- [`DZ-D-1982-300`](corpus/texts/DZ-D-1982-300/README.md): شروط المكون في المؤسسة؛ 29 مادة وملحق؛ عُدل سنة 1986 ثم ألغاه 24-74.
-- [`DZ-D-1986-241`](corpus/texts/DZ-D-1986-241/README.md): يعدل المادة 12 من 82-300 ويستبدل جدولي تعويضات. عنوانه العربي الرسمي وحالته القانونية المستقلة ما يزالان تحت التحقق.
+### التكوين المهني في المؤسسة
 
-الحزم التاريخية الأربعة لا تدعي حاليًا وجود transcription كاملة؛ حالتها النصية `source_locator_only`، مع حفظ روابط JORADP الرسمية ومسارات الاسترجاع الأرشيفية كأدلة مساعدة دون تخزين PDF في Git.
+`82-298 / 82-299 / 82-300 → تعديل 82-300 بواسطة 86-241 → الإلغاء بواسطة 24-74 في 2024`
 
-## أدوات الاستخراج والتحقق
+### مراكز التكوين المهني والتمهين CFPA
 
-- `scripts/joradp_resolver.py`: يحل PDF من هوية العدد، ويجرب الرابط المسجل وبدائل المسار ثم صفحة السنة الرسمية.
-- `scripts/materialize_joradp_text.py`: يستخدم الـresolver، يجلب PDF إلى ملف مؤقت فقط، يستخرج النص، ثم يحذف الملف الثنائي.
-- `scripts/validate_repository.py`: يفحص البنية، منع PDF، واجهات الإنسان، النصوص المجزأة، والنسخ الموحدة المؤرخة ومسارات provenance الخاصة بها.
+`92-27 → تعديل المادة 27 بواسطة 96-99 → الإلغاء بواسطة 14-140 في 2014`
 
-هذه الأدوات لا تحول الاستخراج الآلي أو consolidation إلى حقيقة قانونية رسمية؛ transcription والحالة والعلاقات والنسخ الموحدة تبقى خاضعة للتحقق.
+- 14-140 يحافظ انتقاليا على الملحقات المنشأة بموجب المادة 3 من 92-27 إلى غاية حلها أو تحويلها إلى مراكز.
+- كما يحافظ على النصوص التطبيقية لـ92-27 إلى غاية صدور النصوص التطبيقية الجديدة.
 
-## طبقة الذكاء الاصطناعي
+## المصادر والروابط
 
-المشروع مصمم ليكون **Model-Agnostic** و**Provider-Agnostic**. الذكاء الاصطناعي أداة استخراج وتحليل فوق المصادر والبيانات، وليس مصدر الحقيقة القانونية.
+- [`docs/SOURCES.md`](docs/SOURCES.md)
+- [`docs/JORADP_URL_RESOLUTION.md`](docs/JORADP_URL_RESOLUTION.md)
+- [`docs/JORADP_INDEX_DISCOVERY.md`](docs/JORADP_INDEX_DISCOVERY.md)
 
-- [AGENTS.md](AGENTS.md): نقطة دخول عامة لأي Agent أو نموذج جديد.
-- [ai/README.md](ai/README.md): معمارية طبقة الذكاء الاصطناعي.
-- [ai/AGENT_CONTRACT.md](ai/AGENT_CONTRACT.md): عقد السلوك الموحد وقواعد الإثبات وعدم الاختلاق.
-- [ai/PROJECT_CONTEXT.md](ai/PROJECT_CONTEXT.md): سياق مكثف يمكن تحميله للنماذج بسرعة.
-- [ai/HANDOFF.md](ai/HANDOFF.md): حالة المشروع الحالية وما يجب تنفيذه لاحقا.
-- [ai/context/](ai/context/): سياق وسياسات بصيغة مقروءة آليا.
-- [ai/tasks/](ai/tasks/): عقود مهام قياسية مستقلة عن prompts والمزود.
-- [ai/evals/](ai/evals/): اختبارات قبول النماذج والـprompts والـpipelines، وتشمل العلاقات والتعديل والتوحيد والتوسع الموضوعي.
-- [ai/adapters/](ai/adapters/): سياسة عزل APIs ومزودي النماذج عن المنطق القانوني.
+كل صفحة بشرية تعرض رابط PDF الرسمي عندما يكون endpoint محسومًا. إذا لم يحسم الرابط، يذكر ذلك صراحة ولا ينشأ رابط تخميني.
 
-قاعدة التشغيل: **AI output لا يصبح trusted knowledge تلقائيا**. يجب حفظ provenance والدليل والمرور بمراحل التحقق.
+## النسخ الموحدة
 
-## المصدر الرسمي الرئيسي
+راجع [`docs/AMENDMENTS_AND_CONSOLIDATION.md`](docs/AMENDMENTS_AND_CONSOLIDATION.md).
 
-الأمانة العامة للحكومة / الجريدة الرسمية للجمهورية الجزائرية الديمقراطية الشعبية:
+أول نسخة بحثية موحدة:
 
-- العربية: https://www.joradp.dz/HAR/Accueil.htm
-- الفرنسية: https://www.joradp.dz/HFR/Accueil.htm
-- البحث المرجعي SCALER: https://www.joradp.dz/SCRIPTS/Joa_Div.dll/RecGet
+[`DZ-DE-2018-162@consolidated-2020-12-02`](corpus/texts/DZ-DE-2018-162/consolidated/2020-12-02/README.md)
 
-## حالة المستودع
+النسخة الموحدة تحمل تاريخ قطع، provenance لكل مادة، ولا تقدم بوصفها نصا رسميا مستقلا.
 
-المشروع في حالة **`completed_historical_enterprise_training_1982_1986_waiting_next_instruction`**. تم ربط نظام التكوين المهني في المؤسسة لسنة 1982 بالتعديل 86-241 وبالإلغاء الذي جاء به المرسوم 24-74 لسنة 2024، مع إبقاء transcription التاريخية الكاملة كعمل لاحق مستقل. راجع `ai/HANDOFF.md` للخطوات التالية.
+## CI والتحقق
+
+Workflow:
+
+`.github/workflows/validate-repository.yml`
+
+يشغل:
+
+```bash
+python scripts/test_joradp_resolver.py
+python scripts/validate_repository.py .
+```
+
+راجع [`docs/CI.md`](docs/CI.md).
+
+في آخر تحقق بعد إدخال سلسلة CFPA التاريخية سجل الـValidator:
+
+```text
+metadata_records: 19
+human_readmes: 19
+graph_edges: 46
+discovery_queue: 29
+eval_cases: 17
+eval_expected: 17
+pdf_files: 0
+OK: no deterministic validation errors found.
+```
+
+نجاح CI يعني سلامة القواعد الحتمية المعرفة حاليا، ولا يعني تلقائيا أن كل transcription أو كل حالة قانونية أصبحت موثقة بالكامل.
+
+## منهجية وذاكرة المشروع
+
+- [`PROJECT_MEMORY.md`](PROJECT_MEMORY.md)
+- [`KNOWLEDGE_CHANGELOG.md`](KNOWLEDGE_CHANGELOG.md)
+- [`docs/LEGAL_SYSTEM_DZ.md`](docs/LEGAL_SYSTEM_DZ.md)
+- [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md)
+- [`docs/LANGUAGE_POLICY.md`](docs/LANGUAGE_POLICY.md)
+- [`docs/HUMAN_MACHINE_CORPUS.md`](docs/HUMAN_MACHINE_CORPUS.md)
+- [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md)
+- [`docs/LEGAL_RELATIONS.md`](docs/LEGAL_RELATIONS.md)
+- [`docs/TAXONOMY.md`](docs/TAXONOMY.md)
+- [`docs/DECISIONS.md`](docs/DECISIONS.md)
+- [`ontology/core.yml`](ontology/core.yml)
+- [`AGENTS.md`](AGENTS.md)
+- [`ai/HANDOFF.md`](ai/HANDOFF.md)
+
+## مراقبة الجديد في JORADP
+
+اقتراح المراجعة الأسبوعية العامة موثق في [`docs/UPDATE_MONITORING.md`](docs/UPDATE_MONITORING.md) وحالته حاليا `proposal_not_activated`. لم تُنشأ مهمة مجدولة بعد.
