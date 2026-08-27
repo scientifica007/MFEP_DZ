@@ -1,0 +1,27 @@
+text_id: DZ-DE-1996-099
+source_identity:
+  publisher: JORADP
+  year: 1996
+  issue: 17
+
+ar:
+  role: official_publication
+  url: null
+  publication_date: 1996-03-13
+  pages: {start: null, end: null}
+  access:
+    status: unresolved_direct_pdf
+    issue_identity_verified: true
+
+fr:
+  role: official_translation
+  url: "https://www.joradp.dz/FTP/jo-francais/1996/F1996017.PDF"
+  publication_date: 1996-03-13
+  pages: {start: 14, end: 14}
+  access:
+    status: official_pdf_text_accessible
+    last_checked: 2026-08-27
+
+binary_storage:
+  committed: false
+  policy: "PDF remains external; temporary materialization only."
