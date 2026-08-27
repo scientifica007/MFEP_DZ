@@ -112,7 +112,8 @@ relations:
     source_ref: DZ-DE-2014-140
     target_ref: DZ-DE-1992-027
     source_article: art-26
-    target_status: unresolved_seed_dependency
+    target_status: staging_resolved
+    target_record: corpus/texts/DZ-DE-1992-027/record.yml
     confidence: 1.0
     evidence: {language: ar_fr, page: 15}
     notes: "Article 26 also preserves implementing texts of 92-27 until new implementing texts are issued."
@@ -131,6 +132,7 @@ provenance:
   source_manifest: sources/sources.yml
   first_retrieved_at: 2026-08-25
   full_transcription_completed_at: 2026-08-26
+  predecessor_record_resolved_at: 2026-08-27
 
 verification:
   metadata_verified: true
@@ -141,7 +143,7 @@ verification:
   articles_index_verified: true
   relations_verified: true
   legal_status_verified: false
-  verified_at: 2026-08-26
+  verified_at: 2026-08-27
   needs_legal_review: false
 
 schema_observations:
