@@ -1,0 +1,129 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-1992-027
+id_status: provisional
+
+identity:
+  legal_form: executive_decree
+  number: "92-27"
+  title:
+    ar: "يتضمن القانون الأساسي النموذجي لمراكز التكوين المهني والتمهين"
+    fr: "Portant statut type des centres de formation professionnelle et de l'apprentissage"
+  title_ar_status: later_official_repeal_citation_not_original_page_verified
+  signature_date: 1992-01-20
+
+publication:
+  official_gazette: true
+  journal_number: 6
+  journal_year: 1992
+  publication_date: 1992-01-26
+  locators:
+    ar: {start_page: null, end_page: null, locator_source: unresolved_direct_arabic_issue_access}
+    fr: {start_page: 129, end_page: 132, locator_source: official_joradp_issue_boundary}
+  source_ref: sources/sources.yml
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: institutional_organization
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: cfpa_model_statute
+
+status:
+  value: repealed
+  as_of: 2014-05-07
+  confidence: 1.0
+  evidence:
+    - kind: explicit_repeal
+      source_ref: DZ-DE-2014-140
+      source_article: art-26
+      publication: "JORADP 26/2014 p.15"
+  notes: "Article 26 of 14-140 expressly repeals 92-27 while temporarily preserving implementing texts adopted under it. Article 25 separately preserves annexes created under article 3 until dissolution or elevation into CFPA centres."
+
+historical_state:
+  before_repeal: amended
+  known_amendments:
+    - text_id: DZ-DE-1996-099
+      target_article: art-27
+      verification: verified_official_fr
+  amendment_chain_completeness: high_but_not_exhaustive
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  transitional_effects: data/transitional-effects.jsonl
+  amendment_search: data/amendment-search.yml
+  text_variants:
+    ar: {index: text/ar.md, status: source_locator_only, version: original_promulgated}
+    fr: {index: text/fr.md, status: source_locator_only, version: original_promulgated}
+  binary_sources_committed: false
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    transcription_status: source_locator_only
+    visually_verified: false
+    direct_pdf_status: unresolved
+  fr:
+    available: true
+    role: official_translation
+    transcription_status: source_locator_only
+    visually_verified: false
+    direct_pdf_status: recorded_official_url
+
+structure:
+  article_count: null
+  article_count_status: unresolved_original_tail_not_visually_recovered
+  known_articles:
+    - {number: 3, function: creation_and_annex_basis}
+    - {number: 4, function: centre_missions}
+    - {number: 27, function: budget, later_amended_by_96_99}
+
+relations:
+  - id: REL-DZ-DE-1996-099-ART1-AMENDS-92-27-ART27
+    type: amended_by
+    source_ref: DZ-DE-1992-027
+    target_ref: DZ-DE-1996-099
+    source_article: art-27
+    target_article: art-1
+    relation_storage_note: "Inverse view only; canonical graph edge is stored from 96-99 to 92-27."
+  - id: REL-DZ-DE-2014-140-REPEALS-92-27
+    type: repealed_by
+    source_ref: DZ-DE-1992-027
+    target_ref: DZ-DE-2014-140
+    target_article: art-26
+    relation_storage_note: "Inverse view only; canonical graph edge is stored from 14-140 to 92-27."
+
+transitional_effects:
+  index: data/transitional-effects.jsonl
+  source_text: DZ-DE-2014-140
+  verified: true
+
+topics: [institutions, cfpa, vocational_training, apprenticeship, institutional_organization, historical]
+
+provenance:
+  source_manifest: sources/sources.yml
+  first_ingested_at: 2026-08-27
+  discovery_basis:
+    - DZ-DE-2014-140#art-25
+    - DZ-DE-2014-140#art-26
+    - DZ-DE-1996-099#art-1
+
+verification:
+  metadata_verified: true
+  source_identity_verified: true
+  structure_verified: partial
+  full_text_ar_verified: false
+  full_text_fr_verified: false
+  relations_verified: true
+  legal_status_verified: true
+  verified_at: 2026-08-27
+  needs_legal_review: false
+
+schema_observations:
+  - "Historical predecessor can be legally resolved before full transcription; article_count remains null rather than inferred."
+  - "Repeal and transitional survival are represented separately."
+  - "Known amendment 96-99 is explicit, but absence of other discovered amendments is not treated as proof of exclusivity."
