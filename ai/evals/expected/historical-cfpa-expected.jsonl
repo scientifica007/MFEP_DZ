@@ -1,0 +1,1 @@
+{"case_id":"REL-017-DE-96-99-AMEND-92-27-ART27","expected":{"relation":{"type":"amends","source":"DZ-DE-1996-099#art-1","target":"DZ-DE-1992-027#art-27"},"must_capture":{"supplementation":true,"target_scope":"article_27_only"},"must_not_output":["repeals","amends_entire_decree_without_article_scope","references_only"]},"gold_status":"source_verified_fr"}
