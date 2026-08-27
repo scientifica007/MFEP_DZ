@@ -1,0 +1,14 @@
+text_id: DZ-DE-1992-027
+search_date: 2026-08-27
+scope: "Historical search for texts modifying or supplementing decree 92-27 before its repeal by decree 14-140."
+result:
+  known_amendments:
+    - id: DZ-DE-1996-099
+      signature_date: 1996-03-06
+      publication: "JORADP 17/1996, 13 March 1996, FR p.14"
+      effect: "modifies and supplements article 27"
+      verification: verified_official_fr
+  completeness: high_but_not_exhaustive
+  later_citations_wording: "modifié et complété / المعدل والمتمم"
+  note: "Only 96-99 was positively resolved in this pass. Later wording that 92-27 was amended and supplemented is not used to infer that no other amendment exists."
+next_action: "Continue historical JORADP index traversal and inspect implementing texts preserved transitionally by decree 14-140."
