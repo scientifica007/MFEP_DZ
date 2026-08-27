@@ -1,0 +1,29 @@
+text_id: DZ-DE-1993-067
+source_identity:
+  publisher: JORADP
+  year: 1993
+  issue: 14
+
+ar:
+  role: official_publication
+  url: "https://www.joradp.dz/FTP/Jo-Arabe/1993/A1993014.pdf"
+  publication_date: 1993-03-03
+  pages: {start: null, end: null}
+  access:
+    status: official_endpoint_recorded_render_cache_miss
+    last_checked: 2026-08-27
+    note: "Endpoint is independently cited as the Arabic issue; visual rendering did not succeed in this pass."
+
+fr:
+  role: official_translation
+  url: "https://www.joradp.dz/FTP/Jo-Francais/1993/F1993014.pdf"
+  publication_date: 1993-03-03
+  pages: {start: 20, end: 22}
+  access:
+    status: official_pdf_visual_verified
+    last_checked: 2026-08-27
+    visually_checked_pages: [20, 21, 22]
+
+binary_storage:
+  committed: false
+  policy: "PDF remains external; temporary materialization only."
