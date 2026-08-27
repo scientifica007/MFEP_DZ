@@ -1,0 +1,29 @@
+text_id: DZ-DE-1992-027
+source_identity:
+  publisher: JORADP
+  year: 1992
+  issue: 6
+
+ar:
+  role: official_publication
+  url: null
+  publication_date: 1992-01-26
+  pages: {start: null, end: null}
+  access:
+    status: unresolved_direct_pdf
+    issue_identity_verified: true
+    note: "Do not synthesize a direct Arabic PDF URL until resolved through JORADP."
+
+fr:
+  role: official_translation
+  url: "https://www.joradp.dz/FTP/jo-francais/1992/F1992006.PDF"
+  publication_date: 1992-01-26
+  pages: {start: 129, end: 132}
+  access:
+    status: official_url_recorded_visual_render_failed
+    last_checked: 2026-08-27
+    note: "PDF identity and text boundary were resolved, but page screenshots returned cache miss in this pass."
+
+binary_storage:
+  committed: false
+  policy: "PDF remains external; temporary materialization only."
