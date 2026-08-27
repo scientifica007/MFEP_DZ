@@ -4,7 +4,7 @@
 
 ## الحالة التشغيلية
 
-`historical_cfpa_92_27_and_96_99_ingested_pending_final_ci`
+`completed_historical_cfpa_92_27_96_99_ci_passing_waiting_next_instruction`
 
 ## CI
 
@@ -17,7 +17,22 @@ python scripts/test_joradp_resolver.py
 python scripts/validate_repository.py .
 ```
 
-آخر حالة موثقة قبل دفعة CFPA كانت ناجحة. يجب فحص CI للـcommit النهائي لهذه الدفعة قبل إعلان اكتمالها.
+دفعة CFPA اجتازت CI فعليا في التشغيل `33046893496` على commit `488a05f239d1397cbfd5d24ee640a73e5c7e8bff` بنتيجة `success`.
+
+سجل الـValidator:
+
+- `metadata_records: 19`
+- `human_readmes: 19`
+- `graph_edges: 46`
+- `discovery_queue: 29`
+- `eval_cases: 17`
+- `eval_expected: 17`
+- `pdf_files: 0`
+- `consolidated_versions: 1`
+- `consolidation_map_rows: 45`
+- `OK: no deterministic validation errors found.`
+
+كما مرت اختبارات JORADP Resolver الأربعة.
 
 ## Corpus
 
@@ -111,7 +126,7 @@ DZ-DE-1992-027#art-27
 
 لا تغيير: المقترح موثق في `docs/UPDATE_MONITORING.md` وحالته `proposal_not_activated`. لم تنشأ مهمة مجدولة.
 
-## أولويات الاستئناف بعد إغلاق هذه الدفعة
+## أولويات الاستئناف
 
 1. تتبع النصوص التطبيقية لـ92-27 التي حفظها 14-140 انتقاليا، إذا كانت الأولوية لإكمال CFPA تاريخيا؛
 2. `DZ-DE-1990-235` لإكمال تاريخ INSFP؛
@@ -119,4 +134,4 @@ DZ-DE-1992-027#art-27
 4. `DZ-DE-2001-419` لإكمال تاريخ المؤسسات الخاصة؛
 5. أو سلسلة تعديلات `DZ-DE-2022-070` إذا أصبحت الأولوية للحالة القانونية الحديثة.
 
-لا يبدأ نص جديد قبل فحص CI النهائي لهذه الدفعة.
+المشروع متوقف بعد إغلاق سلسلة 92-27 ← 96-99 ← 14-140 على مستوى الهوية والعلاقات والأثر الانتقالي، بانتظار التعليمة التالية.
