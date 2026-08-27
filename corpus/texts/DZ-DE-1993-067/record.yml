@@ -1,0 +1,106 @@
+schema_status: draft-v0
+record_status: staging
+id: DZ-DE-1993-067
+id_status: provisional
+
+identity:
+  legal_form: executive_decree
+  number: "93-67"
+  title:
+    ar: null
+    fr: "Portant organisation et sanction des formations dispensées dans les centres de formation professionnelle et de l'apprentissage"
+  title_ar_status: direct_arabic_wording_not_transcribed
+  signature_date: 1993-03-01
+
+publication:
+  official_gazette: true
+  journal_number: 14
+  journal_year: 1993
+  publication_date: 1993-03-03
+  locators:
+    ar: {start_page: null, end_page: null, locator_source: direct_pdf_endpoint_recorded_render_unavailable}
+    fr: {start_page: 20, end_page: 22, locator_source: official_joradp_visual_pages}
+  source_ref: sources/sources.yml
+
+legal_classification:
+  normative_order: regulatory
+  legal_form: executive_decree
+  legal_function: implementing_regulation
+  normative_character: regulatory
+  scope: general
+  constitutional_or_legal_domain: vocational_training_organization_certification
+
+status:
+  value: repealed
+  as_of: 1999-04-14
+  confidence: 1.0
+  evidence:
+    - kind: explicit_repeal
+      source_ref: DZ-DE-1999-077
+      source_article: art-19
+  notes: "The repeal relation is recovered from the official 1999 issue archive and is also consistent with the later replacement chain culminating in 09-345."
+
+content:
+  human_view: README.md
+  verification_view: VERIFICATION.md
+  articles_index: data/articles.jsonl
+  text_variants:
+    ar: {index: text/ar.md, status: source_locator_only, version: original_promulgated}
+    fr: {index: text/fr.md, status: verified_operational_articles, version: original_promulgated, segments: [text/fr/01-art1-8.md, text/fr/02-art9-20.md]}
+  binary_sources_committed: false
+
+languages:
+  ar:
+    available: true
+    role: official_publication
+    transcription_status: source_locator_only
+    visually_verified: false
+  fr:
+    available: true
+    role: official_translation
+    transcription_status: verified_operational_articles
+    visually_verified: true
+    visual_pages: [20, 21, 22]
+
+structure:
+  article_count: 20
+  titles:
+    - {number: I, topic: general_provisions}
+    - {number: II, topic: contents_programmes_and_training_sanctions}
+    - {number: III, topic: continuing_training_organization_and_sanctions}
+    - {number: IV, topic: special_provisions}
+    - {number: V, topic: final_provisions}
+
+relations:
+  - id: REL-DZ-DE-1993-067-ART1-OPERATIONALIZES-92-27
+    type: operationalizes
+    source_ref: DZ-DE-1993-067
+    source_article: art-1
+    target_ref: DZ-DE-1992-027
+    confidence: 1.0
+    evidence: {language: fr, locator: "JORADP 14/1993 p.20"}
+  - id: REL-DZ-DE-1993-067-ART19-REPEALS-83-572
+    type: repeals
+    source_ref: DZ-DE-1993-067
+    source_article: art-19
+    target_ref: DZ-D-1983-572
+    target_status: unresolved_historical_dependency
+    confidence: 1.0
+    evidence: {language: fr, locator: "JORADP 14/1993 p.22"}
+
+topics: [cfpa, pedagogy, programmes, qualification_levels, certification, examinations, continuing_training, free_candidates]
+
+provenance:
+  source_manifest: sources/sources.yml
+  first_ingested_at: 2026-08-27
+
+verification:
+  metadata_verified: true
+  source_identity_verified: true
+  structure_verified: true
+  operative_articles_fr_verified: true
+  full_preamble_fr_verified: false
+  full_text_ar_verified: false
+  relations_verified: true
+  legal_status_verified: true
+  verified_at: 2026-08-27
